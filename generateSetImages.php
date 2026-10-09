@@ -1,7 +1,7 @@
 <?php
 
 
-$TABLE_SUFFIX = "50";
+$TABLE_SUFFIX = "";
 $OUTPUT_PATH = "/home/uesp/esoSetImages/";
 
 require("itemLinkImage.class.php");

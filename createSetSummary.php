@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "51pts";
+$TABLE_SUFFIX = "51";
 $LANG_SUFFIX = "";		//Use empty string for english
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;

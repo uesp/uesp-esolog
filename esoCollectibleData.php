@@ -494,7 +494,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 14776,
 										'name' => 'Sheogorath Takes a Holiday',
 										'icon' => '/esoui/art/icons/heraldrycrests_daedra_sheogorath_01.dds',
-										'desc' => 'When the Daedric Prince of Madness decides to take a holiday, it falls to you to serve as his guide and keep his insane desires from destroying Nirn. Travel to all the most exciting Tamriel destinations alongside the charmingly dangerous Sheogorath!',
+										'desc' => 'When the Daedric Prince of Madness decides to take a holiday, it falls to you to serve as his guide and keep his insane desires from destroying Nirn. Take a tour across Tamriel alongside the charmingly dangerous Sheogorath!',
 										'type' => 1,
 										'image' => '/esoui/art/store/pc_collections_dlc_sheogorathholiday_2x1.dds',
 										'nickname' => '' 
@@ -629,7 +629,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/collection_indexicon_upgrade_up.dds',
 						'special' => 0,
 						'numSubCategories' => 5,
-						'numCollectibles' => 8,
+						'numCollectibles' => 10,
 						'collectibles' => array (
 								1 => array (
 										'id' => 14394,
@@ -699,6 +699,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'U49 PTS Premium Tome Bonuses',
 										'icon' => '/esoui/art/icons/achievement_u42_scribing_grimoirespurchased.dds',
 										'desc' => 'Grants the bonuses conferred by ownership of the U50 PTS Premium Tome: two Caches of Tome Points and a unique cosmetic.',
+										'type' => 6,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								9 => array (
+										'id' => 15166,
+										'name' => 'Season Two Premium Tome',
+										'icon' => '/esoui/art/icons/achievement_u42_scribing_grimoirespurchased.dds',
+										'desc' => 'Grants ownership to the Season Two Premium Tome.',
+										'type' => 6,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								10 => array (
+										'id' => 15167,
+										'name' => 'Season Two Premium Tome Bonuses',
+										'icon' => '/esoui/art/icons/achievement_u42_scribing_grimoirespurchased.dds',
+										'desc' => 'Grants the bonuses conferred by ownership of the Season Two Premium Tome: two Caches of Tome Points and a unique cosmetic.',
 										'type' => 6,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -1249,7 +1267,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Hats',
-						'numCollectibles' => 167,
+						'numCollectibles' => 170,
 						'collectibles' => array (
 								1 => array (
 										'id' => 174,
@@ -2746,10 +2764,37 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								167 => array (
+										'id' => 14709,
+										'name' => 'Feathered Hat of Akatosh',
+										'icon' => '/esoui/art/icons/hat_featheredhuntershat.dds',
+										'desc' => 'With its bright emblem of Akatosh, this feathered hat lends a carefree air to those wearing it. Deeply held beliefs don`t need to weigh the spirit down, after all!',
+										'type' => 10,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								168 => array (
 										'id' => 14738,
 										'name' => 'Mask of Elegant Chaos',
 										'icon' => '/esoui/art/icons/hat_hatofelegantchaos.dds',
 										'desc' => 'This dark mask, though beautiful to gaze upon, hides your expressions from those who hope to understand you better. Exactly what you want.',
+										'type' => 10,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								169 => array (
+										'id' => 15007,
+										'name' => 'Gravedigger Buckled Hat',
+										'icon' => '/esoui/art/icons/hat_gravediggerbuckledhat.dds',
+										'desc' => '\"Rain. Snow. Bright sun. The dead don`t care what the weather is like. They just need burying. And that`s why you`ll find us gravediggers wearing hats. We`re out here in all sorts, Kynareth knows.\"—Gravedigger Marguerite',
+										'type' => 10,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								170 => array (
+										'id' => 15071,
+										'name' => 'Ostentatious Pirate Wig and Hat',
+										'icon' => '/esoui/art/icons/hat_ostentatiouscaptainshatandwig.dds',
+										'desc' => 'Adventure, plunder, and more await you on the high seas. Meet the moment like a Baron Captain of the All Flags Navy, with panache, by donning this dramatic hat and wig combination.',
 										'type' => 10,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -2759,7 +2804,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Hair Styles',
-						'numCollectibles' => 157,
+						'numCollectibles' => 159,
 						'collectibles' => array (
 								1 => array (
 										'id' => 311,
@@ -4173,13 +4218,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 13,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								158 => array (
+										'id' => 14711,
+										'name' => 'Fervent Sweep',
+										'icon' => '/esoui/art/icons/hair_lightofthedivinessweep.dds',
+										'desc' => '\"A simple sweep, yes? With ends in purples and blues? Divines-inspired, you say? Color me intrigued … and envious that you can pull off this style!\"—Rukharr, Coiffeur Artisan',
+										'type' => 13,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								159 => array (
+										'id' => 14712,
+										'name' => 'Dibellan Braided Bun',
+										'icon' => '/esoui/art/icons/hair_dibellanbraidedbun.dds',
+										'desc' => 'Dark flowers add an enticing fragrance to this elegant updo favored by Dibellan priests. Some prefer to wear it only for special occasions, but don`t let that limit you!',
+										'type' => 13,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Head Markings',
-						'numCollectibles' => 385,
+						'numCollectibles' => 390,
 						'collectibles' => array (
 								1 => array (
 										'id' => 445,
@@ -7645,6 +7708,51 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 17,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								386 => array (
+										'id' => 14716,
+										'name' => 'Divine Judgment Face Marking',
+										'icon' => '/esoui/art/icons/mrf_divinejudgment.dds',
+										'desc' => 'This ornate circle marks eight circles across the face. Eight Divines. And Eight judgments in service of the Divine plan. Asked and answered.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								387 => array (
+										'id' => 14717,
+										'name' => 'Eyes of Reprisal',
+										'icon' => '/esoui/art/icons/mrf_eyesofreprisal.dds',
+										'desc' => 'Your eyes see only retribution. Revenge. Reprisal. Judgement.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								388 => array (
+										'id' => 14719,
+										'name' => 'Harbingers Cathedral Face Marks',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'A warrior bearing the cathedral across their back is enough to silence a rowdy tavern. The Harbingers have spread the word. And even the loudest Undaunted braggart knows what judgment looks like.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								389 => array (
+										'id' => 14720,
+										'name' => 'Reprisal`s Rise Face Tattoo',
+										'icon' => '/esoui/art/icons/marking_face_both_all_flamesofthedirewolf.dds',
+										'desc' => 'Some scars are from accidents. Others from battle. These? They mark you as a beast of reprisal.',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								390 => array (
+										'id' => 14722,
+										'name' => 'Harbingers Gaze',
+										'icon' => '/esoui/art/icons/mrf_aedriceyes.dds',
+										'desc' => '\"The Divines sent me trials. I succeeded. Then they sent me tribulations. I endured. I am a Harbinger of the Divine. When I fulfill my sacred duty, they see what I see.\"—Harbinger Beredic`s Journal',
+										'type' => 17,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
@@ -8468,7 +8576,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Major Adornments',
-						'numCollectibles' => 140,
+						'numCollectibles' => 144,
 						'collectibles' => array (
 								1 => array (
 										'id' => 414,
@@ -9722,10 +9830,46 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								140 => array (
+										'id' => 14706,
+										'name' => 'Harbingers Half-Mask',
+										'icon' => '/esoui/art/icons/adr_harbingershalfmask.dds',
+										'desc' => '\"The half-mask given to me at my induction ceremony feels heavy, somehow. As if it bears the weight of my decades of service to the Divines.\"—Harbinger Beredic`s Journal',
+										'type' => 15,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								141 => array (
 										'id' => 14739,
 										'name' => 'Band of Symmetry',
 										'icon' => '/esoui/art/icons/adr_bandofsymmetry.dds',
 										'desc' => 'Art can create order from chaos. This band, crafted by skilled artisans, proves that.',
+										'type' => 15,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								142 => array (
+										'id' => 14752,
+										'name' => 'Blightguard Jawplate',
+										'icon' => '/esoui/art/icons/adr_fangedjawguard.dds',
+										'desc' => 'Crafted from Maarselok trophies, this intimidating jawplate speaks volumes about your combat prowess and adventuring spirit.',
+										'type' => 15,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								143 => array (
+										'id' => 14753,
+										'name' => 'Maarselok Hunter`s Horns',
+										'icon' => '/esoui/art/icons/adr_maarseloktrophyhorns.dds',
+										'desc' => '\"Why put my victory trophies from Maarselok on the wall when I can stick them on my head? Bit of alchemical glue and they`re nearly like real horns. Haven`t quite figured out how to remove them, though. But why would I?\"—Kailstig the Axe',
+										'type' => 15,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								144 => array (
+										'id' => 15008,
+										'name' => 'Oracle Society Harbinger`s Mask',
+										'icon' => '/esoui/art/icons/adr_cryptnoblemask.dds',
+										'desc' => 'The Oracle Society is a secretive sub-faction of the Harbingers. Member faces and names are a closely guarded secret due to connections with the highest levels of Tamriel society.',
 										'type' => 15,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -9735,7 +9879,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Minor Adornments',
-						'numCollectibles' => 67,
+						'numCollectibles' => 69,
 						'collectibles' => array (
 								1 => array (
 										'id' => 587,
@@ -10339,13 +10483,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 16,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								68 => array (
+										'id' => 14705,
+										'name' => 'Timeworn Key Ear Drop',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'Some may look at this mysterious key you dangle from your ear and wonder. Is it a working key? If so, what does it unlock? If not, why? The curiosity may drive them to ask. And that`s when you know you have them.',
+										'type' => 16,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								69 => array (
+										'id' => 14755,
+										'name' => 'Maarselok Slayer Piercings',
+										'icon' => '/esoui/art/icons/adr_maarselokhunterspiercings.dds',
+										'desc' => 'Undaunted love trophies. Some adorn walls. Others find their way into active battle gear. These piercings show off just how masterful you are at defeating dread Dragons.',
+										'type' => 16,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Costumes',
-						'numCollectibles' => 323,
+						'numCollectibles' => 329,
 						'collectibles' => array (
 								1 => array (
 										'id' => 38,
@@ -12815,9 +12977,9 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								275 => array (
 										'id' => 13275,
-										'name' => 'Charismatic Carouser',
+										'name' => 'Oasis Zephyr Apparel',
 										'icon' => '/esoui/art/icons/icon_missing.dds',
-										'desc' => '',
+										'desc' => 'Garb yourself in the lightest of fine fabrics, allowing sun-bright breezes to caress you gently. Dances, dalliances, and desire await among the dunes of Alik`r Desert. Embrace these experiences freely in this luxurious attire.',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -13228,6 +13390,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								321 => array (
+										'id' => 14357,
+										'name' => 'Gravedigger Garb',
+										'icon' => '/esoui/art/icons/cos_gravedigger.dds',
+										'desc' => 'The sacred duty of providing final resting places for the dead falls to those left behind. Any who perform this task day in and day out need garb suitable for the physical demands of this work as well as the exalted nature of it.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								322 => array (
 										'id' => 14691,
 										'name' => 'Quen`s Heist Attire',
 										'icon' => '/esoui/art/icons/cos_quen.dds',
@@ -13236,7 +13407,43 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								322 => array (
+								323 => array (
+										'id' => 14701,
+										'name' => 'Voidcaller Scarecrow Garb',
+										'icon' => '/esoui/art/icons/costume_harvestshallowsscarecrow.dds',
+										'desc' => 'It`s common for Khajiiti priests to add wards around harvest scarecrows. Stifling the song of the Void and protecting crops. In mockery of this tradition, some Voidcallers of Namiira dress like scarecrows and take perverse glee in terrifying the faithful.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								324 => array (
+										'id' => 14702,
+										'name' => 'Fortune`s Favor Finery',
+										'icon' => '/esoui/art/icons/cos_fortunesfavorfinery.dds',
+										'desc' => 'When Black Fredas arrives, Orsinium merchants don special garb then follow a chance-chosen path to sell good-luck trinkets. Some claim seeing such a merchant prevents minor mischances on this ill-omened holiday.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								325 => array (
+										'id' => 14703,
+										'name' => 'Oracle Society Harbingers Gown',
+										'icon' => '/esoui/art/icons/cos_cryptnoblesgown.dds',
+										'desc' => '\"If you wish to join us, be sure to wear your best. Insights into the Divine plan are only available if you look like you can afford them. See my gown? Something along these lines. The Eight must have their tithe, after all.\"—Oracle Society Sponsor',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								326 => array (
+										'id' => 14704,
+										'name' => 'Harbingers Fervor Attire',
+										'icon' => '/esoui/art/icons/cos_harbingersfervorattire.dds',
+										'desc' => 'Those who wear this battle garb are as much Dibellan devotees as any Passion Dancer. But for these Harbingers, their art is violence. And they are masters of their craft.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								327 => array (
 										'id' => 14740,
 										'name' => 'Ne Quin-al Wrap',
 										'icon' => '/esoui/art/icons/cos_nequinalwrap.dds',
@@ -13245,11 +13452,20 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								323 => array (
+								328 => array (
 										'id' => 14741,
 										'name' => 'Reveries Formal Wear',
 										'icon' => '/esoui/art/icons/cos_regalreveries.dds',
 										'desc' => 'Members of the House of Reveries know how to make a statement, and formal occasions are no exception. While many performers may still adopt a mask to conceal their identities at high society events in Summerset, their refined taste is never in question.',
+										'type' => 4,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								329 => array (
+										'id' => 14749,
+										'name' => 'Spider Hunter Silks',
+										'icon' => '/esoui/art/icons/costume_spiderhuntersilks.dds',
+										'desc' => '\"Dreams of the Swarm Mother. So many spiders. Spindleclutch calls. I will answer in my own time. Do you think the spiders will like my outfit? I do so want to impress them. Right before pulling them apart, leg by leg.\"—Denthilde of the Eight Legs',
 										'type' => 4,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -13259,7 +13475,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				8 => array (
 						'subCategoryIndex' => 8,
 						'name' => 'Body Markings',
-						'numCollectibles' => 330,
+						'numCollectibles' => 333,
 						'collectibles' => array (
 								1 => array (
 										'id' => 444,
@@ -16230,13 +16446,40 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 18,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								331 => array (
+										'id' => 14715,
+										'name' => 'Divine Judgment Body Marking',
+										'icon' => '/esoui/art/icons/mrk_divinejudgment.dds',
+										'desc' => '\"By the grace of the Eight, I bring judgment to those who need it. Akatosh, Arkay, Dibella, Julianos, Kynareth, Mara, Stendarr, and Zenithar. All mark my body … and my soul.\"—Harbinger Lynessa',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								332 => array (
+										'id' => 14718,
+										'name' => 'Harbingers Cathedral Body Marks',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => '\"I first built the temple on my body, brick by brick, in my soul. Each stone, every needle prick, blessed by the Divines. This edifice stands within me and without, protecting me.\"—Harbinger Beredic`s Journal',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								333 => array (
+										'id' => 14721,
+										'name' => 'Reprisal`s Rise Body Tattoo',
+										'icon' => '/esoui/art/icons/marking_body_both_all_flamesofthedirewolf.dds',
+										'desc' => 'Your blood burns. You must act. The fury of the Divine swells within, beast of reprisal. Who will fall to your judgement this eve? You do not know. You do not care. It is all a part of the plan.',
+										'type' => 18,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				9 => array (
 						'subCategoryIndex' => 9,
 						'name' => 'Skins',
-						'numCollectibles' => 113,
+						'numCollectibles' => 115,
 						'collectibles' => array (
 								1 => array (
 										'id' => 161,
@@ -17254,6 +17497,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 11,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								114 => array (
+										'id' => 14708,
+										'name' => 'Cath Bedraud Crypt Marble',
+										'icon' => '/esoui/art/icons/skin_aeonianmarble.dds',
+										'desc' => '\"Your meditations in Cath Bedraud didn`t settle your emotions, apprentice? Hmmm … a moment. Now, look. Yes, you embody the marble inside the crypts. And does it feel? No, it stands, a bulwark against grief. As you must be.\"—Necromancer Nolollas',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								115 => array (
+										'id' => 14750,
+										'name' => 'Shagrath`s Web',
+										'icon' => '/esoui/art/icons/skin_shagrathsprotection_.dds',
+										'desc' => '\"Weave outcomes favored by the God of Spiders, my dear novice, and she bestows upon you her blessed web of protection. Whether you choose to show others her favor is up to you.\"—Priestess Marieneth',
+										'type' => 11,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
@@ -17537,7 +17798,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				11 => array (
 						'subCategoryIndex' => 11,
 						'name' => 'Polymorphs',
-						'numCollectibles' => 46,
+						'numCollectibles' => 47,
 						'collectibles' => array (
 								1 => array (
 										'id' => 34,
@@ -17952,13 +18213,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 12,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								47 => array (
+										'id' => 14590,
+										'name' => 'Harbingers Cathedral Atronach',
+										'icon' => '/esoui/art/icons/poly_alchemistsglassconstruct.dds',
+										'desc' => 'The Cathedral Atronach is the greatest working of the Harbinger priest-mages, merging the Divine and the Daedric. Seeing one of these blessed stained glass Atronachs on the battlefield means a defining moment of the Divine plan has come to pass.',
+										'type' => 12,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				12 => array (
 						'subCategoryIndex' => 12,
 						'name' => 'Skill Styles',
-						'numCollectibles' => 160,
+						'numCollectibles' => 173,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1260,
@@ -18872,7 +19142,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								102 => array (
 										'id' => 13915,
 										'name' => 'Superheated Ward, Azure Blue',
-										'icon' => '/esoui/art/icons/u49_ability_dragonknight_stonefist.dds',
+										'icon' => '/esoui/art/icons/ability_dragonknight_superheatedward_azureblue.dds',
 										'desc' => 'Applies to Superheated Ward, Volcanic Ward, and Magma Fist. Select in Skills menu.',
 										'type' => 30,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -19222,8 +19492,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								141 => array (
 										'id' => 14659,
-										'name' => 'Werewolf Form, Hircine`s Hunter',
-										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'name' => 'Werewolf Form, Red',
+										'icon' => '/esoui/art/icons/ability_werewolf_001_red.dds',
 										'desc' => 'Applies to Werewolf Transformation, Pack Leader, and Werewolf Berserker. Select in Skills menu.',
 										'type' => 30,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -19287,7 +19557,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 14676,
 										'name' => 'Overload, Lightning Yellow',
 										'icon' => '/esoui/art/icons/ability_sorcerer_overload_lightningyellow.dds',
-										'desc' => 'Applies to Overload, Energy Overload, and Power Overload. Does not apply to light or heavy attacks. Select in Skills menu.',
+										'desc' => 'Applies to Overload, Energy Overload, and Power Overload. Select in Skills menu.',
 										'type' => 30,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -19331,7 +19601,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								153 => array (
 										'id' => 14681,
 										'name' => 'Death Stroke, Autumn Gold',
-										'icon' => '/esoui/art/icons/ability_nightblade_002_strikinggold.dds',
+										'icon' => '/esoui/art/icons/ability_nightblade_007_strikinggold.dds',
 										'desc' => 'Applies to Death Stroke, Incapacitating Strike, and Soul Harvest. Select in Skills menu.',
 										'type' => 30,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -19349,7 +19619,7 @@ $ESO_COLLECTIBLE_DATA = array (
 								155 => array (
 										'id' => 14683,
 										'name' => 'Veiled Strike, Autumn Gold',
-										'icon' => '/esoui/art/icons/ability_nightblade_007_strikinggold.dds',
+										'icon' => '/esoui/art/icons/ability_nightblade_002_strikinggold.dds',
 										'desc' => 'Applies to Veiled Strike, Concealed Weapon, and Surprise Attack. Select in Skills menu.',
 										'type' => 30,
 										'image' => '/esoui/art/icons/icon_missing.dds',
@@ -19396,6 +19666,123 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Molten Weapons, Cooled',
 										'icon' => '/esoui/art/icons/ability_dragonknight_015_noweaponswap.dds',
 										'desc' => 'Applies to Molten Weapons, Igneous Weapons, and Molten Armaments. Select in Skills Menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								161 => array (
+										'id' => 14814,
+										'name' => 'Werewolf Form, Ragefire',
+										'icon' => '/esoui/art/icons/ability_werewolf_001_ragefire.dds',
+										'desc' => 'Applies to Werewolf Transformation, Pack Leader, and Werewolf Berserker. Select in Skills menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								162 => array (
+										'id' => 14815,
+										'name' => 'Spear Shards, Fiery Torment',
+										'icon' => '/esoui/art/icons/ability_templar_sun_strike_fierytorment.dds',
+										'desc' => 'Applies to Spear Shards, Blazing Spear, and Luminous Shards. Select in Skills Menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								163 => array (
+										'id' => 14816,
+										'name' => 'Cleave, Gold Road',
+										'icon' => '/esoui/art/icons/ability_2handed_002_goldroadleaves.dds',
+										'desc' => 'Applies to Cleave, Brawler, and Carve. Select in Skills menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								164 => array (
+										'id' => 14817,
+										'name' => 'Obsidian Shield, Gold Road',
+										'icon' => '/esoui/art/icons/ability_dragonknight_017_goldroadleaves.dds',
+										'desc' => 'Applies to Obsidian Shield, Fragmented Shield, and Igneous Shield. Select in Skills menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								165 => array (
+										'id' => 14819,
+										'name' => 'Summon Shade, Cyan Blue',
+										'icon' => '/esoui/art/icons/ability_nightblade_001_sagecyan.dds',
+										'desc' => 'Applies to Summon Shade, Dark Shade, and Shadow Image. Select in Skills menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								166 => array (
+										'id' => 14820,
+										'name' => 'Evasion, Cyan Blue',
+										'icon' => '/esoui/art/icons/ability_armor_002_sagecyan.dds',
+										'desc' => 'Applies to Evasion, Elude, and Shuffle. Select in Skills menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								167 => array (
+										'id' => 14822,
+										'name' => 'Surge, Vibrant Yellow',
+										'icon' => '/esoui/art/icons/ability_sorcerer_surge_fieryyellow.dds',
+										'desc' => 'Applies to Surge, Critical Surge, and Power Surge. Select in Skills menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								168 => array (
+										'id' => 14945,
+										'name' => 'Dawnbreaker, Azureblight',
+										'icon' => '/esoui/art/icons/ability_fightersguild_005_azureblight.dds',
+										'desc' => 'Applies to Dawnbreaker, Flawless Dawnbreaker, and Dawnbreaker of Smiting. Select in Skills Menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								169 => array (
+										'id' => 14946,
+										'name' => 'Volley, Azureblight',
+										'icon' => '/esoui/art/icons/ability_bow_003_azureblight.dds',
+										'desc' => 'Applies to Volley, Arrow Barrage, and Endless Hail. Select in Skills Menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								170 => array (
+										'id' => 14947,
+										'name' => 'Imbue Weapon, Azureblight',
+										'icon' => '/esoui/art/icons/ability_psijic_003_azureblight.dds',
+										'desc' => 'Applies to Imbue Weapon, Crushing Weapon, and Elemental Weapon. Select in Skills Menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								171 => array (
+										'id' => 14948,
+										'name' => 'Rune Focus, Azureblight',
+										'icon' => '/esoui/art/icons/ability_templar_rune_focus_azureblight.dds',
+										'desc' => 'Applies to Rune Focus, Channeled Focus, and Restoring Focus.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								172 => array (
+										'id' => 14949,
+										'name' => 'Betty Netch, Azureblight',
+										'icon' => '/esoui/art/icons/ability_warden_017_azureblight.dds',
+										'desc' => 'Applies to Betty Netch, Blue Betty, and Bull Netch. Select in Skills Menu.',
+										'type' => 30,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								173 => array (
+										'id' => 14950,
+										'name' => 'Assassin`s Blade: Azureblight',
+										'icon' => '/esoui/art/icons/ability_nightblade_017_azureblight.dds',
+										'desc' => 'Applies to Assassin`s Blade, Killer`s Blade, and Impale. Select in Skills Menu.',
 										'type' => 30,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -19808,7 +20195,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Notable Homes',
-						'numCollectibles' => 79,
+						'numCollectibles' => 81,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1068,
@@ -20520,6 +20907,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 19,
 										'image' => '/esoui/art/store/pc_collections_hsg_stargazersvigil_1x1.dds',
 										'nickname' => 'Reach Observatory' 
+								),
+								80 => array (
+										'id' => 14778,
+										'name' => 'Grotto of Desires',
+										'icon' => '/esoui/art/icons/housing_grottoofdesires001.dds',
+										'desc' => 'Frolic in forbidden festivities in Sanguine`s Grotto of Desires! Dance your days away in the Great Hall. Dally in the wine-red waters of this beautiful grotto. Or, if you prefer spicier fun, indulge your fantasies in expansive side chambers.',
+										'type' => 19,
+										'image' => '/esoui/art/store/pc_collections_hsg_grottoofdesires_1x1.dds',
+										'nickname' => 'Sanguine`s Grotto' 
+								),
+								81 => array (
+										'id' => 14779,
+										'name' => 'Sheogorad Chateau',
+										'icon' => '/esoui/art/icons/housing_sheogoradchateau001.dds',
+										'desc' => 'On the outside, this Hlaalu-themed chateau blends into the Sheogorad archipelago. But on the inside, oh ho! Rooms are dizzyingly upside-down! Cheese stacks to the ceiling! What other paradoxical surprises await in this house built by the Prince of Madness?',
+										'type' => 19,
+										'image' => '/esoui/art/store/pc_collections_hsg_sheogoradchateau_1x1.dds',
+										'nickname' => 'Sheogorath`s Chateau' 
 								) 
 						) 
 				) 
@@ -20537,7 +20942,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'General',
-						'numCollectibles' => 127,
+						'numCollectibles' => 131,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1171,
@@ -21675,9 +22080,45 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								127 => array (
 										'id' => 14687,
-										'name' => 'Handbill:  Battlereeve Urcelmo',
+										'name' => 'Handbill: Battlereeve Urcelmo',
 										'icon' => '/esoui/art/icons/housing_uni_exc_housingfreerunnerposter005.dds',
 										'desc' => 'A portrait of Battlereeve Urcelmo, head of the First Auridon Marines and member of Queen Ayrenn`s inner circle.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								128 => array (
+										'id' => 14792,
+										'name' => 'Statuette: Hircine the Hunter',
+										'icon' => '/esoui/art/icons/housing_uni_inc_u51hircinestatuette001.dds',
+										'desc' => 'A remembrance of past hunts. Or a great addition to your altar to Hircine.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								129 => array (
+										'id' => 14793,
+										'name' => 'Statuette: Golden Knight',
+										'icon' => '/esoui/art/icons/housing_uni_inc_u51goldenknightstatuette001.dds',
+										'desc' => 'The chosen of Meridia stands ready.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								130 => array (
+										'id' => 14794,
+										'name' => 'Painting: Solitude',
+										'icon' => '/esoui/art/icons/housing_uni_inc_housingu51westernskyrimpainting001.dds',
+										'desc' => 'This moody painting depicts Solitude on an overcast day.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								131 => array (
+										'id' => 15006,
+										'name' => 'Antiquities: A Primer',
+										'icon' => '/esoui/art/icons/housing_skr_inc_marklibrarybooktable008.dds',
+										'desc' => 'A primer from Amalien of the Antiquarian Circle on how to scry, explore, and excavate for precious treasures from the past.',
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -21775,7 +22216,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Undaunted Busts',
-						'numCollectibles' => 82,
+						'numCollectibles' => 84,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1110,
@@ -22514,13 +22955,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								83 => array (
+										'id' => 14796,
+										'name' => 'Bust: Mylenne Moon-Caller',
+										'icon' => '/esoui/art/icons/housing_uni_inc_veteranmylenne001.dds',
+										'desc' => 'Bronze bust commemorating a solo victory in Moon Hunter Keep.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								84 => array (
+										'id' => 14798,
+										'name' => 'Bust: Tarcyr',
+										'icon' => '/esoui/art/icons/housing_uni_inc_veterantarcyr001.dds',
+										'desc' => 'Bronze bust commemorating a solo victory in March of Sacrifices.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Undaunted Trophies',
-						'numCollectibles' => 82,
+						'numCollectibles' => 84,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1265,
@@ -23259,6 +23718,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 20,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								83 => array (
+										'id' => 14795,
+										'name' => 'Trophy: Mylenne Moon-Caller',
+										'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophymylenne001.dds',
+										'desc' => 'Trophy taken from Mylenne Moon-Caller in honor of a solo victory in Moon Hunter Keep.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								84 => array (
+										'id' => 14797,
+										'name' => 'Trophy: Tarcyr',
+										'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophytarcyr001.dds',
+										'desc' => 'Trophy taken from Tarcyr in honor of a solo victory in March of Sacrifices.',
+										'type' => 20,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
@@ -23843,7 +24320,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'name' => 'Fragments',
 						'icon' => '/esoui/art/treeicons/store_indexicon_fragments_up.dds',
 						'special' => 0,
-						'numSubCategories' => 49,
+						'numSubCategories' => 51,
 						'numCollectibles' => 0,
 						'collectibles' => array () 
 				),
@@ -25561,7 +26038,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 14732,
 										'name' => 'Sanguine Red Silk',
 										'icon' => '/esoui/art/icons/event_collectible_fragment_sanguine_red_silk.dds',
-										'desc' => 'In the halls of the Daedra, their crude mockeries of Tamrielic traditions extend to the courtesies of courtly dancing as well.\n\nA component required for the Roseblood Wings Recall customized action.',
+										'desc' => 'In the halls of the Daedra, their crude mockeries of Tamrielic traditions extend to the courtesies of courtly dancing as well.\n\nA component required for the Thorn`s Bite Revelry Gown.',
 										'type' => 26,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -25570,7 +26047,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 14733,
 										'name' => 'Sanguine Spool of Thread',
 										'icon' => '/esoui/art/icons/event_collectible_fragment_sanguine_spool_of_thread.dds',
-										'desc' => 'Darkly beautiful and ringed with bloody thorns, this fashionable accoutrement lures in dance partners while also pricking those who get too close.\n\nA component required for the Roseblood Wings Recall customized action.',
+										'desc' => 'Darkly beautiful and ringed with bloody thorns, this fashionable accoutrement lures in dance partners while also pricking those who get too close.\n\nA component required for the Thorn`s Bite Revelry Gown.',
 										'type' => 26,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -25579,7 +26056,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'id' => 14734,
 										'name' => 'Sanguine Soul Gem',
 										'icon' => '/esoui/art/icons/event_collectible_fragment_sanguine_soul_gem.dds',
-										'desc' => 'Victims of this deadly poison are found with reddened lips; the mark of one last dalliance with forbidden romance.\n\nA component required for the Roseblood Wings Recall customized action.',
+										'desc' => 'Victims of this deadly poison are found with reddened lips; the mark of one last dalliance with forbidden romance.\n\nA component required for the Thorn`s Bite Revelry Gown.',
 										'type' => 26,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -25588,6 +26065,92 @@ $ESO_COLLECTIBLE_DATA = array (
 				),
 				45 => array (
 						'subCategoryIndex' => 45,
+						'name' => 'Suncleft Ornaug',
+						'numCollectibles' => 3,
+						'collectibles' => array (
+								1 => array (
+										'id' => 15065,
+										'name' => 'Galen Seawater',
+										'icon' => '/esoui/art/icons/crafting_potion_base_water_4_r1.dds',
+										'desc' => 'This frothing seawater still sings with the adventurous spirit of the Systres islands.\n\nA component required for the Suncleft Grotto Ornaug mount.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								2 => array (
+										'id' => 15066,
+										'name' => 'Captured Systres Zephyr',
+										'icon' => '/esoui/art/icons/housing_u46_water_splash_vfx.dds',
+										'desc' => 'A swirling gust of wind that once danced atop the waves in Gonfalon Bay.\n\nA component required for the Suncleft Grotto Ornaug mount.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								3 => array (
+										'id' => 15067,
+										'name' => 'Arcing Ornaug Energy',
+										'icon' => '/esoui/art/icons/monster_storm_elemental_jolt_stone_001.dds',
+										'desc' => 'A carefully collected jolt of power from the Ornaugs of the Systres Islands. It dances gleefully within its vessel.\n\nA component required for the Suncleft Grotto Ornaug mount.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								) 
+						) 
+				),
+				46 => array (
+						'subCategoryIndex' => 46,
+						'name' => 'Grotto of Desires',
+						'numCollectibles' => 5,
+						'collectibles' => array (
+								1 => array (
+										'id' => 15010,
+										'name' => 'Floating Desires Petal',
+										'icon' => '/esoui/art/icons/event_collectible_sanguine_beauty_petal.dds',
+										'desc' => 'As this petal falls it trails the echoes of Revelry, Daedric power still lingering in bloody resonance.\n\nA component required for the Grotto of Desires Sanguine-themed house.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								2 => array (
+										'id' => 15011,
+										'name' => 'Wine-Soaked Argonian Effigy',
+										'icon' => '/esoui/art/icons/event_collectible_sanguine_argonian_effigy.dds',
+										'desc' => 'A ritual effigy to the marsh-water Prince of swamp celebrations. Worn down by time and soaked with an estuary`s worth of wine.\n\nA component required for the Grotto of Desires Sanguine-themed house.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								3 => array (
+										'id' => 15012,
+										'name' => 'Gilded Imperial Revelry Icon',
+										'icon' => '/esoui/art/icons/event_collectible_sanguine_imperial_effigy.dds',
+										'desc' => 'Still smelling faintly of rare herbs, this icon stood for years in a hidden temple to the Prince of Indulgences, before the sacking of Imperial City forced its removal.\n\nA component required for the Grotto of Desires Sanguine-themed house.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								4 => array (
+										'id' => 15013,
+										'name' => 'Crimson Silk Veneration Cushion',
+										'icon' => '/esoui/art/icons/event_collectible_sanguine_cushion.dds',
+										'desc' => 'This beautiful pillow is said to have ceremonial importance in esoteric and libidinous Sanguine Rituals.\n\nA component required for the Grotto of Desires Sanguine-themed house.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								5 => array (
+										'id' => 15014,
+										'name' => 'Acts of Indulgences Place Setting',
+										'icon' => '/esoui/art/icons/event_collectible_sanguine_place_setting.dds',
+										'desc' => 'To the Lord of Revelry, a gluttonous gorging is just as much veneration as an erotic tableau. Reverential prayers run along the underside of each piece of cutlery.\n\nA component required for the Grotto of Desires Sanguine-themed house.',
+										'type' => 26,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								) 
+						) 
+				),
+				47 => array (
+						'subCategoryIndex' => 47,
 						'name' => 'Apple-Bobbing',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -25656,8 +26219,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				46 => array (
-						'subCategoryIndex' => 46,
+				48 => array (
+						'subCategoryIndex' => 48,
 						'name' => 'Voriplasm Pet',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -25726,8 +26289,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				47 => array (
-						'subCategoryIndex' => 47,
+				49 => array (
+						'subCategoryIndex' => 49,
 						'name' => 'Wooden Grave-Stake Memento',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -25796,8 +26359,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				48 => array (
-						'subCategoryIndex' => 48,
+				50 => array (
+						'subCategoryIndex' => 50,
 						'name' => 'Sovereign Sow',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -25866,8 +26429,8 @@ $ESO_COLLECTIBLE_DATA = array (
 								) 
 						) 
 				),
-				49 => array (
-						'subCategoryIndex' => 49,
+				51 => array (
+						'subCategoryIndex' => 51,
 						'name' => 'Cartographer Fragments',
 						'numCollectibles' => 7,
 						'collectibles' => array (
@@ -26284,7 +26847,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/store_indexicon_trophy_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 197,
+						'numCollectibles' => 198,
 						'collectibles' => array (
 								1 => array (
 										'id' => 335,
@@ -28058,6 +28621,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 5,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								198 => array (
+										'id' => 14811,
+										'name' => 'Ill-Omened Egg',
+										'icon' => '/esoui/art/icons/u51_memento_accursedegg.dds',
+										'desc' => 'Not every egg hatches into a chick. Sometimes it changes you into a chicken!',
+										'type' => 5,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -28159,7 +28731,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Horses',
-						'numCollectibles' => 145,
+						'numCollectibles' => 146,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1,
@@ -29465,13 +30037,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Order`s Sign' 
+								),
+								146 => array (
+										'id' => 14285,
+										'name' => 'Harbingers Warhorse',
+										'icon' => '/esoui/art/icons/mount_lonehunterwarhorse.dds',
+										'desc' => '\"Mara says: Live soberly and peacefully. Honor your parents, and preserve the peace and security of home and family.\"—Nine Commands of the Eight Divines',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Calvorn' 
 								) 
 						) 
 				),
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Big Cats',
-						'numCollectibles' => 123,
+						'numCollectibles' => 125,
 						'collectibles' => array (
 								1 => array (
 										'id' => 22,
@@ -30579,13 +31160,31 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Jhargo' 
+								),
+								124 => array (
+										'id' => 14287,
+										'name' => 'Harbingers Sabre Cat',
+										'icon' => '/esoui/art/icons/mount_lonehuntersabrecat.dds',
+										'desc' => '\"Zenithar says: Work hard, and you will be rewarded. Spend wisely, and you will be comfortable. Never steal, or you will be punished.\"—Nine Commands of the Eight Divines',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Draythor' 
+								),
+								125 => array (
+										'id' => 14729,
+										'name' => 'Voidcaller Scarecrow Sabre Cat',
+										'icon' => '/esoui/art/icons/mount_harvestshallowssabrecat.dds',
+										'desc' => '\"Kissed by the Great Darkness, that straw cat is, ja`khajiit. It seeks out those who hear the call of the Void. If it shows itself, seeking a rider? Best get on. Or be ready to suffer the pain of the Void at its claws.\"—Voidcaller Joboraska',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Voidclaw' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Nix-Oxen',
-						'numCollectibles' => 13,
+						'numCollectibles' => 14,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1361,
@@ -30703,6 +31302,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Scrambler' 
+								),
+								14 => array (
+										'id' => 14726,
+										'name' => 'Ald Carac Nix-Ox',
+										'icon' => '/esoui/art/icons/mount_aldcaracnixox.dds',
+										'desc' => 'Before it became a battleground, Ald Carac provided shelter to uniquely colored nix-oxen. Those who helped establish the gladiator camp spent some time taming these creatures. Now more live outside Ald Carac than anywhere near it.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Sera Spot' 
 								) 
 						) 
 				),
@@ -31292,7 +31900,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Camels',
-						'numCollectibles' => 34,
+						'numCollectibles' => 35,
 						'collectibles' => array (
 								1 => array (
 										'id' => 233,
@@ -31599,6 +32207,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sealegs' 
+								),
+								35 => array (
+										'id' => 14725,
+										'name' => 'Myrkwasa Braided Camel',
+										'icon' => '/esoui/art/icons/mount_myrkwasabraidedcamel.dds',
+										'desc' => '\"None but camels. That`s all I will ride. And of those, I favor the look of the traditional Myrkwasa braids found on this particular camel. No, no, do not persuade me otherwise. Only camels will I ride. And for now, only this one.\"—Khosbin the Wise',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Hegathe`s Pride' 
 								) 
 						) 
 				),
@@ -32735,7 +33352,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				8 => array (
 						'subCategoryIndex' => 8,
 						'name' => 'Deer',
-						'numCollectibles' => 21,
+						'numCollectibles' => 23,
 						'collectibles' => array (
 								1 => array (
 										'id' => 591,
@@ -32925,6 +33542,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Pearlprong' 
+								),
+								22 => array (
+										'id' => 14396,
+										'name' => 'Cathedral of the Divine Elk',
+										'icon' => '/esoui/art/icons/mount_glasselkofthedivines.dds',
+										'desc' => 'Harbinger priest-mages craft this elk steed for high-status members of the order. Formed from blessed stained glass, this majestic mount ensures those who see it know that its rider acts in the name of the Eight.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Velmira' 
+								),
+								23 => array (
+										'id' => 14730,
+										'name' => 'Pale Pass Moose',
+										'icon' => '/esoui/art/icons/mount_ghostwhitemooseofdisquiet.dds',
+										'desc' => 'Even ogres lurking around Pale Pass try not to cross paths with the moose native to the area. Knowing this, merchants paid to have several captured and trained to saddle. Now warriors who favor heavier gear seek these impressive steeds out.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Ogrebane' 
 								) 
 						) 
 				),
@@ -33267,7 +33902,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				12 => array (
 						'subCategoryIndex' => 12,
 						'name' => 'Bears',
-						'numCollectibles' => 60,
+						'numCollectibles' => 61,
 						'collectibles' => array (
 								1 => array (
 										'id' => 151,
@@ -33808,13 +34443,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Ambler' 
+								),
+								61 => array (
+										'id' => 14692,
+										'name' => 'Steadfast Stendarr Battlebear',
+										'icon' => '/esoui/art/icons/mount_stendarrsjusticebattlebear.dds',
+										'desc' => '\"Nothing wakes you up faster than staring into the golden eyes of a massive armored bear. Its rider asked why I slept in the streets, then tossed coins my way. Later, I heard they`d hauled off the lord who`d dispossessed me.\"—Overheard in Daggerfall',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Gold-Eyes' 
 								) 
 						) 
 				),
 				13 => array (
 						'subCategoryIndex' => 13,
 						'name' => 'Ornaugs',
-						'numCollectibles' => 10,
+						'numCollectibles' => 11,
 						'collectibles' => array (
 								1 => array (
 										'id' => 9572,
@@ -33905,13 +34549,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Rubyfin' 
+								),
+								11 => array (
+										'id' => 14727,
+										'name' => 'Suncleft Grotto Ornaug',
+										'icon' => '/esoui/art/icons/mount_suncleftornaug.dds',
+										'desc' => 'Named after the grotto in Galen where it was first tamed, this bright yellow ornaug dazzles the eye. Many sailors seek out this beast as a companion both in port and while aboard, a faithful guardian that also happens to be an incredible swimmer.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Tuna-Eater' 
 								) 
 						) 
 				),
 				14 => array (
 						'subCategoryIndex' => 14,
 						'name' => 'Elephants',
-						'numCollectibles' => 2,
+						'numCollectibles' => 3,
 						'collectibles' => array (
 								1 => array (
 										'id' => 12963,
@@ -33930,13 +34583,22 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'War-Ender' 
+								),
+								3 => array (
+										'id' => 14742,
+										'name' => 'Maarselok Slayer Mammoth',
+										'icon' => '/esoui/art/icons/mount_slayerstrophymammoth.dds',
+										'desc' => 'Capture the glory of your victory against the Dragon Maarselok! This mammoth not only provides you with easier transport, but also showcases trophies from the dread blue Dragon of the Tenmar Jungle.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Stomper' 
 								) 
 						) 
 				),
 				15 => array (
 						'subCategoryIndex' => 15,
 						'name' => 'Special',
-						'numCollectibles' => 10,
+						'numCollectibles' => 13,
 						'collectibles' => array (
 								1 => array (
 										'id' => 10619,
@@ -34027,6 +34689,33 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Chaosbringer' 
+								),
+								11 => array (
+										'id' => 14286,
+										'name' => 'Harbingers Gargoyle',
+										'icon' => '/esoui/art/icons/mount_lonehuntergargoyle.dds',
+										'desc' => '\"Arkay says: Honor the earth, its creatures, and the spirits, living and dead. Guard and tend the bounties of the mortal world, and do not profane the spirits of the dead.\"—Nine Commands of the Eight Divines',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Belthira' 
+								),
+								12 => array (
+										'id' => 14693,
+										'name' => 'Beast of Divine Reprisal',
+										'icon' => '/esoui/art/icons/mount_beastofreprisal.dds',
+										'desc' => 'The beast is not just the mount but the rider as well, flesh and bone and blood fueled with hatred for the unfaithful. The fire that burns within the Beast is muzzled, barely, in service of the Divine plan.',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Adjudicator' 
+								),
+								13 => array (
+										'id' => 14699,
+										'name' => 'Jadefang Clannfear',
+										'icon' => '/esoui/art/icons/mount_clannfeardreadsteed.dds',
+										'desc' => '\"I sealed a pact with a crafty green Clannfear before it vanished. At my summons it will appear again. I paid dearly to contract with the Dreadriders of the Jadefang Dremora clan. I hope this bargain is worth its steep price.\"—Magister Dolan`s Journal',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Gvynakhet' 
 								) 
 						) 
 				),
@@ -34148,7 +34837,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				17 => array (
 						'subCategoryIndex' => 17,
 						'name' => 'Vvardvarks',
-						'numCollectibles' => 6,
+						'numCollectibles' => 8,
 						'collectibles' => array (
 								1 => array (
 										'id' => 10627,
@@ -34203,6 +34892,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Scorchy' 
+								),
+								7 => array (
+										'id' => 14288,
+										'name' => 'Harbingers Vvardvark',
+										'icon' => '/esoui/art/icons/mount_lonehuntervvardvark.dds',
+										'desc' => '\"Stendarr says: Be kind and generous to the people of Tamriel. Protect the weak, heal the sick, and give to the needy.\"—Nine Commands of the Eight Divines',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Althas' 
+								),
+								8 => array (
+										'id' => 14731,
+										'name' => 'Padomaic Crest Vvardvark',
+										'icon' => '/esoui/art/icons/mount_palerosevvardvark.dds',
+										'desc' => '\"Though Varkenel missed the mark on creating a pure-white vvardvark on his first attempt, I admit to preferring this pale pink version. Perhaps I shall take these off his hands and return home to the central highlands.\"—Magister Sela Otheri',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Serjo Sunna' 
 								) 
 						) 
 				),
@@ -34563,7 +35270,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				21 => array (
 						'subCategoryIndex' => 21,
 						'name' => 'Quasigriffs',
-						'numCollectibles' => 11,
+						'numCollectibles' => 12,
 						'collectibles' => array (
 								1 => array (
 										'id' => 8880,
@@ -34657,12 +35364,21 @@ $ESO_COLLECTIBLE_DATA = array (
 								),
 								11 => array (
 										'id' => 14117,
-										'name' => 'Direnni Sage Quasigriff',
+										'name' => 'Ancient Direnni Quasigriff',
 										'icon' => '/esoui/art/icons/mount_clandirenniquasigriff.dds',
-										'desc' => '\"Unbelievable. Some enterprising mage created a mount with perfect Direnni plumage. Can you imagine the time? The effort? Elves certainly do love their details.\"—Elona Mantel, Daggerfall Mages Guild',
+										'desc' => '\"My sweet friend. Last of your kind. Our time together draws to a natural close. Wait patiently within my Vault until someone worthy of your grace arrives. I`ll ensure they are of the highest caliber for you, my most faithful companion.\"—Sage Voernet',
 										'type' => 2,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Finullie' 
+								),
+								12 => array (
+										'id' => 14823,
+										'name' => 'Harvestfall Quasigriff',
+										'icon' => '/esoui/art/icons/mount_harvestgloryquasigriff.dds',
+										'desc' => '\"Irastimil Direnni made a few tweaks with this particular autumnal-hued quasigriff. Note the gait? Still, as a bird-beast creature, it retains its quasigriff status. Shush, you. I`ll brook no disagreement on this.\"—Magister Varkenel',
+										'type' => 2,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Autumnglory' 
 								) 
 						) 
 				),
@@ -34936,7 +35652,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Daedric',
-						'numCollectibles' => 41,
+						'numCollectibles' => 42,
 						'collectibles' => array (
 								1 => array (
 										'id' => 26,
@@ -35299,6 +36015,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => 'Orbietome' 
 								),
 								41 => array (
+										'id' => 14762,
+										'name' => 'Taskmaster`s Trials Daedrat',
+										'icon' => '/esoui/art/icons/pet_alchemistsnefariousdaedrat.dds',
+										'desc' => 'With their cunning intelligence and ambitious drive, these Daedrats serve Peryite. The Taskmaster sometimes lends one of these skilled skulkers to adherents who need a bit of help … and to keep an eye on them.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Zifencrantz' 
+								),
+								42 => array (
 										'id' => 14781,
 										'name' => 'Mad God`s Tomeshell',
 										'icon' => '/esoui/art/icons/pet_shiveringisletomeshell.dds',
@@ -35312,7 +36037,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Flying Pets',
-						'numCollectibles' => 99,
+						'numCollectibles' => 103,
 						'collectibles' => array (
 								1 => array (
 										'id' => 36,
@@ -36204,13 +36929,49 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Bubble-hug' 
+								),
+								100 => array (
+										'id' => 14737,
+										'name' => 'Flameskull of Divine Reprisal',
+										'icon' => '/esoui/art/icons/pet_flamingskullofreprisal.dds',
+										'desc' => 'Each flame skull is enchanted by a Harbinger devotee with rare necromantic talent. Every construct used to be a beast rider, a former agent of reprisal. Even beyond death, they serve the Divine plan.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Skully' 
+								),
+								101 => array (
+										'id' => 14757,
+										'name' => 'Maarselok Dragon Imp',
+										'icon' => '/esoui/art/icons/pet_maarselokdragonimp.dds',
+										'desc' => '\"Imps! Those tricksters. That one over there? Turned into a small version of Maarselok. I faced that blighted Dragon myself weeks ago. Didn`t stop me from starting like a spooked camel when I saw the small version.\"—Undaunted Ordzazir',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Impselok' 
+								),
+								102 => array (
+										'id' => 14760,
+										'name' => 'Whiterun Barred Owl',
+										'icon' => '/esoui/art/icons/pet_whiterunbarredowl.dds',
+										'desc' => '\"Follow the flight of the owl. If it leads you to Whiterun, rest there. If it leads you into the deep woods, hunt there. If it instead follows you, consider yourself blessed. By whom? Jhunal, maybe. But who can really say?\"—Elder Eorbold',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Striker' 
+								),
+								103 => array (
+										'id' => 14763,
+										'name' => 'Nighthallow Moth',
+										'icon' => '/esoui/art/icons/pet_nighthallowmoth.dds',
+										'desc' => '\"You know death nears when these moths gather around spent candles. Fluttering as if light still sputters from their wicks. But if you see only one, like mine, consider yourself lucky. You`ll find delicious fruit nearby.\"—Garby the Grocer',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Whisperdark' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Exotic',
-						'numCollectibles' => 458,
+						'numCollectibles' => 465,
 						'collectibles' => array (
 								1 => array (
 										'id' => 7,
@@ -40333,13 +41094,76 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Lutey' 
+								),
+								459 => array (
+										'id' => 14713,
+										'name' => 'Steadfast Stendarr Battlebear Cub',
+										'icon' => '/esoui/art/icons/pet_stendarrswarbearcub.dds',
+										'desc' => '\"After I helped feed Alliance War veterans at the inn, I found this golden bear cub waiting for me outside. Only later did I find out it had scared off some unscrupulous individuals before I came out. Bless Stendarr!\"—Faustina Vinorman',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Camillus' 
+								),
+								460 => array (
+										'id' => 14735,
+										'name' => 'Cathedral of the Divine Fawn',
+										'icon' => '/esoui/art/icons/pet_glassfawnofthedivines.dds',
+										'desc' => 'When done with more serious workings, Harbinger priest-mages use leftover materials to create acts of devotion. The resultant stained-glass fawns sedately accompany visitors around Harbinger enclaves. Watching, of course, but adorable just the same.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Divinity' 
+								),
+								461 => array (
+										'id' => 14736,
+										'name' => 'Cath Bedraud Crypt Ghost',
+										'icon' => '/esoui/art/icons/pet_ghostofreprisal.dds',
+										'desc' => '\"After a long day of necromantic studies, the sound of skeleton servants became too distracting. At Cath Bedraud I found a quieter companion to keep me company in my studies.\"—From the journal of Ogrogog',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Henona Gardner' 
+								),
+								462 => array (
+										'id' => 14743,
+										'name' => 'Lilmoth Turtle',
+										'icon' => '/esoui/art/icons/pet_lilmothturtle.dds',
+										'desc' => '\"Fate brought my Lilymoth to me. While heading toward Blackrose Prison, my battlebear saw her before I did and stopped to sniff her. Not wanting her to be trod upon by my companions, I picked her up, and she`s been with me ever since.\"—Fa the Ready',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Lilymoth' 
+								),
+								463 => array (
+										'id' => 14756,
+										'name' => 'Harvestfall Fledgling Gryphon',
+										'icon' => '/esoui/art/icons/pet_harvestgloryfledglinggryphon.dds',
+										'desc' => 'Romp through fallen leaves with this wondrous little fledgling! Just don`t be surprised if she chases a few squirrels as part of the fun. And keep her away from bears, which she may confuse as friends instead of aggressive foes.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Leafcruncher' 
+								),
+								464 => array (
+										'id' => 14758,
+										'name' => 'Vulkhel Black Squirrel',
+										'icon' => '/esoui/art/icons/pet_vulkhelblacksquirrel.dds',
+										'desc' => 'When an illness caused Vulkhel Guard`s native black squirrels to die almost completely off, locals began healing and breeding them. Now some end up as gifts to animal-lovers passing through town.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Shadowtail' 
+								),
+								465 => array (
+										'id' => 14759,
+										'name' => 'Aconite Spider',
+										'icon' => '/esoui/art/icons/pet_aconitespider.dds',
+										'desc' => '\"I quite like my new spider friend. She favors rats, which suits my household just fine. In fact, I hear from our neighbors that they`ve seen nary a rat on our street for months now.\"—Lady Piernette Helane',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Priscila' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Domestic',
-						'numCollectibles' => 108,
+						'numCollectibles' => 111,
 						'collectibles' => array (
 								1 => array (
 										'id' => 9,
@@ -41312,6 +42136,33 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 3,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => 'Sir Yip' 
+								),
+								109 => array (
+										'id' => 14714,
+										'name' => 'Patched Tabby Cat^n',
+										'icon' => '/esoui/art/icons/pet_patchedbrowntabby.dds',
+										'desc' => '\"You`re on a lucky ship if one of these white-and-tabby cats are on board. How do I know? Experience. Ships without them? I could write harrowing tragedies. Ships with them? Smooth sailing.\"—Captain Sigum',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Captain Aiko' 
+								),
+								110 => array (
+										'id' => 14744,
+										'name' => 'Bravil Retriever Pup',
+										'icon' => '/esoui/art/icons/pet_bravilretrieverpup.dds',
+										'desc' => 'Who needs more adorable puppy antics in their life? You do! Trainers recommend you invest in some chew toys, as well. You don`t wish to jump into battle with Daedra with puppy-chewed leather gear now, do you?',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Skipper' 
+								),
+								111 => array (
+										'id' => 14761,
+										'name' => 'Belkarth Black Pig',
+										'icon' => '/esoui/art/icons/pet_belkarthblackpig.dds',
+										'desc' => 'Made famous by the bard song \"The Fire-Eating Pig,\" these black-bristled porcine companions love cuddles and carrots. More than one person claims theirs also saved lives, though not from a runaway hearth fire as the ditty so vividly describes.',
+										'type' => 3,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => 'Carrotcruncher' 
 								) 
 						) 
 				),
@@ -41363,7 +42214,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Mining',
-						'numCollectibles' => 8,
+						'numCollectibles' => 9,
 						'collectibles' => array (
 								1 => array (
 										'id' => 11086,
@@ -41433,6 +42284,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'name' => 'Malacath Vosh Ball Mining',
 										'icon' => '/esoui/art/icons/u48_mineore_malacathsvoshballthrow.dds',
 										'desc' => 'Modern vosh balls are made of hard leather, but traditionalists insist on metal with a leather shell. Perfect for ore-mining practice throws.',
+										'type' => 29,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								9 => array (
+										'id' => 14724,
+										'name' => 'Flame-Father`s Mining',
+										'icon' => '/esoui/art/icons/u51_mineore_dagonmining.dds',
+										'desc' => 'Call upon the ferocity of Dagon`s destruction to rip ore straight from the ground.',
 										'type' => 29,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
@@ -41539,7 +42399,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Recalling',
-						'numCollectibles' => 22,
+						'numCollectibles' => 24,
 						'collectibles' => array (
 								1 => array (
 										'id' => 11084,
@@ -41738,6 +42598,24 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 29,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								23 => array (
+										'id' => 14700,
+										'name' => 'Azureblight Recall',
+										'icon' => '/esoui/art/icons/u51_wayshrine_azureflamerecall.dds',
+										'desc' => '\"The defeat of Maarselok may have ended the Azure Blight, yet I find lingering effects color my magic. Let us hope no ill effects result.\"—Undaunted Eralane Tedalane',
+										'type' => 29,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								24 => array (
+										'id' => 14707,
+										'name' => 'Harbingers Recall',
+										'icon' => '/esoui/art/icons/u51_wayshrine_recallofthedivinedoor.dds',
+										'desc' => 'A door opens for you. Thanks to your devotion, you know exactly where it goes.',
+										'type' => 29,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
@@ -41832,7 +42710,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Wood Cutting',
-						'numCollectibles' => 8,
+						'numCollectibles' => 9,
 						'collectibles' => array (
 								1 => array (
 										'id' => 11087,
@@ -41905,6 +42783,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 29,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								9 => array (
+										'id' => 14723,
+										'name' => 'Cleave of the Divine',
+										'icon' => '/esoui/art/icons/u51_chopwood_divineglasscleave.dds',
+										'desc' => 'Draw strength from the Divines as your axe bites home!',
+										'type' => 29,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -41916,7 +42803,7 @@ $ESO_COLLECTIBLE_DATA = array (
 						'icon' => '/esoui/art/treeicons/tutorial_idexicon_emotes_up.dds',
 						'special' => 0,
 						'numSubCategories' => 0,
-						'numCollectibles' => 235,
+						'numCollectibles' => 239,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1255,
@@ -44025,6 +44912,42 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								235 => array (
+										'id' => 14710,
+										'name' => 'Play Classical Kemençe',
+										'icon' => '/esoui/art/icons/icon_missing.dds',
+										'desc' => 'Stir the souls of your audience by playing this stringed instrument with skill and passion.',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								236 => array (
+										'id' => 14746,
+										'name' => 'Curse You!',
+										'icon' => '/esoui/art/icons/emote_curseyou.dds',
+										'desc' => 'May dire misfortune fall upon all who oppose you!',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								237 => array (
+										'id' => 14747,
+										'name' => 'Mirror Mishap',
+										'icon' => '/esoui/art/icons/emote_vanitysreward.dds',
+										'desc' => 'What is this mirror trying to tell you?',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								238 => array (
+										'id' => 14748,
+										'name' => 'Finders Keepers',
+										'icon' => '/esoui/art/icons/emote_finderskeepers.dds',
+										'desc' => 'You found a shiny coin! And now, so have some covetous crows!',
+										'type' => 21,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								239 => array (
 										'id' => 14788,
 										'name' => 'Sheogorath`s Blessed Cheese',
 										'icon' => '/esoui/art/icons/emo_sheoscheeseskin.dds',
@@ -44049,7 +44972,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Head',
-						'numCollectibles' => 724,
+						'numCollectibles' => 733,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1598,
@@ -50566,13 +51489,94 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								725 => array (
+										'id' => 14402,
+										'name' => 'Maarselok Slayer Helm',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerhvy_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								726 => array (
+										'id' => 14409,
+										'name' => 'Maarselok Slayer Helmet',
+										'icon' => '/esoui/art/icons/gear_maarselokslayermed_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								727 => array (
+										'id' => 14416,
+										'name' => 'Maarselok Slayer Hat',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerlgt_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								728 => array (
+										'id' => 14611,
+										'name' => 'Harbingers Hunting Hat',
+										'icon' => '/esoui/art/icons/gear_lonehunter_head.dds',
+										'desc' => 'An Outfit look for headgear in the Harbingers Hunting style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								729 => array (
+										'id' => 14806,
+										'name' => 'Zhekleg Helm',
+										'icon' => '/esoui/art/icons/gear_zhekleg_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								730 => array (
+										'id' => 14812,
+										'name' => 'Tarcyr Mask',
+										'icon' => '/esoui/art/icons/gear_tarcyr_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Tarcyr style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								731 => array (
+										'id' => 14978,
+										'name' => 'Jadefang Clannfear Rider Helmet',
+										'icon' => '/esoui/art/icons/gear_clannfearrider_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Jadefang Clannfear Rider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								732 => array (
+										'id' => 14982,
+										'name' => 'Mylenne Moon-Caller Mask',
+										'icon' => '/esoui/art/icons/gear_mylennemooncaller_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Mylenne Moon-Caller style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								733 => array (
+										'id' => 14987,
+										'name' => 'Abecean Sea Privateer Hat',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_head_a.dds',
+										'desc' => 'An Outfit look for headgear in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'Chest',
-						'numCollectibles' => 853,
+						'numCollectibles' => 861,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1488,
@@ -58250,13 +59254,85 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								854 => array (
+										'id' => 14401,
+										'name' => 'Maarselok Slayer Cuirass',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerhvy_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								855 => array (
+										'id' => 14408,
+										'name' => 'Maarselok Slayer Jack',
+										'icon' => '/esoui/art/icons/gear_maarselokslayermed_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								856 => array (
+										'id' => 14415,
+										'name' => 'Maarselok Slayer Jerkin',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerlgt_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								857 => array (
+										'id' => 14422,
+										'name' => 'Maarselok Slayer Robe',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerlgt_robe_a.dds',
+										'desc' => 'An Outfit look for chests in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								858 => array (
+										'id' => 14610,
+										'name' => 'Harbingers Hunting Jack',
+										'icon' => '/esoui/art/icons/gear_lonehunter_chest.dds',
+										'desc' => 'An Outfit look for chests in the Harbingers Hunting style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								859 => array (
+										'id' => 14803,
+										'name' => 'Zhekleg Jerkin',
+										'icon' => '/esoui/art/icons/gear_zhekleg_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								860 => array (
+										'id' => 14975,
+										'name' => 'Jadefang Clannfear Rider Jack',
+										'icon' => '/esoui/art/icons/gear_clannfearrider_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Jadefang Clannfear Rider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								861 => array (
+										'id' => 14984,
+										'name' => 'Abecean Sea Privateer Jerkin',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_chest_a.dds',
+										'desc' => 'An Outfit look for chests in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Legs',
-						'numCollectibles' => 669,
+						'numCollectibles' => 676,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1491,
@@ -64278,13 +65354,76 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								670 => array (
+										'id' => 14404,
+										'name' => 'Maarselok Slayer Greaves',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerhvy_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								671 => array (
+										'id' => 14410,
+										'name' => 'Maarselok Slayer Guards',
+										'icon' => '/esoui/art/icons/gear_maarselokslayermed_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								672 => array (
+										'id' => 14417,
+										'name' => 'Maarselok Slayer Breeches',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerlgt_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								673 => array (
+										'id' => 14612,
+										'name' => 'Harbingers Hunting Breeches',
+										'icon' => '/esoui/art/icons/gear_lonehunter_legs.dds',
+										'desc' => 'An Outfit look for legs in the Harbingers Hunting style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								674 => array (
+										'id' => 14807,
+										'name' => 'Zhekleg Breeches',
+										'icon' => '/esoui/art/icons/gear_zhekleg_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								675 => array (
+										'id' => 14979,
+										'name' => 'Jadefang Clannfear Rider Guards',
+										'icon' => '/esoui/art/icons/gear_clannfearrider_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Jadefang Clannfear Rider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								676 => array (
+										'id' => 14988,
+										'name' => 'Abecean Sea Privateer Breeches',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_legs_a.dds',
+										'desc' => 'An Outfit look for legs in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Shoulders',
-						'numCollectibles' => 749,
+						'numCollectibles' => 758,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1496,
@@ -71026,13 +72165,94 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								750 => array (
+										'id' => 14403,
+										'name' => 'Maarselok Slayer Pauldrons',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerhvy_shoulders_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								751 => array (
+										'id' => 14412,
+										'name' => 'Maarselok Slayer Arm Cops',
+										'icon' => '/esoui/art/icons/gear_maarselokslayermed_shoulders_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								752 => array (
+										'id' => 14418,
+										'name' => 'Maarselok Slayer Epaulets',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerlgt_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								753 => array (
+										'id' => 14613,
+										'name' => 'Harbingers Hunting Epaulets',
+										'icon' => '/esoui/art/icons/gear_lonehunter_shoulder.dds',
+										'desc' => 'An Outfit look for shoulders in the Harbingers Hunting style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								754 => array (
+										'id' => 14808,
+										'name' => 'Zhekleg Pauldrons',
+										'icon' => '/esoui/art/icons/gear_zhekleg_shoulders_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								755 => array (
+										'id' => 14813,
+										'name' => 'Tarcyr Shoulder',
+										'icon' => '/esoui/art/icons/gear_tarcyr_shoulders_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Tarcyr style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								756 => array (
+										'id' => 14980,
+										'name' => 'Jadefang Clannfear Rider Arm Cops',
+										'icon' => '/esoui/art/icons/gear_clannfearrider_shoulders_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Jadefang Clannfear Rider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								757 => array (
+										'id' => 14983,
+										'name' => 'Mylenne Moon-Caller Shoulder',
+										'icon' => '/esoui/art/icons/gear_mylennemooncaller_shoulder_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Mylenne Moon-Caller style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								758 => array (
+										'id' => 14989,
+										'name' => 'Abecean Sea Privateer Epaulets',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_shoulders_a.dds',
+										'desc' => 'An Outfit look for shoulders in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Feet',
-						'numCollectibles' => 669,
+						'numCollectibles' => 676,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1489,
@@ -77054,13 +78274,76 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								670 => array (
+										'id' => 14407,
+										'name' => 'Maarselok Slayer Sabatons',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerhvy_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								671 => array (
+										'id' => 14413,
+										'name' => 'Maarselok Slayer Boots',
+										'icon' => '/esoui/art/icons/gear_maarselokslayermed_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								672 => array (
+										'id' => 14420,
+										'name' => 'Maarselok Slayer Shoes',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerlgt_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								673 => array (
+										'id' => 14614,
+										'name' => 'Harbingers Hunting Boots',
+										'icon' => '/esoui/art/icons/gear_lonehunter_boots.dds',
+										'desc' => 'An Outfit look for footwear in the Harbingers Hunting style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								674 => array (
+										'id' => 14804,
+										'name' => 'Zhekleg Boots',
+										'icon' => '/esoui/art/icons/gear_zhekleg_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								675 => array (
+										'id' => 14976,
+										'name' => 'Jadefang Clannfear Rider Boots',
+										'icon' => '/esoui/art/icons/gear_clannfearrider_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Jadefang Clannfear Rider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								676 => array (
+										'id' => 14985,
+										'name' => 'Abecean Sea Privateer Shoes',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_feet_a.dds',
+										'desc' => 'An Outfit look for footwear in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				6 => array (
 						'subCategoryIndex' => 6,
 						'name' => 'Hands',
-						'numCollectibles' => 671,
+						'numCollectibles' => 678,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1490,
@@ -83100,13 +84383,76 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								672 => array (
+										'id' => 14406,
+										'name' => 'Maarselok Slayer Gauntlets',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerhvy_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								673 => array (
+										'id' => 14414,
+										'name' => 'Maarselok Slayer Bracers',
+										'icon' => '/esoui/art/icons/gear_maarselokslayermed_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								674 => array (
+										'id' => 14421,
+										'name' => 'Maarselok Slayer Gloves',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerlgt_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								675 => array (
+										'id' => 14615,
+										'name' => 'Harbingers Hunting Gloves',
+										'icon' => '/esoui/art/icons/gear_lonehunter_gloves.dds',
+										'desc' => 'An Outfit look for hands in the Harbingers Hunting style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								676 => array (
+										'id' => 14805,
+										'name' => 'Zhekleg Bracers',
+										'icon' => '/esoui/art/icons/gear_zhekleg_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								677 => array (
+										'id' => 14977,
+										'name' => 'Jadefang Clannfear Rider Bracers',
+										'icon' => '/esoui/art/icons/gear_clannfearrider_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Jadefang Clannfear Rider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								678 => array (
+										'id' => 14986,
+										'name' => 'Abecean Sea Privateer Gloves',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_hands_a.dds',
+										'desc' => 'An Outfit look for hands in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				),
 				7 => array (
 						'subCategoryIndex' => 7,
 						'name' => 'Waist',
-						'numCollectibles' => 652,
+						'numCollectibles' => 659,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1502,
@@ -88975,6 +90321,69 @@ $ESO_COLLECTIBLE_DATA = array (
 										'type' => 24,
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
+								),
+								653 => array (
+										'id' => 14405,
+										'name' => 'Maarselok Slayer Girdle',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerhvy_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								654 => array (
+										'id' => 14411,
+										'name' => 'Maarselok Slayer Belt',
+										'icon' => '/esoui/art/icons/gear_maarselokslayermed_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								655 => array (
+										'id' => 14419,
+										'name' => 'Maarselok Slayer Sash',
+										'icon' => '/esoui/art/icons/gear_maarselokslayerlgt_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								656 => array (
+										'id' => 14616,
+										'name' => 'Harbingers Hunting Belt',
+										'icon' => '/esoui/art/icons/gear_lonehunter_belt.dds',
+										'desc' => 'An Outfit look for waists in the Harbingers Hunting style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								657 => array (
+										'id' => 14809,
+										'name' => 'Zhekleg Girdle',
+										'icon' => '/esoui/art/icons/gear_zhekleg_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								658 => array (
+										'id' => 14981,
+										'name' => 'Jadefang Clannfear Rider Belt',
+										'icon' => '/esoui/art/icons/gear_clannfearrider_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Jadefang Clannfear Rider style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								659 => array (
+										'id' => 14990,
+										'name' => 'Abecean Sea Privateer Sash',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_waist_a.dds',
+										'desc' => 'An Outfit look for waists in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
 								) 
 						) 
 				) 
@@ -88992,7 +90401,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				1 => array (
 						'subCategoryIndex' => 1,
 						'name' => 'Two-Handed',
-						'numCollectibles' => 884,
+						'numCollectibles' => 896,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1558,
@@ -96555,6 +97964,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								841 => array (
+										'id' => 13561,
+										'name' => 'Squall of Retribution Maul',
+										'icon' => '/esoui/art/icons/gear_squallofretribution_2hmace_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Squall of Retribution style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								842 => array (
 										'id' => 13662,
 										'name' => 'Clockwork Factotum Battle Axe',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_2haxe_a.dds',
@@ -96563,7 +97981,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								842 => array (
+								843 => array (
 										'id' => 13667,
 										'name' => 'Clockwork Factotum Maul',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_2hhammer_a.dds',
@@ -96572,7 +97990,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								843 => array (
+								844 => array (
 										'id' => 13668,
 										'name' => 'Clockwork Factotum Greatsword',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_2hsword_a.dds',
@@ -96581,7 +97999,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								844 => array (
+								845 => array (
 										'id' => 13679,
 										'name' => 'Fharun Moonlight Battle Axe',
 										'icon' => '/esoui/art/icons/gear_moonascendant_2haxe_a.dds',
@@ -96590,7 +98008,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								845 => array (
+								846 => array (
 										'id' => 13684,
 										'name' => 'Yaghra`s Bane Battle Axe',
 										'icon' => '/esoui/art/icons/gear_yaghrabane_2haxe_a.dds',
@@ -96599,7 +98017,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								846 => array (
+								847 => array (
 										'id' => 13689,
 										'name' => 'Tava`s Goshawk Greatsword',
 										'icon' => '/esoui/art/icons/gear_tavasgoshawk_2hsword_a.dds',
@@ -96608,7 +98026,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								847 => array (
+								848 => array (
 										'id' => 13694,
 										'name' => 'Redoran Lava Shalk Maul',
 										'icon' => '/esoui/art/icons/gear_redoranlavashalk_2hhammer_a.dds',
@@ -96617,7 +98035,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								848 => array (
+								849 => array (
 										'id' => 13713,
 										'name' => 'Faithful Housecarl Battle Axe',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_2haxe_a.dds',
@@ -96626,7 +98044,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								849 => array (
+								850 => array (
 										'id' => 13718,
 										'name' => 'Faithful Housecarl Maul',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_2hhammer_a.dds',
@@ -96635,7 +98053,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								850 => array (
+								851 => array (
 										'id' => 13719,
 										'name' => 'Faithful Housecarl Greatsword',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_2hsword_a.dds',
@@ -96644,7 +98062,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								851 => array (
+								852 => array (
 										'id' => 13769,
 										'name' => 'Golden Khajiit Battle Axe',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_2haxe_a.dds',
@@ -96653,7 +98071,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								852 => array (
+								853 => array (
 										'id' => 13774,
 										'name' => 'Golden Khajiit Maul',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_2hhammer_a.dds',
@@ -96662,7 +98080,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								853 => array (
+								854 => array (
 										'id' => 13775,
 										'name' => 'Golden Khajiit Greatsword',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_2hsword_a.dds',
@@ -96671,7 +98089,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								854 => array (
+								855 => array (
 										'id' => 13928,
 										'name' => 'Dapper Daredevil Greatsword',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_2hsword_a.dds',
@@ -96680,7 +98098,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								855 => array (
+								856 => array (
 										'id' => 13933,
 										'name' => 'Apocryphabound Battle Axe',
 										'icon' => '/esoui/art/icons/gear_emeraldinferno_2haxe_a.dds',
@@ -96689,7 +98107,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								856 => array (
+								857 => array (
 										'id' => 13938,
 										'name' => 'Namira`s Hunger Greatsword',
 										'icon' => '/esoui/art/icons/gear_namirashunger_2hsword_a.dds',
@@ -96698,7 +98116,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								857 => array (
+								858 => array (
 										'id' => 13943,
 										'name' => 'Warrior Wave Marine Maul',
 										'icon' => '/esoui/art/icons/gear_ragadamarine_2hhammer_a.dds',
@@ -96707,7 +98125,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								858 => array (
+								859 => array (
 										'id' => 14093,
 										'name' => 'Dapper Daredevil Maul',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_2hhammer_a.dds',
@@ -96716,7 +98134,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								859 => array (
+								860 => array (
 										'id' => 14094,
 										'name' => 'Dapper Daredevil Battle Axe',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_2haxe_a.dds',
@@ -96725,7 +98143,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								860 => array (
+								861 => array (
 										'id' => 14105,
 										'name' => 'Vanos Dungeon Delve Battle Axe',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_2haxe_a.dds',
@@ -96734,7 +98152,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								861 => array (
+								862 => array (
 										'id' => 14110,
 										'name' => 'Vanos Dungeon Delve Maul',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_2hhammer_a.dds',
@@ -96743,7 +98161,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								862 => array (
+								863 => array (
 										'id' => 14111,
 										'name' => 'Vanos Dungeon Delve Greatsword',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_2hsword_a.dds',
@@ -96752,7 +98170,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								863 => array (
+								864 => array (
 										'id' => 14145,
 										'name' => 'Mesa Stalker Battle Axe',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_2haxe_a.dds',
@@ -96761,7 +98179,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								864 => array (
+								865 => array (
 										'id' => 14146,
 										'name' => 'Mesa Stalker Maul',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_2hhammer_a.dds',
@@ -96770,7 +98188,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								865 => array (
+								866 => array (
 										'id' => 14147,
 										'name' => 'Mesa Stalker Greatsword',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_2hsword_a.dds',
@@ -96779,7 +98197,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								866 => array (
+								867 => array (
 										'id' => 14155,
 										'name' => 'Chosen of Padomay Greatsword',
 										'icon' => '/esoui/art/icons/gear_padomayschange_2hsword_a.dds',
@@ -96788,7 +98206,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								867 => array (
+								868 => array (
 										'id' => 14160,
 										'name' => 'Chosen of Anu Battle Axe',
 										'icon' => '/esoui/art/icons/gear_anuschosen_2haxe_a.dds',
@@ -96797,7 +98215,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								868 => array (
+								869 => array (
 										'id' => 14161,
 										'name' => 'Chosen of Anu Maul',
 										'icon' => '/esoui/art/icons/gear_anuschosen_2hhammer_a.dds',
@@ -96806,7 +98224,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								869 => array (
+								870 => array (
 										'id' => 14222,
 										'name' => 'Jephre`s Ensemble Battle Axe',
 										'icon' => '/esoui/art/icons/gear_jephresensemble_2haxe_a.dds',
@@ -96815,7 +98233,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								870 => array (
+								871 => array (
 										'id' => 14249,
 										'name' => 'Koldane Cartel Battle Axe',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_2haxe_a.dds',
@@ -96824,7 +98242,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								871 => array (
+								872 => array (
 										'id' => 14250,
 										'name' => 'Koldane Cartel Maul',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_2hhammer_a.dds',
@@ -96833,7 +98251,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								872 => array (
+								873 => array (
 										'id' => 14251,
 										'name' => 'Koldane Cartel Greatsword',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_2hsword_a.dds',
@@ -96842,7 +98260,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								873 => array (
+								874 => array (
 										'id' => 14266,
 										'name' => 'Justiciar of Stendarr Battle Axe',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_2haxe_a.dds',
@@ -96851,7 +98269,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								874 => array (
+								875 => array (
 										'id' => 14271,
 										'name' => 'Justiciar of Stendarr Maul',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_2hhammer_a.dds',
@@ -96860,7 +98278,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								875 => array (
+								876 => array (
 										'id' => 14272,
 										'name' => 'Justiciar of Stendarr Greatsword',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_2hsword_a.dds',
@@ -96869,7 +98287,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								876 => array (
+								877 => array (
 										'id' => 14315,
 										'name' => 'Charming Rogue Battle Axe',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_2haxe_a.dds',
@@ -96878,7 +98296,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								877 => array (
+								878 => array (
 										'id' => 14316,
 										'name' => 'Charming Rogue Maul',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_2hhammer_a.dds',
@@ -96887,7 +98305,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								878 => array (
+								879 => array (
 										'id' => 14317,
 										'name' => 'Charming Rogue Greatsword',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_2hsword_a.dds',
@@ -96896,7 +98314,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								879 => array (
+								880 => array (
 										'id' => 14366,
 										'name' => 'Valiant Rogue Battle Axe',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_2haxe_a.dds',
@@ -96905,7 +98323,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								880 => array (
+								881 => array (
 										'id' => 14371,
 										'name' => 'Valiant Rogue Maul',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_2hhammer_a.dds',
@@ -96914,7 +98332,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								881 => array (
+								882 => array (
 										'id' => 14372,
 										'name' => 'Valiant Rogue Greatsword',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_2hsword_a.dds',
@@ -96923,7 +98341,106 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								882 => array (
+								883 => array (
+										'id' => 14423,
+										'name' => 'Maarselok Slayer Battle Axe',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_2haxe.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								884 => array (
+										'id' => 14424,
+										'name' => 'Maarselok Slayer Maul',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_2hmace.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								885 => array (
+										'id' => 14425,
+										'name' => 'Maarselok Slayer Greatsword',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_2hsword.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								886 => array (
+										'id' => 14569,
+										'name' => 'Azureblight Slayer Battle Axe',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_2haxe.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								887 => array (
+										'id' => 14574,
+										'name' => 'Azureblight Slayer Maul',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_2hmace.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								888 => array (
+										'id' => 14575,
+										'name' => 'Azureblight Slayer Greatsword',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_2hsword.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								889 => array (
+										'id' => 14594,
+										'name' => 'Abecean Sea Privateer Battle Axe',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_2haxe_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								890 => array (
+										'id' => 14595,
+										'name' => 'Abecean Sea Privateer Maul',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_2hmace_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								891 => array (
+										'id' => 14596,
+										'name' => 'Abecean Sea Privateer Greatsword',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_2hsword_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								892 => array (
+										'id' => 14604,
+										'name' => 'Zhekleg Greatsword',
+										'icon' => '/esoui/art/icons/gear_zhekleg_2hsword.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								893 => array (
+										'id' => 14617,
+										'name' => 'Harbingers Glass Greatsword',
+										'icon' => '/esoui/art/icons/gear_divineglass_2hsword_a.dds',
+										'desc' => 'An Outfit look for two-handed weapons in the Harbingers Glass style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								894 => array (
 										'id' => 14664,
 										'name' => 'Fire`s Torment Battle Axe',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_2haxe_a.dds',
@@ -96932,7 +98449,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								883 => array (
+								895 => array (
 										'id' => 14669,
 										'name' => 'Fire`s Torment Maul',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_2hhammer_a.dds',
@@ -96941,7 +98458,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								884 => array (
+								896 => array (
 										'id' => 14670,
 										'name' => 'Fire`s Torment Greatsword',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_2hsword_a.dds',
@@ -96955,7 +98472,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				2 => array (
 						'subCategoryIndex' => 2,
 						'name' => 'One-Handed',
-						'numCollectibles' => 1134,
+						'numCollectibles' => 1149,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1563,
@@ -106660,6 +108177,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								1079 => array (
+										'id' => 13565,
+										'name' => 'Squall of Retribution Sword',
+										'icon' => '/esoui/art/icons/gear_squallofretribution_1hsword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Squall of Retribution style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1080 => array (
 										'id' => 13666,
 										'name' => 'Clockwork Factotum Axe',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_1haxe_a.dds',
@@ -106668,7 +108194,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1080 => array (
+								1081 => array (
 										'id' => 13669,
 										'name' => 'Clockwork Factotum Mace',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_1hhammer_a.dds',
@@ -106677,7 +108203,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1081 => array (
+								1082 => array (
 										'id' => 13670,
 										'name' => 'Clockwork Factotum Sword',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_1hsword_a.dds',
@@ -106686,7 +108212,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1082 => array (
+								1083 => array (
 										'id' => 13671,
 										'name' => 'Clockwork Factotum Dagger',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_dagger_a.dds',
@@ -106695,7 +108221,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1083 => array (
+								1084 => array (
 										'id' => 13683,
 										'name' => 'Fharun Moonlight Sword',
 										'icon' => '/esoui/art/icons/gear_moonascendant_1hsword_a.dds',
@@ -106704,7 +108230,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1084 => array (
+								1085 => array (
 										'id' => 13688,
 										'name' => 'Yaghra`s Bane Sword',
 										'icon' => '/esoui/art/icons/gear_yaghrabane_dagger_a.dds',
@@ -106713,7 +108239,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1085 => array (
+								1086 => array (
 										'id' => 13693,
 										'name' => 'Tava`s Goshawk Sword',
 										'icon' => '/esoui/art/icons/gear_tavasgoshawk_1hsword_a.dds',
@@ -106722,7 +108248,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1086 => array (
+								1087 => array (
 										'id' => 13698,
 										'name' => 'Redoran Lava Shalk Sword',
 										'icon' => '/esoui/art/icons/gear_redoranlavashalk_1hsword_a.dds',
@@ -106731,7 +108257,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1087 => array (
+								1088 => array (
 										'id' => 13717,
 										'name' => 'Faithful Housecarl Axe',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_1haxe_a.dds',
@@ -106740,7 +108266,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1088 => array (
+								1089 => array (
 										'id' => 13720,
 										'name' => 'Faithful Housecarl Mace',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_1hhammer_a.dds',
@@ -106749,7 +108275,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1089 => array (
+								1090 => array (
 										'id' => 13721,
 										'name' => 'Faithful Housecarl Sword',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_1hsword_a.dds',
@@ -106758,7 +108284,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1090 => array (
+								1091 => array (
 										'id' => 13722,
 										'name' => 'Faithful Housecarl Dagger',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_dagger_a.dds',
@@ -106767,7 +108293,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1091 => array (
+								1092 => array (
 										'id' => 13773,
 										'name' => 'Golden Khajiit Axe',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_1haxe_a.dds',
@@ -106776,7 +108302,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1092 => array (
+								1093 => array (
 										'id' => 13776,
 										'name' => 'Golden Khajiit Mace',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_1hhammer_a.dds',
@@ -106785,7 +108311,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1093 => array (
+								1094 => array (
 										'id' => 13777,
 										'name' => 'Golden Khajiit Sword',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_1hsword_a.dds',
@@ -106794,7 +108320,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1094 => array (
+								1095 => array (
 										'id' => 13778,
 										'name' => 'Golden Khajiit Dagger',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_dagger_a.dds',
@@ -106803,7 +108329,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1095 => array (
+								1096 => array (
 										'id' => 13932,
 										'name' => 'Dapper Daredevil Sword',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_1hsword_a.dds',
@@ -106812,7 +108338,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1096 => array (
+								1097 => array (
 										'id' => 13937,
 										'name' => 'Apocryphabound Sword',
 										'icon' => '/esoui/art/icons/gear_emeraldinferno_1hsword_a.dds',
@@ -106821,7 +108347,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1097 => array (
+								1098 => array (
 										'id' => 13942,
 										'name' => 'Namira`s Hunger Axe',
 										'icon' => '/esoui/art/icons/gear_namirashunger_1haxe_a.dds',
@@ -106830,7 +108356,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1098 => array (
+								1099 => array (
 										'id' => 13947,
 										'name' => 'Warrior Wave Marine Axe',
 										'icon' => '/esoui/art/icons/gear_ragadamarine_1hhammer_a.dds',
@@ -106839,7 +108365,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1099 => array (
+								1100 => array (
 										'id' => 14095,
 										'name' => 'Dapper Daredevil Hammer',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_1hhammer_a.dds',
@@ -106848,7 +108374,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1100 => array (
+								1101 => array (
 										'id' => 14096,
 										'name' => 'Dapper Daredevil Axe',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_1haxe_a.dds',
@@ -106857,7 +108383,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1101 => array (
+								1102 => array (
 										'id' => 14097,
 										'name' => 'Dapper Daredevil Dagger',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_dagger_a.dds',
@@ -106866,7 +108392,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1102 => array (
+								1103 => array (
 										'id' => 14109,
 										'name' => 'Vanos Dungeon Delve Axe',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_1haxe_a.dds',
@@ -106875,7 +108401,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1103 => array (
+								1104 => array (
 										'id' => 14112,
 										'name' => 'Vanos Dungeon Delve Mace',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_1hhammer.dds',
@@ -106884,7 +108410,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1104 => array (
+								1105 => array (
 										'id' => 14113,
 										'name' => 'Vanos Dungeon Delve Sword',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_1hsword_a.dds',
@@ -106893,7 +108419,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1105 => array (
+								1106 => array (
 										'id' => 14114,
 										'name' => 'Vanos Dungeon Delve Dagger',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_dagger_a.dds',
@@ -106902,7 +108428,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1106 => array (
+								1107 => array (
 										'id' => 14148,
 										'name' => 'Mesa Stalker Axe',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_1haxe_a.dds',
@@ -106911,7 +108437,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1107 => array (
+								1108 => array (
 										'id' => 14150,
 										'name' => 'Mesa Stalker Mace',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_1hhammer_a.dds',
@@ -106920,7 +108446,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1108 => array (
+								1109 => array (
 										'id' => 14153,
 										'name' => 'Mesa Stalker Sword',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_1hsword_a.dds',
@@ -106929,7 +108455,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1109 => array (
+								1110 => array (
 										'id' => 14154,
 										'name' => 'Mesa Stalker Dagger',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_dagger_a.dds',
@@ -106938,7 +108464,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1110 => array (
+								1111 => array (
 										'id' => 14157,
 										'name' => 'Chosen of Padomay Mace',
 										'icon' => '/esoui/art/icons/gear_padomayschange_1hhammer_a.dds',
@@ -106947,7 +108473,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1111 => array (
+								1112 => array (
 										'id' => 14159,
 										'name' => 'Chosen of Padomay Axe',
 										'icon' => '/esoui/art/icons/gear_padomayschange_1haxe_a.dds',
@@ -106956,7 +108482,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1112 => array (
+								1113 => array (
 										'id' => 14163,
 										'name' => 'Chosen of Anu Sword',
 										'icon' => '/esoui/art/icons/gear_anuschosen_1hsword_a.dds',
@@ -106965,7 +108491,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1113 => array (
+								1114 => array (
 										'id' => 14164,
 										'name' => 'Chosen of Anu Dagger',
 										'icon' => '/esoui/art/icons/gear_anuschosen_dagger_a.dds',
@@ -106974,7 +108500,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1114 => array (
+								1115 => array (
 										'id' => 14226,
 										'name' => 'Jephre`s Ensemble Sword',
 										'icon' => '/esoui/art/icons/gear_jephresensemble_1hsword_a.dds',
@@ -106983,7 +108509,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1115 => array (
+								1116 => array (
 										'id' => 14252,
 										'name' => 'Koldane Cartel Axe',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_1haxe_a.dds',
@@ -106992,7 +108518,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1116 => array (
+								1117 => array (
 										'id' => 14254,
 										'name' => 'Koldane Cartel Mace',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_1hhammer_a.dds',
@@ -107001,7 +108527,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1117 => array (
+								1118 => array (
 										'id' => 14257,
 										'name' => 'Koldane Cartel Sword',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_sword_a.dds',
@@ -107010,7 +108536,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1118 => array (
+								1119 => array (
 										'id' => 14258,
 										'name' => 'Koldane Cartel Dagger',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_dagger_a.dds',
@@ -107019,7 +108545,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1119 => array (
+								1120 => array (
 										'id' => 14270,
 										'name' => 'Justiciar of Stendarr Axe',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_1haxe_a.dds',
@@ -107028,7 +108554,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1120 => array (
+								1121 => array (
 										'id' => 14273,
 										'name' => 'Justiciar of Stendarr Mace',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_1hhammer_a.dds',
@@ -107037,7 +108563,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1121 => array (
+								1122 => array (
 										'id' => 14274,
 										'name' => 'Justiciar of Stendarr Sword',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_1hsword_a.dds',
@@ -107046,7 +108572,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1122 => array (
+								1123 => array (
 										'id' => 14275,
 										'name' => 'Justiciar of Stendarr Dagger',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_dagger_a.dds',
@@ -107055,7 +108581,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1123 => array (
+								1124 => array (
 										'id' => 14318,
 										'name' => 'Charming Rogue Axe',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_1haxe_a.dds',
@@ -107064,7 +108590,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1124 => array (
+								1125 => array (
 										'id' => 14320,
 										'name' => 'Charming Rogue Mace',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_1hhammer_a.dds',
@@ -107073,7 +108599,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1125 => array (
+								1126 => array (
 										'id' => 14323,
 										'name' => 'Charming Rogue Sword',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_1hsword_a.dds',
@@ -107082,7 +108608,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1126 => array (
+								1127 => array (
 										'id' => 14324,
 										'name' => 'Charming Rogue Dagger',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_dagger_a.dds',
@@ -107091,7 +108617,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1127 => array (
+								1128 => array (
 										'id' => 14370,
 										'name' => 'Valiant Rogue Axe',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_1haxe_a.dds',
@@ -107100,7 +108626,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1128 => array (
+								1129 => array (
 										'id' => 14373,
 										'name' => 'Valiant Rogue Mace',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_1hhammer_a.dds',
@@ -107109,7 +108635,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1129 => array (
+								1130 => array (
 										'id' => 14374,
 										'name' => 'Valiant Rogue Sword',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_1hsword_a.dds',
@@ -107118,7 +108644,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1130 => array (
+								1131 => array (
 										'id' => 14375,
 										'name' => 'Valiant Rogue Dagger',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_dagger_a.dds',
@@ -107127,7 +108653,133 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1131 => array (
+								1132 => array (
+										'id' => 14426,
+										'name' => 'Maarselok Slayer Axe',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_axe.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1133 => array (
+										'id' => 14428,
+										'name' => 'Maarselok Slayer Mace',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_mace.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1134 => array (
+										'id' => 14431,
+										'name' => 'Maarselok Slayer Sword',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_sword.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1135 => array (
+										'id' => 14432,
+										'name' => 'Maarselok Slayer Dagger',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_dagger_.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1136 => array (
+										'id' => 14573,
+										'name' => 'Azureblight Slayer Axe',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_axe.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1137 => array (
+										'id' => 14576,
+										'name' => 'Azureblight Slayer Mace',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_mace.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1138 => array (
+										'id' => 14577,
+										'name' => 'Azureblight Slayer Sword',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_sword.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1139 => array (
+										'id' => 14578,
+										'name' => 'Azureblight Slayer Dagger',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_dagger.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1140 => array (
+										'id' => 14597,
+										'name' => 'Abecean Sea Privateer Axe',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_1haxe_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1141 => array (
+										'id' => 14599,
+										'name' => 'Abecean Sea Privateer Dagger',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_dagger_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1142 => array (
+										'id' => 14600,
+										'name' => 'Abecean Sea Privateer Mace',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_1hmace_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1143 => array (
+										'id' => 14603,
+										'name' => 'Abecean Sea Privateer Sword',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_1hsword_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1144 => array (
+										'id' => 14605,
+										'name' => 'Zhekleg Axe',
+										'icon' => '/esoui/art/icons/gear_zhekleg_axe.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1145 => array (
+										'id' => 14621,
+										'name' => 'Harbingers Glass Axe',
+										'icon' => '/esoui/art/icons/gear_divineglass_1haxe_a.dds',
+										'desc' => 'An Outfit look for one-handed weapons in the Harbingers Glass style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								1146 => array (
 										'id' => 14668,
 										'name' => 'Fire`s Torment Axe',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_1haxe_a.dds',
@@ -107136,7 +108788,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1132 => array (
+								1147 => array (
 										'id' => 14671,
 										'name' => 'Fire`s Torment Mace',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_1hhammer_a.dds',
@@ -107145,7 +108797,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1133 => array (
+								1148 => array (
 										'id' => 14672,
 										'name' => 'Fire`s Torment Sword',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_1hsword_a.dds',
@@ -107154,7 +108806,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								1134 => array (
+								1149 => array (
 										'id' => 14673,
 										'name' => 'Fire`s Torment Dagger',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_dagger_a.dds',
@@ -107168,7 +108820,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				3 => array (
 						'subCategoryIndex' => 3,
 						'name' => 'Shield',
-						'numCollectibles' => 370,
+						'numCollectibles' => 376,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1554,
@@ -110321,6 +111973,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								351 => array (
+										'id' => 13563,
+										'name' => 'Squall of Retribution Shield',
+										'icon' => '/esoui/art/icons/gear_squallofretribution_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Squall of Retribution style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								352 => array (
 										'id' => 13664,
 										'name' => 'Clockwork Factotum Shield',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_shield_a.dds',
@@ -110329,7 +111990,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								352 => array (
+								353 => array (
 										'id' => 13681,
 										'name' => 'Fharun Moonlight Shield',
 										'icon' => '/esoui/art/icons/gear_moonascendant_shield_a.dds',
@@ -110338,7 +111999,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								353 => array (
+								354 => array (
 										'id' => 13686,
 										'name' => 'Yaghra`s Bane Shield',
 										'icon' => '/esoui/art/icons/gear_yaghrabane_shield_a.dds',
@@ -110347,7 +112008,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								354 => array (
+								355 => array (
 										'id' => 13691,
 										'name' => 'Tava`s Goshawk Shield',
 										'icon' => '/esoui/art/icons/gear_tavasgoshawk_shield_a.dds',
@@ -110356,7 +112017,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								355 => array (
+								356 => array (
 										'id' => 13696,
 										'name' => 'Redoran Lava Shalk Shield',
 										'icon' => '/esoui/art/icons/gear_redoranlavashalk_shield_a.dds',
@@ -110365,7 +112026,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								356 => array (
+								357 => array (
 										'id' => 13715,
 										'name' => 'Faithful Housecarl Shield',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_shield_a.dds',
@@ -110374,7 +112035,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								357 => array (
+								358 => array (
 										'id' => 13771,
 										'name' => 'Golden Khajiit Shield',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_shield_a.dds',
@@ -110383,7 +112044,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								358 => array (
+								359 => array (
 										'id' => 13930,
 										'name' => 'Dapper Daredevil Shield',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_shield_a.dds',
@@ -110392,7 +112053,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								359 => array (
+								360 => array (
 										'id' => 13935,
 										'name' => 'Apocryphabound Shield',
 										'icon' => '/esoui/art/icons/gear_emeraldinferno_shield_a.dds',
@@ -110401,7 +112062,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								360 => array (
+								361 => array (
 										'id' => 13940,
 										'name' => 'Namira`s Hunger Shield',
 										'icon' => '/esoui/art/icons/gear_namirashunger_shield_a.dds',
@@ -110410,7 +112071,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								361 => array (
+								362 => array (
 										'id' => 13945,
 										'name' => 'Warrior Wave Marine Shield',
 										'icon' => '/esoui/art/icons/gear_ragadamarine_shield_a.dds',
@@ -110419,7 +112080,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								362 => array (
+								363 => array (
 										'id' => 14107,
 										'name' => 'Vanos Dungeon Delve Shield',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_shield_a.dds',
@@ -110428,7 +112089,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								363 => array (
+								364 => array (
 										'id' => 14151,
 										'name' => 'Mesa Stalker Shield',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_shield_a.dds',
@@ -110437,7 +112098,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								364 => array (
+								365 => array (
 										'id' => 14162,
 										'name' => 'Chosen of Anu Shield',
 										'icon' => '/esoui/art/icons/gear_anuschosen_shield_a.dds',
@@ -110446,7 +112107,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								365 => array (
+								366 => array (
 										'id' => 14224,
 										'name' => 'Jephre`s Ensemble Shield',
 										'icon' => '/esoui/art/icons/gear_jephresensemble_shield_a.dds',
@@ -110455,7 +112116,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								366 => array (
+								367 => array (
 										'id' => 14255,
 										'name' => 'Koldane Cartel Shield',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_shield_a.dds',
@@ -110464,7 +112125,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								367 => array (
+								368 => array (
 										'id' => 14268,
 										'name' => 'Justiciar of Stendarr Shield',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_shield_a.dds',
@@ -110473,7 +112134,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								368 => array (
+								369 => array (
 										'id' => 14321,
 										'name' => 'Charming Rogue Shield',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_shield_a.dds',
@@ -110482,7 +112143,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								369 => array (
+								370 => array (
 										'id' => 14368,
 										'name' => 'Valiant Rogue Shield',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_shield_a.dds',
@@ -110491,7 +112152,52 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								370 => array (
+								371 => array (
+										'id' => 14429,
+										'name' => 'Maarselok Slayer Shield',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_shield.dds',
+										'desc' => 'An Outfit look for shields in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								372 => array (
+										'id' => 14571,
+										'name' => 'Azureblight Slayer Shield',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_shield.dds',
+										'desc' => 'An Outfit look for shields in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								373 => array (
+										'id' => 14601,
+										'name' => 'Abecean Sea Privateer Shield',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								374 => array (
+										'id' => 14607,
+										'name' => 'Zhekleg Shield',
+										'icon' => '/esoui/art/icons/gear_zhekleg_shield.dds',
+										'desc' => 'An Outfit look for shields in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								375 => array (
+										'id' => 14619,
+										'name' => 'Harbingers Glass Shield',
+										'icon' => '/esoui/art/icons/gear_divineglass_shield_a.dds',
+										'desc' => 'An Outfit look for shields in the Harbingers Glass style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								376 => array (
 										'id' => 14666,
 										'name' => 'Fire`s Torment Shield',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_shield_a.dds',
@@ -110505,7 +112211,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				4 => array (
 						'subCategoryIndex' => 4,
 						'name' => 'Bow',
-						'numCollectibles' => 366,
+						'numCollectibles' => 372,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1587,
@@ -113622,6 +115328,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								347 => array (
+										'id' => 13562,
+										'name' => 'Squall of Retribution Bow',
+										'icon' => '/esoui/art/icons/gear_squallofretribution_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Squall of Retribution style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								348 => array (
 										'id' => 13663,
 										'name' => 'Clockwork Factotum Bow',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_bow_a.dds',
@@ -113630,7 +115345,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								348 => array (
+								349 => array (
 										'id' => 13680,
 										'name' => 'Fharun Moonlight Bow',
 										'icon' => '/esoui/art/icons/gear_moonascendant_bow_a.dds',
@@ -113639,7 +115354,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								349 => array (
+								350 => array (
 										'id' => 13685,
 										'name' => 'Yaghra`s Bane Bow',
 										'icon' => '/esoui/art/icons/gear_yaghrabane_bow_a.dds',
@@ -113648,7 +115363,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								350 => array (
+								351 => array (
 										'id' => 13690,
 										'name' => 'Tava`s Goshawk Bow',
 										'icon' => '/esoui/art/icons/gear_tavasgoshawk_bow_a.dds',
@@ -113657,7 +115372,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								351 => array (
+								352 => array (
 										'id' => 13695,
 										'name' => 'Redoran Lava Shalk Bow',
 										'icon' => '/esoui/art/icons/gear_redoranlavashalk_bow_a.dds',
@@ -113666,7 +115381,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								352 => array (
+								353 => array (
 										'id' => 13714,
 										'name' => 'Faithful Housecarl Bow',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_bow_a.dds',
@@ -113675,7 +115390,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								353 => array (
+								354 => array (
 										'id' => 13770,
 										'name' => 'Golden Khajiit Bow',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_bow_a.dds',
@@ -113684,7 +115399,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								354 => array (
+								355 => array (
 										'id' => 13929,
 										'name' => 'Dapper Daredevil Bow',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_bow_a.dds',
@@ -113693,7 +115408,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								355 => array (
+								356 => array (
 										'id' => 13934,
 										'name' => 'Apocryphabound Bow',
 										'icon' => '/esoui/art/icons/gear_emeraldinferno_bow_a.dds',
@@ -113702,7 +115417,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								356 => array (
+								357 => array (
 										'id' => 13939,
 										'name' => 'Namira`s Hunger Bow',
 										'icon' => '/esoui/art/icons/gear_namirashunger_bow_a.dds',
@@ -113711,7 +115426,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								357 => array (
+								358 => array (
 										'id' => 13944,
 										'name' => 'Warrior Wave Marine Bow',
 										'icon' => '/esoui/art/icons/gear_ragadamarine_bow_a.dds',
@@ -113720,7 +115435,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								358 => array (
+								359 => array (
 										'id' => 14106,
 										'name' => 'Vanos Dungeon Delve Bow',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_bow_a.dds',
@@ -113729,7 +115444,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								359 => array (
+								360 => array (
 										'id' => 14149,
 										'name' => 'Mesa Stalker Bow',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_bow_a.dds',
@@ -113738,7 +115453,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								360 => array (
+								361 => array (
 										'id' => 14156,
 										'name' => 'Chosen of Padomay Bow',
 										'icon' => '/esoui/art/icons/gear_padomayschange_bow_a.dds',
@@ -113747,7 +115462,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								361 => array (
+								362 => array (
 										'id' => 14223,
 										'name' => 'Jephre`s Ensemble Bow',
 										'icon' => '/esoui/art/icons/gear_jephresensemble_bow_a.dds',
@@ -113756,7 +115471,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								362 => array (
+								363 => array (
 										'id' => 14253,
 										'name' => 'Koldane Cartel Bow',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_bow_a.dds',
@@ -113765,7 +115480,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								363 => array (
+								364 => array (
 										'id' => 14267,
 										'name' => 'Justiciar of Stendarr Bow',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_bow_a.dds',
@@ -113774,7 +115489,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								364 => array (
+								365 => array (
 										'id' => 14319,
 										'name' => 'Charming Rogue Bow',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_bow_a.dds',
@@ -113783,7 +115498,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								365 => array (
+								366 => array (
 										'id' => 14367,
 										'name' => 'Valiant Rogue Bow',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_bow_a.dds',
@@ -113792,7 +115507,52 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								366 => array (
+								367 => array (
+										'id' => 14427,
+										'name' => 'Maarselok Slayer Bow',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_bow.dds',
+										'desc' => 'An Outfit look for bows in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								368 => array (
+										'id' => 14570,
+										'name' => 'Azureblight Slayer Bow',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_bow.dds',
+										'desc' => 'An Outfit look for bows in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								369 => array (
+										'id' => 14598,
+										'name' => 'Abecean Sea Privateer Bow',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								370 => array (
+										'id' => 14606,
+										'name' => 'Zhekleg Bow',
+										'icon' => '/esoui/art/icons/gear_zhekleg_bow.dds',
+										'desc' => 'An Outfit look for bows in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								371 => array (
+										'id' => 14618,
+										'name' => 'Harbingers Glass Bow',
+										'icon' => '/esoui/art/icons/gear_divineglass_bow_a.dds',
+										'desc' => 'An Outfit look for bows in the Harbingers Glass style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								372 => array (
 										'id' => 14665,
 										'name' => 'Fire`s Torment Bow',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_bow_a.dds',
@@ -113806,7 +115566,7 @@ $ESO_COLLECTIBLE_DATA = array (
 				5 => array (
 						'subCategoryIndex' => 5,
 						'name' => 'Staff',
-						'numCollectibles' => 377,
+						'numCollectibles' => 383,
 						'collectibles' => array (
 								1 => array (
 										'id' => 1583,
@@ -117022,6 +118782,15 @@ $ESO_COLLECTIBLE_DATA = array (
 										'nickname' => '' 
 								),
 								358 => array (
+										'id' => 13564,
+										'name' => 'Squall of Retribution Staff',
+										'icon' => '/esoui/art/icons/gear_squallofretribution_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Squall of Retribution style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								359 => array (
 										'id' => 13665,
 										'name' => 'Clockwork Factotum Staff',
 										'icon' => '/esoui/art/icons/gear_clockworkguardian_staff_a.dds',
@@ -117030,7 +118799,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								359 => array (
+								360 => array (
 										'id' => 13682,
 										'name' => 'Fharun Moonlight Staff',
 										'icon' => '/esoui/art/icons/gear_moonascendant_staff_a.dds',
@@ -117039,7 +118808,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								360 => array (
+								361 => array (
 										'id' => 13687,
 										'name' => 'Yaghra`s Bane Staff',
 										'icon' => '/esoui/art/icons/gear_yaghrabane_staff_a.dds',
@@ -117048,7 +118817,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								361 => array (
+								362 => array (
 										'id' => 13692,
 										'name' => 'Tava`s Goshawk Staff',
 										'icon' => '/esoui/art/icons/gear_tavasgoshawk_staff_a.dds',
@@ -117057,7 +118826,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								362 => array (
+								363 => array (
 										'id' => 13697,
 										'name' => 'Redoran Lava Shalk Staff',
 										'icon' => '/esoui/art/icons/gear_redoranlavashalk_staff_a.dds',
@@ -117066,7 +118835,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								363 => array (
+								364 => array (
 										'id' => 13716,
 										'name' => 'Faithful Housecarl Staff',
 										'icon' => '/esoui/art/icons/gear_skyrimadventurer_staff_a.dds',
@@ -117075,7 +118844,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								364 => array (
+								365 => array (
 										'id' => 13772,
 										'name' => 'Golden Khajiit Staff',
 										'icon' => '/esoui/art/icons/gear_goldenkhajiit_staff_a.dds',
@@ -117084,7 +118853,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								365 => array (
+								366 => array (
 										'id' => 13931,
 										'name' => 'Dapper Daredevil Staff',
 										'icon' => '/esoui/art/icons/gear_dapperdaredevil_staff_a.dds',
@@ -117093,7 +118862,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								366 => array (
+								367 => array (
 										'id' => 13936,
 										'name' => 'Apocryphabound Staff',
 										'icon' => '/esoui/art/icons/gear_emeraldinferno_staff_a.dds',
@@ -117102,7 +118871,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								367 => array (
+								368 => array (
 										'id' => 13941,
 										'name' => 'Namira`s Hunger Staff',
 										'icon' => '/esoui/art/icons/gear_namirashunger_staff_a.dds',
@@ -117111,7 +118880,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								368 => array (
+								369 => array (
 										'id' => 13946,
 										'name' => 'Warrior Wave Marine Staff',
 										'icon' => '/esoui/art/icons/gear_ragadamarine_staff_a.dds',
@@ -117120,7 +118889,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								369 => array (
+								370 => array (
 										'id' => 14108,
 										'name' => 'Vanos Dungeon Delve Staff',
 										'icon' => '/esoui/art/icons/gear_vanosdungeondelve_staff_a.dds',
@@ -117129,7 +118898,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								370 => array (
+								371 => array (
 										'id' => 14152,
 										'name' => 'Mesa Stalker Staff',
 										'icon' => '/esoui/art/icons/gear_nightshadowhunter_staff_a.dds',
@@ -117138,7 +118907,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								371 => array (
+								372 => array (
 										'id' => 14158,
 										'name' => 'Chosen of Padomay Staff',
 										'icon' => '/esoui/art/icons/gear_padomayschange_staff_a.dds',
@@ -117147,7 +118916,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								372 => array (
+								373 => array (
 										'id' => 14225,
 										'name' => 'Jephre`s Ensemble Staff',
 										'icon' => '/esoui/art/icons/gear_jephresensemble_staff_a.dds',
@@ -117156,7 +118925,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								373 => array (
+								374 => array (
 										'id' => 14256,
 										'name' => 'Koldane Cartel Staff',
 										'icon' => '/esoui/art/icons/gear_lupuscartel_staff_a.dds',
@@ -117165,7 +118934,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								374 => array (
+								375 => array (
 										'id' => 14269,
 										'name' => 'Justiciar of Stendarr Staff',
 										'icon' => '/esoui/art/icons/gear_stendarrjusticiar_staff_a.dds',
@@ -117174,7 +118943,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								375 => array (
+								376 => array (
 										'id' => 14322,
 										'name' => 'Charming Rogue Staff',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_staff_a.dds',
@@ -117183,7 +118952,7 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								376 => array (
+								377 => array (
 										'id' => 14369,
 										'name' => 'Valiant Rogue Staff',
 										'icon' => '/esoui/art/icons/gear_charmingrogue_vfx_staff_a.dds',
@@ -117192,7 +118961,52 @@ $ESO_COLLECTIBLE_DATA = array (
 										'image' => '/esoui/art/icons/icon_missing.dds',
 										'nickname' => '' 
 								),
-								377 => array (
+								378 => array (
+										'id' => 14430,
+										'name' => 'Maarselok Slayer Staff',
+										'icon' => '/esoui/art/icons/gear_maarselokslayer_staff.dds',
+										'desc' => 'An Outfit look for staves in the Maarselok Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								379 => array (
+										'id' => 14572,
+										'name' => 'Azureblight Slayer Staff',
+										'icon' => '/esoui/art/icons/gear_maarselokslayervfx_staff.dds',
+										'desc' => 'An Outfit look for staves in the Azureblight Slayer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								380 => array (
+										'id' => 14602,
+										'name' => 'Abecean Sea Privateer Staff',
+										'icon' => '/esoui/art/icons/gear_seaelfplunderer_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Abecean Sea Privateer style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								381 => array (
+										'id' => 14608,
+										'name' => 'Zhekleg Staff',
+										'icon' => '/esoui/art/icons/gear_zhekleg_staff.dds',
+										'desc' => 'An Outfit look for staves in the Zhekleg style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								382 => array (
+										'id' => 14620,
+										'name' => 'Harbingers Glass Staff',
+										'icon' => '/esoui/art/icons/gear_divineglass_staff_a.dds',
+										'desc' => 'An Outfit look for staves in the Harbingers Glass style.',
+										'type' => 24,
+										'image' => '/esoui/art/icons/icon_missing.dds',
+										'nickname' => '' 
+								),
+								383 => array (
 										'id' => 14667,
 										'name' => 'Fire`s Torment Staff',
 										'icon' => '/esoui/art/icons/gear_gloamwalker_bound_vfx_staff_a.dds',

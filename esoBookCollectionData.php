@@ -9117,8 +9117,8 @@ $ESO_BOOK_COLLECTIONS = array (
 				0 => array (
 						'id' => 2,
 						'name' => 'Eidetic Memory',
-						'numCollect' => 60,
-						'numBooks' => 4905 
+						'numCollect' => 63,
+						'numBooks' => 4985 
 				),
 				1 => array (
 						'id' => 44,
@@ -11552,7 +11552,7 @@ $ESO_BOOK_COLLECTIONS = array (
 								),
 								2000 => array (
 										'title' => 'Nedras` Journal',
-										'icon' => '/esoui/art/icons/lore_book2_detail3_color1.dds' 
+										'icon' => '/esoui/art/icons/quest_book_001.dds' 
 								),
 								2001 => array (
 										'title' => 'Klaandor`s Journal',
@@ -27851,7 +27851,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				53 => array (
 						'id' => 226,
 						'name' => 'Companions Correspondence',
-						'numBooks' => 39,
+						'numBooks' => 40,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								8145 => array (
@@ -28009,6 +28009,10 @@ $ESO_BOOK_COLLECTIONS = array (
 								8445 => array (
 										'title' => 'Note from Cantor Krin`ze',
 										'icon' => '/esoui/art/icons/justice_stolen_letter_001.dds' 
+								),
+								8320 => array (
+										'title' => 'Inventory Letter',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
 								) 
 						) 
 				),
@@ -29023,7 +29027,7 @@ $ESO_BOOK_COLLECTIONS = array (
 				59 => array (
 						'id' => 241,
 						'name' => 'Season One Books',
-						'numBooks' => 32,
+						'numBooks' => 40,
 						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
 						'books' => array (
 								8758 => array (
@@ -29153,6 +29157,38 @@ $ESO_BOOK_COLLECTIONS = array (
 								8889 => array (
 										'title' => 'Mylen Dechery`s Journal',
 										'icon' => '/esoui/art/icons/lore_book2_detail5_color5.dds' 
+								),
+								8933 => array (
+										'title' => 'Pirate Clans of the Abecean: Chapter Four',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+								),
+								9025 => array (
+										'title' => 'Notes on the Dwemer Diving Chamber',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color1.dds' 
+								),
+								9042 => array (
+										'title' => 'A Blade, A Bottle, and a Tale to Spend',
+										'icon' => '/esoui/art/icons/item_u47_sealed_scroll_string.dds' 
+								),
+								9041 => array (
+										'title' => 'Ancient Dwemer Mechanism Notes',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+								),
+								9028 => array (
+										'title' => 'From the Memoirs of Baroness Althea Guy Mard',
+										'icon' => '/esoui/art/icons/lore_book5_detail1_color3.dds' 
+								),
+								9043 => array (
+										'title' => 'Antiquities: A Primer',
+										'icon' => '/esoui/art/icons/lore_book4_detail2_color2.dds' 
+								),
+								8852 => array (
+										'title' => 'The Destroyed Painting',
+										'icon' => '/esoui/art/icons/memento_paintingwithcanvas.dds' 
+								),
+								9076 => array (
+										'title' => 'The Sea Can Never Claim Our Home',
+										'icon' => '/esoui/art/icons/housing_uni_inc_scrollunsealed002.dds' 
 								) 
 						) 
 				),
@@ -29179,7 +29215,7 @@ $ESO_BOOK_COLLECTIONS = array (
 										'icon' => '/esoui/art/icons/notes_003.dds' 
 								),
 								8879 => array (
-										'title' => 'Lady Arabelle`s Addendum',
+										'title' => 'Lady Arabelle`s Personal Request',
 										'icon' => '/esoui/art/icons/notes_004.dds' 
 								),
 								8784 => array (
@@ -29217,6 +29253,314 @@ $ESO_BOOK_COLLECTIONS = array (
 								8880 => array (
 										'title' => 'Ring of Daggers Torn Logbook',
 										'icon' => '/esoui/art/icons/lore_book1_detail3_color5.dds' 
+								) 
+						) 
+				),
+				61 => array (
+						'id' => 249,
+						'name' => 'Rumormonger Review',
+						'numBooks' => 38,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array (
+								8379 => array (
+										'title' => 'Burglary in Camlorn!',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								8381 => array (
+										'title' => 'Adrone, You Idiot!',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8390 => array (
+										'title' => 'Suitors Please Apply!',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								),
+								8925 => array (
+										'title' => 'A Letter from Ellilas',
+										'icon' => '/esoui/art/icons/justice_stolen_envelope_001.dds' 
+								),
+								8924 => array (
+										'title' => 'A Letter from Caloliel',
+										'icon' => '/esoui/art/icons/justice_stolen_letter_001.dds' 
+								),
+								8923 => array (
+										'title' => 'A Letter from Fenulas',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8890 => array (
+										'title' => 'Local Legends of the Rift',
+										'icon' => '/esoui/art/icons/quest_book_003.dds' 
+								),
+								8892 => array (
+										'title' => 'Tattered Recipe Book',
+										'icon' => '/esoui/art/icons/u44_quest_tornletter.dds' 
+								),
+								8893 => array (
+										'title' => 'Eversleep Salve Recipe',
+										'icon' => '/esoui/art/icons/notes_004.dds' 
+								),
+								8894 => array (
+										'title' => 'A Husband`s Remorse',
+										'icon' => '/esoui/art/icons/scroll_005.dds' 
+								),
+								8734 => array (
+										'title' => 'My Award-Winning Chili Recipe!',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8382 => array (
+										'title' => 'Missing Scholar',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8385 => array (
+										'title' => 'Shasien-jo`s Journal',
+										'icon' => '/esoui/art/icons/lore_book2_detail4_color3.dds' 
+								),
+								8716 => array (
+										'title' => 'Zamsha`s Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color4.dds' 
+								),
+								8912 => array (
+										'title' => 'The Honest Toils Lies!',
+										'icon' => '/esoui/art/icons/u46_mainquest_crumpledpaper.dds' 
+								),
+								8757 => array (
+										'title' => 'Dralis Tirethi Found Dead',
+										'icon' => '/esoui/art/icons/scroll_005.dds' 
+								),
+								8726 => array (
+										'title' => 'Anis Tirethi`s Journal',
+										'icon' => '/esoui/art/icons/u30_elam_drals_journal.dds' 
+								),
+								8760 => array (
+										'title' => 'Vanel Tirethi`s Ledger',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8712 => array (
+										'title' => 'I`m Sorry, My Dear',
+										'icon' => '/esoui/art/icons/quest_letter_001.dds' 
+								),
+								8714 => array (
+										'title' => 'My Dearest Beritta',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8711 => array (
+										'title' => 'Barrister`s Letter',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8911 => array (
+										'title' => 'Mad Mal`s Journal',
+										'icon' => '/esoui/art/icons/lore_book1_detail4_color1.dds' 
+								),
+								8709 => array (
+										'title' => 'Unknown Fates',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8913 => array (
+										'title' => 'Cult-Leader Sermon',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8940 => array (
+										'title' => 'My Last Testament',
+										'icon' => '/esoui/art/icons/u46_mainquest_crumpledpaper.dds' 
+								),
+								8881 => array (
+										'title' => 'A Discreet Notice',
+										'icon' => '/esoui/art/icons/housing_bre_inc_paper001.dds' 
+								),
+								8882 => array (
+										'title' => 'A Considerate Offer',
+										'icon' => '/esoui/art/icons/item_u47_sealed_scroll.dds' 
+								),
+								8914 => array (
+										'title' => 'Our Thanks',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								8883 => array (
+										'title' => 'Eye of the Queen Report',
+										'icon' => '/esoui/art/icons/notes_003.dds' 
+								),
+								8884 => array (
+										'title' => 'Letter to Sealord Esun',
+										'icon' => '/esoui/art/icons/item_u47_paper_folded.dds' 
+								),
+								8944 => array (
+										'title' => 'Ode to Esun',
+										'icon' => '/esoui/art/icons/scroll_004.dds' 
+								),
+								8931 => array (
+										'title' => 'Bounty for House Dres',
+										'icon' => '/esoui/art/icons/housing_bre_inc_scroll_closed001.dds' 
+								),
+								8930 => array (
+										'title' => 'Lord Dralas Raviro`s Journal',
+										'icon' => '/esoui/art/icons/lore_book4_detail5_color4.dds' 
+								),
+								8886 => array (
+										'title' => 'Zaisu`s Letter',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
+								),
+								8717 => array (
+										'title' => 'Dragon Tongue`s Message',
+										'icon' => '/esoui/art/icons/notes_005.dds' 
+								),
+								8916 => array (
+										'title' => 'Orders for Nightshade',
+										'icon' => '/esoui/art/icons/quest_letter_002.dds' 
+								),
+								8921 => array (
+										'title' => 'The Gold Leaf Society',
+										'icon' => '/esoui/art/icons/lore_book1_detail1_color2.dds' 
+								),
+								8948 => array (
+										'title' => 'Burned Documents',
+										'icon' => '/esoui/art/icons/notes_002.dds' 
+								) 
+						) 
+				),
+				62 => array (
+						'id' => 252,
+						'name' => 'Messages in Bottles',
+						'numBooks' => 8,
+						'icon' => '/esoui/art/icons/icon_missing.dds',
+						'books' => array (
+								8932 => array (
+										'title' => 'Message in a Bottle: Under Attack',
+										'icon' => '/esoui/art/icons/justice_stolen_bottle_001.dds' 
+								),
+								9029 => array (
+										'title' => 'Message in a Bottle: The Stars Led Me Here',
+										'icon' => '/esoui/art/icons/item_u27_generic_triangle_bottle_black_liquid.dds' 
+								),
+								9031 => array (
+										'title' => 'Message in a Bottle: The Island Appears at Dawn',
+										'icon' => '/esoui/art/icons/crafting_stoneware_bottle_002.dds' 
+								),
+								9032 => array (
+										'title' => 'Message in a Bottle: The Curled Key',
+										'icon' => '/esoui/art/icons/crafting_stoneware_bottle_003.dds' 
+								),
+								9038 => array (
+										'title' => 'Message in a Bottle: Gold Colder than the Sea',
+										'icon' => '/esoui/art/icons/item_u27_generic_triangle_bottle_black_liquid.dds' 
+								),
+								9036 => array (
+										'title' => 'Message in a Bottle: Shallows of the Abyssal Sea',
+										'icon' => '/esoui/art/icons/crafting_stoneware_bottle_002.dds' 
+								),
+								9033 => array (
+										'title' => 'Message in a Bottle: The Song the Ocean Sings',
+										'icon' => '/esoui/art/icons/item_u27_generic_triangle_bottle_black_liquid.dds' 
+								),
+								9037 => array (
+										'title' => 'Message in a Bottle: Shadow Over the Midday Sun',
+										'icon' => '/esoui/art/icons/justice_stolen_bottle_001.dds' 
+								) 
+						) 
+				),
+				63 => array (
+						'id' => 255,
+						'name' => 'Knowledge of the Nowhere Vault',
+						'numBooks' => 25,
+						'icon' => '/esoui/art/treeicons/gamepad/gp_lorelibrary_categoryicon_literature.dds',
+						'books' => array (
+								8761 => array (
+										'title' => 'Observations on the Vault',
+										'icon' => '/esoui/art/icons/lore_book1_detail3_color2.dds' 
+								),
+								8902 => array (
+										'title' => 'The Vault Expedition',
+										'icon' => '/esoui/art/icons/lore_book3_detail1_color1.dds' 
+								),
+								9049 => array (
+										'title' => 'Arcanum Wing Secrets',
+										'icon' => '/esoui/art/icons/u30_sealed_scroll.dds' 
+								),
+								8907 => array (
+										'title' => 'Observations on Nowhere Vault Mutability',
+										'icon' => '/esoui/art/icons/lore_book2_detail1_color1.dds' 
+								),
+								9050 => array (
+										'title' => 'Arcanum Wing Secrets',
+										'icon' => '/esoui/art/icons/u30_sealed_scroll.dds' 
+								),
+								9051 => array (
+										'title' => 'Arcanum Wing Secrets',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								9052 => array (
+										'title' => 'Arcanum Wing Secrets',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								9053 => array (
+										'title' => 'Arcanum Wing Secrets',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								9054 => array (
+										'title' => 'Arcanum Wing Secrets',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								9055 => array (
+										'title' => 'Arcanum Wing Secrets',
+										'icon' => '/esoui/art/icons/scroll_001.dds' 
+								),
+								9056 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9057 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9058 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9059 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9060 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9061 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9062 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9063 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9064 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9065 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9066 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9067 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9068 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9069 => array (
+										'title' => 'Unlocked Secrets',
+										'icon' => '/esoui/art/icons/icon_missing.dds' 
+								),
+								9080 => array (
+										'title' => 'Note on Curios',
+										'icon' => '/esoui/art/icons/notes_001.dds' 
 								) 
 						) 
 				) 

@@ -1,7 +1,8 @@
 <?php
 
-$SOURCE_SUFFIX = "31";
-$DEST_SUFFIX = "";
+$SOURCE_SUFFIX = "";
+$DEST_SUFFIX = "51";
+$OVERWRITE_DEST = false;
 
 $TABLE_FIELDS = array(
 		// "id",		// Do not include
@@ -30,6 +31,10 @@ $TABLE_FIELDS = array(
 		"setBonusDesc5",
 		"setBonusDesc6",
 		"setBonusDesc7",
+		"setBonusDesc9",
+		"setBonusDesc10",
+		"setBonusDesc11",
+		"setBonusDesc12",
 	);
 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
@@ -43,14 +48,14 @@ print("Merging mined items from minedItem$SOURCE_SUFFIX to minedItem$DEST_SUFFIX
 $db = new mysqli($uespEsoLogWriteDBHost, $uespEsoLogWriteUser, $uespEsoLogWritePW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$MIN_ID = 64000;
-$MAX_ID = 220000;
+$MIN_ID = 54300;
+$MAX_ID = 100000;
 
 $cols = implode(",", $TABLE_FIELDS);
 
 for ($id = $MIN_ID; $id <= $MAX_ID; $id++)
 {
-	if ($id % 1000 == 0) print("\t$id: Merging...\n");
+	if ($id % 100 == 0) print("\t$id: Merging...\n");
 	
 	$result = $db->query("SELECT * FROM minedItem$SOURCE_SUFFIX WHERE itemId='$id';");
 	if ($result === false) exit("Error: Failed to load minedItem$SOURCE_SUFFIX for $id!\n");
@@ -104,13 +109,17 @@ for ($id = $MIN_ID; $id <= $MAX_ID; $id++)
 			$result = $db->query($query);
 			if ($result === false) print("\tError: Failed to save new $fullId item to minedItem$DEST_SUFFIX! {$db->error}\n");
 		}
-		else
+		else if ($OVERWRITE_DEST)
 		{
 			$destId = $destItem['id'];
 			
 			$query = "UPDATE minedItem$DEST_SUFFIX SET $setVals WHERE id='$destId';";
 			$result = $db->query($query);
 			if ($result === false) print("\tError: Failed to updating existing $fullId item in minedItem$DEST_SUFFIX! {$db->error}\n");
+		}
+		else
+		{
+			//print("\t$fullId: Skipping update.\n"); 
 		}
 	}
 	

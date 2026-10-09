@@ -6,7 +6,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 1,
     'subIndex' => 0,
-    'points' => 1065,
+    'points' => 2105,
     'icon' => '/esoui/art/treeicons/achievements_tt_season00_up.dds',
   ),
   'Recent Seasons' => 
@@ -15,7 +15,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 1,
     'subIndex' => 0,
-    'points' => 1065,
+    'points' => 2105,
     'icon' => '/esoui/art/treeicons/achievements_tt_season00_up.dds',
   ),
   'Recent Seasons::Challenge Difficulty' => 
@@ -27,13 +27,40 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'points' => 325,
     'icon' => '',
   ),
-  'Recent Seasons::Veterancy' => 
+  'Recent Seasons::Dynamic Encounters' => 
   array (
     'name' => 'Recent Seasons',
-    'subName' => 'Veterancy',
+    'subName' => 'Dynamic Encounters',
     'index' => 1,
     'subIndex' => 2,
     'points' => 90,
+    'icon' => '',
+  ),
+  'Recent Seasons::High Seas' => 
+  array (
+    'name' => 'Recent Seasons',
+    'subName' => 'High Seas',
+    'index' => 1,
+    'subIndex' => 3,
+    'points' => 140,
+    'icon' => '',
+  ),
+  'Recent Seasons::Nowhere Vault' => 
+  array (
+    'name' => 'Recent Seasons',
+    'subName' => 'Nowhere Vault',
+    'index' => 1,
+    'subIndex' => 4,
+    'points' => 335,
+    'icon' => '',
+  ),
+  'Recent Seasons::Player vs Player' => 
+  array (
+    'name' => 'Recent Seasons',
+    'subName' => 'Player vs Player',
+    'index' => 1,
+    'subIndex' => 5,
+    'points' => 150,
     'icon' => '',
   ),
   'Recent Seasons::Quests' => 
@@ -41,16 +68,34 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'Recent Seasons',
     'subName' => 'Quests',
     'index' => 1,
-    'subIndex' => 3,
+    'subIndex' => 6,
     'points' => 430,
     'icon' => '',
   ),
-  'Recent Seasons::Dynamic Encounters' => 
+  'Recent Seasons::Rumors' => 
   array (
     'name' => 'Recent Seasons',
-    'subName' => 'Dynamic Encounters',
+    'subName' => 'Rumors',
     'index' => 1,
-    'subIndex' => 4,
+    'subIndex' => 7,
+    'points' => 80,
+    'icon' => '',
+  ),
+  'Recent Seasons::Solo Dungeons' => 
+  array (
+    'name' => 'Recent Seasons',
+    'subName' => 'Solo Dungeons',
+    'index' => 1,
+    'subIndex' => 8,
+    'points' => 315,
+    'icon' => '',
+  ),
+  'Recent Seasons::Veterancy' => 
+  array (
+    'name' => 'Recent Seasons',
+    'subName' => 'Veterancy',
+    'index' => 1,
+    'subIndex' => 9,
     'points' => 90,
     'icon' => '',
   ),
@@ -60,7 +105,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 2,
     'subIndex' => 0,
-    'points' => 5325,
+    'points' => 5340,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_general_up.dds',
   ),
   'Character' => 
@@ -69,7 +114,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 2,
     'subIndex' => 0,
-    'points' => 5325,
+    'points' => 5340,
     'icon' => '/esoui/art/treeicons/achievements_indexicon_general_up.dds',
   ),
   'Character::Guilds' => 
@@ -162,12 +207,21 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'points' => 505,
     'icon' => '',
   ),
+  'Character::Antiquities' => 
+  array (
+    'name' => 'Character',
+    'subName' => 'Antiquities',
+    'index' => 2,
+    'subIndex' => 11,
+    'points' => 15,
+    'icon' => '',
+  ),
   'Character::Anniversary' => 
   array (
     'name' => 'Character',
     'subName' => 'Anniversary',
     'index' => 2,
-    'subIndex' => 11,
+    'subIndex' => 12,
     'points' => 520,
     'icon' => '',
   ),
@@ -176,7 +230,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'Character',
     'subName' => 'Skill Styling',
     'index' => 2,
-    'subIndex' => 12,
+    'subIndex' => 13,
     'points' => 105,
     'icon' => '',
   ),
@@ -1302,15 +1356,24 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 12,
     'subIndex' => 0,
-    'points' => 1635,
+    'points' => 1695,
     'icon' => '/esoui/art/treeicons/tutorial_endlessdungeon_up.dds',
+  ),
+  'Infinite Archive::Antiquities' => 
+  array (
+    'name' => 'Infinite Archive',
+    'subName' => 'Antiquities',
+    'index' => 12,
+    'subIndex' => 2,
+    'points' => 60,
+    'icon' => '',
   ),
   'Infinite Archive::Tales of Tribute' => 
   array (
     'name' => 'Infinite Archive',
     'subName' => 'Tales of Tribute',
     'index' => 12,
-    'subIndex' => 2,
+    'subIndex' => 3,
     'points' => 45,
     'icon' => '',
   ),
@@ -1319,7 +1382,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'name' => 'Infinite Archive',
     'subName' => 'Exploration',
     'index' => 12,
-    'subIndex' => 3,
+    'subIndex' => 4,
     'points' => 940,
     'icon' => '',
   ),
@@ -1437,7 +1500,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 15,
     'subIndex' => 0,
-    'points' => 1330,
+    'points' => 1345,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_goldroad_up.dds',
   ),
   'Solstice' => 
@@ -1446,7 +1509,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 15,
     'subIndex' => 0,
-    'points' => 1330,
+    'points' => 1345,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_goldroad_up.dds',
   ),
   'Solstice::Antiquities' => 
@@ -1455,7 +1518,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'Antiquities',
     'index' => 15,
     'subIndex' => 1,
-    'points' => 125,
+    'points' => 140,
     'icon' => '',
   ),
   'Solstice::Exploration' => 
@@ -1509,7 +1572,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 16,
     'subIndex' => 0,
-    'points' => 1260,
+    'points' => 1275,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_goldroad_up.dds',
   ),
   'Gold Road::Tales of Tribute' => 
@@ -1527,7 +1590,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'Antiquities',
     'index' => 16,
     'subIndex' => 3,
-    'points' => 110,
+    'points' => 125,
     'icon' => '',
   ),
   'Gold Road::Exploration' => 
@@ -1572,7 +1635,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 17,
     'subIndex' => 0,
-    'points' => 1460,
+    'points' => 1490,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_necrom_up.dds',
   ),
   'Necrom' => 
@@ -1581,7 +1644,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'General',
     'index' => 17,
     'subIndex' => 0,
-    'points' => 1460,
+    'points' => 1490,
     'icon' => '/esoui/art/treeicons/tutorial_idexicon_necrom_up.dds',
   ),
   'Necrom::Tales of Tribute' => 
@@ -1608,7 +1671,7 @@ $ESO_ACHIEVEMENT_CATEGORIES = array (
     'subName' => 'Antiquities',
     'index' => 17,
     'subIndex' => 3,
-    'points' => 170,
+    'points' => 200,
     'icon' => '',
   ),
   'Necrom::Exploration' => 
@@ -2549,20 +2612,20 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
       4 => 
       array (
-        'name' => 'Kill Plant-like Creatures',
-        'value' => 100,
+        'name' => 'Kill Chitinous Creatures',
+        'value' => 250,
         'index' => 4,
       ),
       5 => 
       array (
-        'name' => 'Kill Water-based Creatures',
-        'value' => 50,
+        'name' => 'Kill Plant-like Creatures',
+        'value' => 100,
         'index' => 5,
       ),
       6 => 
       array (
-        'name' => 'Kill Chitinous Creatures',
-        'value' => 250,
+        'name' => 'Kill Water-based Creatures',
+        'value' => 50,
         'index' => 6,
       ),
       7 => 
@@ -2969,13 +3032,13 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
       3 => 
       array (
-        'name' => 'Challenge Cave Delver III',
+        'name' => 'Challenge Incursion Breaker III',
         'value' => 1,
         'index' => 3,
       ),
       4 => 
       array (
-        'name' => 'Challenge Incursion Breaker III',
+        'name' => 'Challenge Cave Delver III',
         'value' => 1,
         'index' => 4,
       ),
@@ -3139,113 +3202,1270 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
       11 => 
       array (
-        'name' => 'Dragon',
+        'name' => 'Dragon Hunt (Elsweyr)',
         'value' => 1,
         'index' => 11,
       ),
       12 => 
       array (
-        'name' => 'Siege Camp',
+        'name' => 'Siege Camp (Solstice)',
         'value' => 1,
         'index' => 12,
       ),
     ),
   ),
-  4636 => 
+  4621 => 
   array (
-    'id' => 4636,
-    'name' => 'Dog of War',
-    'desc' => 'Earn your first Veterancy rank.',
-    'icon' => '/esoui/art/icons/achievement_vengeance_1.dds',
+    'id' => 4621,
+    'name' => 'Farm Aflame',
+    'desc' => 'Complete the Dynamic encounter at Flowervine Farm in Auridon.',
+    'icon' => '/esoui/art/icons/achievement_u50_dwe_farm.dds',
     'points' => 5,
     'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Rank 1',
+        'name' => 'Farm Aflame',
         'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  4637 => 
+  4623 => 
   array (
-    'id' => 4637,
-    'name' => 'Seasoned Veteran',
-    'desc' => 'Earn your 25th Veterancy rank.',
-    'icon' => '/esoui/art/icons/achievement_vengeance_25.dds',
+    'id' => 4623,
+    'name' => 'Kindness Where It Counts',
+    'desc' => 'Complete 1 Dynamic Encounter.',
+    'icon' => '/esoui/art/icons/achievement_u50_dwe_incursions_1.dds',
+    'points' => 5,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dynamic Encounter Completed',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4624 => 
+  array (
+    'id' => 4624,
+    'name' => 'Aiding Those in Need',
+    'desc' => 'Complete 10 Dynamic Encounters.',
+    'icon' => '/esoui/art/icons/achievement_u50_dwe_incursions_2.dds',
     'points' => 10,
     'index' => 2,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Rank 25',
+        'name' => 'Dynamic Encounters Completed',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4625 => 
+  array (
+    'id' => 4625,
+    'name' => 'Folk Hero',
+    'desc' => 'Complete 30 Dynamic Encounters.',
+    'icon' => '/esoui/art/icons/achievement_u50_dwe_incursions_3.dds',
+    'points' => 15,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Dynamic Encounters Completed',
+        'value' => 30,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4622 => 
+  array (
+    'id' => 4622,
+    'name' => 'Safely Delivered',
+    'desc' => 'Complete the Bilsa\'s Delivery Dynamic Encounter in Stonefalls.',
+    'icon' => '/esoui/art/icons/achievement_u50_dwe_riddlethar.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Safely Delivered',
         'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  4638 => 
+  4620 => 
   array (
-    'id' => 4638,
-    'name' => 'Vengeance Is Yours!',
-    'desc' => 'Earn your 50th Veterancy rank.',
-    'icon' => '/esoui/art/icons/achievement_vengeance_50.dds',
+    'id' => 4620,
+    'name' => 'Stendarr\'s Knight',
+    'desc' => 'Complete the Vampire Hunt Dynamic Encounter in Glenumbra.',
+    'icon' => '/esoui/art/icons/achievement_u50_dwe_vampire.dds',
+    'points' => 5,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Stendarr\'s Knight',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4651 => 
+  array (
+    'id' => 4651,
+    'name' => 'Skill Stylist: Blood Scion',
+    'desc' => 'Acquire and use 10 Shards of Parched Stone to unlock the Blood Scion, Coldharbour Skill Style. Shards can be collected from the Vampire Hunt Dynamic Encounter.',
+    'icon' => '/esoui/art/icons/u50_ability_coldharboursvampirescion.dds',
+    'points' => 15,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Shards of Parched Stone',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/u50_ability_coldharboursvampirescion.dds',
+    'collectName' => 'Blood Scion, Coldharbour',
+    'collectId' => '14400',
+  ),
+  4652 => 
+  array (
+    'id' => 4652,
+    'name' => 'Skill Stylist: Werewolf Form',
+    'desc' => 'Acquire and use a Bitten Chew Bone collected from the Bilsa\'s Delivery Dynamic Encounter to unlock the Werewolf Form, Black Skill Style.',
+    'icon' => '/esoui/art/icons/ability_werewolf_001_black.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Bitten Chew Bone',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/ability_werewolf_001_black.dds',
+    'collectName' => 'Werewolf Form, Black',
+    'collectId' => '14773',
+  ),
+  4654 => 
+  array (
+    'id' => 4654,
+    'name' => 'Skill Stylist II: Werewolf Form',
+    'desc' => 'Acquire and use 5 Bitten Chew Bones collected from the Bilsa\'s Delivery Dynamic Encounter to unlock the Werewolf Form, Ashen Skill Style.',
+    'icon' => '/esoui/art/icons/ability_werewolf_001_ashen.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Bitten Chew Bone',
+        'value' => 5,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/ability_werewolf_001_ashen.dds',
+    'collectName' => 'Werewolf Form, Ashen',
+    'collectId' => '14774',
+  ),
+  4655 => 
+  array (
+    'id' => 4655,
+    'name' => 'Skill Stylist III: Werewolf Form',
+    'desc' => 'Acquire and use 10 Bitten Chew Bones collected from the Bilsa\'s Delivery Dynamic Encounter to unlock the Werewolf Form, White Skill Style.',
+    'icon' => '/esoui/art/icons/ability_werewolf_001_white.dds',
+    'points' => 15,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Bitten Chew Bone',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/ability_werewolf_001_white.dds',
+    'collectName' => 'Werewolf Form, White',
+    'collectId' => '14775',
+  ),
+  4682 => 
+  array (
+    'id' => 4682,
+    'name' => 'I Bid You Adieu!',
+    'desc' => 'Complete the quest "Raising the Riotous Redress" during the High Seas of Tamriel event.',
+    'icon' => '/esoui/art/icons/u51_achievement_highseas_ship.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Raising the Riotous Redress',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4685 => 
+  array (
+    'id' => 4685,
+    'name' => 'Baron-Captain on Deck',
+    'desc' => 'Complete the captain-y tasks listed below aboard the Riotous Redress during the High Seas of Tamriel event.',
+    'icon' => '/esoui/art/icons/u42_world_ava_skill_half.dds',
+    'points' => 5,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Fire a Catapult',
+        'value' => 10,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Repair Breaches',
+        'value' => 10,
+        'index' => 2,
+      ),
+    ),
+    'title' => 'Baron-Captain',
+  ),
+  4684 => 
+  array (
+    'id' => 4684,
+    'name' => 'A Baron-Captain\'s Victory',
+    'desc' => 'Win the day in a ship-to-ship battle by outlasting or sinking an attacking ship during the High Seas of Tamriel event.',
+    'icon' => '/esoui/art/icons/achievement_u51_highseas_wheel.dds',
     'points' => 10,
     'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Rank 50',
+        'name' => 'Outlast the Attacking Ship',
         'value' => 1,
         'index' => 1,
       ),
+      2 => 
+      array (
+        'name' => 'Sink the Attacking Ship',
+        'value' => 1,
+        'index' => 2,
+      ),
     ),
   ),
-  4639 => 
+  4683 => 
   array (
-    'id' => 4639,
-    'name' => 'Experienced Campaigner',
-    'desc' => 'Earn your 75th Veterancy rank.',
-    'icon' => '/esoui/art/icons/achievement_vengeance_75.dds',
+    'id' => 4683,
+    'name' => 'Treasure Hunter on the High Seas',
+    'desc' => 'Complete the daily quest "Bounty of the Abecean Sea" 5 times during the High Seas of Tamriel event. Survive a ship battle, brave the ocean depths, and return with a pile of treasure!',
+    'icon' => '/esoui/art/icons/generic_achievement_repeatablequest.dds',
     'points' => 15,
     'index' => 4,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Rank 75',
-        'value' => 1,
+        'name' => 'Bounty of the Abecean Sea',
+        'value' => 5,
         'index' => 1,
       ),
     ),
   ),
-  4640 => 
+  4688 => 
   array (
-    'id' => 4640,
-    'name' => 'Best Served Cold',
-    'desc' => 'Earn your 100th Veterancy rank.',
-    'icon' => '/esoui/art/icons/achievement_vengeance_100.dds',
-    'points' => 50,
+    'id' => 4688,
+    'name' => 'Ending the Louse-Whisperers',
+    'desc' => 'While engaging in a ship battle, slay 10 champions sent to board the Riotous Redress during the High Seas of Tamriel event.',
+    'icon' => '/esoui/art/icons/u49_adventurezone_achievement_brazen.dds',
+    'points' => 10,
     'index' => 5,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Rank 100',
+        'name' => 'Louse-Whisperer Champions',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4691 => 
+  array (
+    'id' => 4691,
+    'name' => 'High Seas Master Angler',
+    'desc' => 'Catch rare fish from Abecean Saltwater Fishing Holes! Abecean Saltwater Fishing Holes appear in the waters off the Gold Coast, near the Anchorage for the Riotous Redress, during the High Seas of Tamriel event.',
+    'icon' => '/esoui/art/icons/achievement_update16_002.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Pelican Eel (Salt)',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Abecean Slaughterfish (Salt)',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Abyssal Grenadier (Salt)',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Pelagic Lanternfish (Salt)',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4686 => 
+  array (
+    'id' => 4686,
+    'name' => 'The Xirkn-Zel Diving Chamber',
+    'desc' => 'Survive a shipboard battle and use the Dwemer diving chamber to reach the sea floor during the High Seas of Tamriel event.',
+    'icon' => '/esoui/art/icons/u51_achievement_highseas_divingbell.dds',
+    'points' => 5,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Enter the Dwemer Diving Chamber',
         'value' => 1,
         'index' => 1,
       ),
     ),
   ),
+  4687 => 
+  array (
+    'id' => 4687,
+    'name' => 'Abecean Undersea Explorer',
+    'desc' => 'Use the Dwemer diving chamber to explore and clear the underwater region of the Abecean Sea during the High Seas of Tamriel event.',
+    'icon' => '/esoui/art/icons/achievement_045.dds',
+    'points' => 10,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Coral Forest',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Leviathan Gullet',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Ornaug Lair',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Haj Mota Hunting Grounds',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Wreck of the Sea Demon',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Reef Shark Run',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  4690 => 
+  array (
+    'id' => 4690,
+    'name' => 'Wave-Tossed Missives',
+    'desc' => 'During the High Seas of Tamriel event, explore the undersea area of the Abecean and find four messages in a bottle at the locations listed below.',
+    'icon' => '/esoui/art/icons/achievement_su_flavor_01.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Beneath a Wall of Fossil Shells',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Atop a Rocky Arch',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Across from a Sea Beast\'s Skeleton',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Where Turtles Nest and Lair',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'At the Stern of a Cursed Pirate Wreck',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Surrounded by Schools of Deadly Fish',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Where Krelzimar Lairs',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'On A Rise Near Red Coral and Massive Bones',
+        'value' => 1,
+        'index' => 8,
+      ),
+    ),
+  ),
+  4692 => 
+  array (
+    'id' => 4692,
+    'name' => 'Eyes in the Dark',
+    'desc' => 'Slay the underwater bosses lurking in the depths of the Abecean Sea during the High Seas of Tamriel event.',
+    'icon' => '/esoui/art/icons/u49_adventurezone_achievement_argent.dds',
+    'points' => 10,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Lucky Gretch and Bright Bazzle',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Krelzimar the Pelagic Trauma',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  4689 => 
+  array (
+    'id' => 4689,
+    'name' => 'Flight of the Albatross',
+    'desc' => 'Complete the achievements listed below during the High Seas of Tamriel event.',
+    'icon' => '/esoui/art/icons/u51_achievement_highseas_ship.dds',
+    'points' => 50,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'I Bid You Adieu!',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Treasure Hunter on the High Seas',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'A Baron-Captain\'s Victory',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Baron-Captain on Deck',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Ending the Louse-Whisperers',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'The Xirkn-Zel Diving Chamber',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Abecean Undersea Explorer',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'Eyes in the Dark',
+        'value' => 1,
+        'index' => 8,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/monster_storm_elemental_jolt_stone_001.dds',
+    'collectName' => 'Arcing Ornaug Energy',
+    'collectId' => '15067',
+  ),
+  4721 => 
+  array (
+    'id' => 4721,
+    'name' => 'Sage\'s Reward Revealed',
+    'desc' => 'Repair the Nexus Orrery with 8 shards and complete the "Invitation to Treasures" quest in the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/u51_achievement_sagesvault_orrey.dds',
+    'points' => 15,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Orrery Shards Placed',
+        'value' => 8,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Invitation to Treasures',
+        'value' => 1,
+        'index' => 2,
+      ),
+    ),
+  ),
+  4722 => 
+  array (
+    'id' => 4722,
+    'name' => 'Into the Vault',
+    'desc' => 'Use a Wondrous Nowhere Key in the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/housing_uni_inc_nowherekey001.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Wondrous Nowhere Key',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4723 => 
+  array (
+    'id' => 4723,
+    'name' => 'Nowhere Vault Savant',
+    'desc' => 'Use 25 Wondrous Nowhere Keys in the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/housing_uni_inc_nowherekey001.dds',
+    'points' => 15,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Wondrous Nowhere Keys',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4724 => 
+  array (
+    'id' => 4724,
+    'name' => 'Heir to the Sage',
+    'desc' => 'Use 75 Wondrous Nowhere Keys in the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/housing_uni_inc_nowherekey001.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Wondrous Nowhere Keys',
+        'value' => 75,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4657 => 
+  array (
+    'id' => 4657,
+    'name' => 'Nowhere Vault Skyshard Hunter',
+    'desc' => 'Discover all 6 Skyshards in the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/ability_mage_050.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Perched precariously above flowing fire.',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Among the ruins above the darkened maze.',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Tucked away under a series of massive roots.',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'In an alcove overlooking a room with three curios on display.',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Under the watchful eye of a great protector.',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Stashed on a low cliff that only magic can reach.',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  4747 => 
+  array (
+    'id' => 4747,
+    'name' => 'Sharing the Risk',
+    'desc' => 'Complete a challenge room in the Nowhere Vault with a group.',
+    'icon' => '/esoui/art/icons/u40_ed2_player_allies_silver.dds',
+    'points' => 5,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Challenge Room Completed',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4746 => 
+  array (
+    'id' => 4746,
+    'name' => 'Safer Together',
+    'desc' => 'Complete 10 challenge rooms in the Nowhere Vault with a group.',
+    'icon' => '/esoui/art/icons/u40_ed2_player_allies_silver.dds',
+    'points' => 10,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Challenge Rooms Completed',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4745 => 
+  array (
+    'id' => 4745,
+    'name' => 'Elite Research Team',
+    'desc' => 'Complete 20 challenge rooms in the Nowhere Vault with a group.',
+    'icon' => '/esoui/art/icons/u40_ed2_player_allies_gold.dds',
+    'points' => 15,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Challenge Rooms Completed',
+        'value' => 20,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4733 => 
+  array (
+    'id' => 4733,
+    'name' => 'Storm the Castle',
+    'desc' => 'Complete each challenge room and visit the safe room in the Cursed Castle Wing of the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/achievement_u51_sagesvault_cursedwing_1.dds',
+    'points' => 10,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Gallery of Curios',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Sinking Courtyard',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Haunted Undercroft',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Prison of the Unrepentant',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4731 => 
+  array (
+    'id' => 4731,
+    'name' => 'Grace of Jone and Jode',
+    'desc' => 'Complete each challenge room and visit the safe room in the Lunar Path Wing of the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/achievement_u51_sagesvault_khajiittemple_1.dds',
+    'points' => 10,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Moonlit Isles',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Twilight Maze',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Eclipsed Hall',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'The Lakehouse',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4729 => 
+  array (
+    'id' => 4729,
+    'name' => 'Arcanum Inquirer',
+    'desc' => 'Complete each challenge room and visit the safe room in the Arcanum Wing of the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/achievement_u51_sagesvault_telvanniwing_1.dds',
+    'points' => 10,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Hunt of the Watchers',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Murky Grotto',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Fungal Chasm',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Custodian\'s Repository',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4734 => 
+  array (
+    'id' => 4734,
+    'name' => 'Every Nook and Cranny',
+    'desc' => 'Acquire the secret effect for each room in the Cursed Castle Wing of the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/achievement_u51_sagesvault_cursedwing_2.dds',
+    'points' => 15,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Carafe of Salt Water',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Artist\'s Touch',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Connoisseur\'s Vision',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Cursed Castle Gryphon Seal',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4732 => 
+  array (
+    'id' => 4732,
+    'name' => 'Hidden From Moonlight',
+    'desc' => 'Acquire the secret effect for each room in the Lunar Path Wing of the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/achievement_u51_sagesvault_khajiittemple_2.dds',
+    'points' => 15,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Astralight Lumen',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Resonating Core',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Cantor\'s Starsong',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Lunar Path Timeward Seal',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4730 => 
+  array (
+    'id' => 4730,
+    'name' => 'Mysterious Revelations',
+    'desc' => 'Acquire the secret effect for each room in the Arcanum Wing of the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/achievement_u51_sagesvault_telvanniwing_2.dds',
+    'points' => 15,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Subjugating Mindspore',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Watcher Filtration Gills',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Fungal Sight',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Arcanum Timeward Seal',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4735 => 
+  array (
+    'id' => 4735,
+    'name' => 'Garden Stroll',
+    'desc' => 'Discover the Meditative Garden stash room in the Nowhere Vault for the first time.',
+    'icon' => '/esoui/art/icons/achievement_064.dds',
+    'points' => 5,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Discovered the Meditative Garden Stash Room',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4738 => 
+  array (
+    'id' => 4738,
+    'name' => 'Beginner\'s Reward',
+    'desc' => 'Loot a chest from the Magicka Flow Junction stash room in the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/achievement_012.dds',
+    'points' => 5,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Chest Looted',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4739 => 
+  array (
+    'id' => 4739,
+    'name' => 'Lucky Arrivals',
+    'desc' => 'Loot 10 chests from the Magicka Flow Junction stash room in the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/achievement_012.dds',
+    'points' => 10,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Chests Looted',
+        'value' => 10,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4740 => 
+  array (
+    'id' => 4740,
+    'name' => 'Basement Profitability',
+    'desc' => 'Loot 20 chests from the Magicka Flow Junction stash room in the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/achievement_012.dds',
+    'points' => 15,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Chests Looted',
+        'value' => 20,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4741 => 
+  array (
+    'id' => 4741,
+    'name' => 'Legend of the Nowhere Vault',
+    'desc' => 'Complete all rooms in the Arcanum Wing, Lunar Path Wing, Cursed Castle Wing and discover the stash rooms in the Nowhere Vault.',
+    'icon' => '/esoui/art/icons/u51_achievement_sagesvault_vaultdoor.dds',
+    'points' => 15,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Arcanum Inquirer',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Grace of Jone and Jode',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Storm the Castle',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Beginner\'s Reward',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Garden Stroll',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+    'dyeName' => 'Urli Indigo',
+    'dyeColor' => '3d239a',
+  ),
+  4742 => 
+  array (
+    'id' => 4742,
+    'name' => 'Heir to the Sage\'s Legacy',
+    'desc' => 'Acquire the secret seals for the Arcanum Wing, Lunar Path Wing, and Cursed Castle Wing of the Nowhere Vault, then dispel the final barrier.',
+    'icon' => '/esoui/art/icons/u51_achievement_sagesvault_vaultdoor_2.dds',
+    'points' => 50,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Arcanum Wing Seal',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Lunar Path Wing Seal',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Cursed Castle Wing Seal',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Dispel the Barrier',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/mount_clandirenniquasigriff.dds',
+    'collectName' => 'Ancient Direnni Quasigriff',
+    'collectId' => '14117',
+  ),
+  4744 => 
+  array (
+    'id' => 4744,
+    'name' => 'Skill Stylist: Evasion',
+    'desc' => 'Acquire and use 25 Chameleon Tincture Phials found in chests in the Nowhere Vault to unlock the Evasion, Cyan Skill Style.',
+    'icon' => '/esoui/art/icons/ability_armor_002_sagecyan.dds',
+    'points' => 15,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Chameleon Tincture Phials',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/ability_armor_002_sagecyan.dds',
+    'collectName' => 'Evasion, Cyan Blue',
+    'collectId' => '14820',
+  ),
+  4743 => 
+  array (
+    'id' => 4743,
+    'name' => 'Skill Stylist: Summon Shade',
+    'desc' => 'Acquire and use 25 Spectral Distillation Ampoules found in chests in the Nowhere Vault to unlock the Summon Shade Cyan Blue Skill Style.',
+    'icon' => '/esoui/art/icons/ability_nightblade_001_sagecyan.dds',
+    'points' => 15,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Spectral Distillation Ampoules',
+        'value' => 25,
+        'index' => 1,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/ability_nightblade_001_sagecyan.dds',
+    'collectName' => 'Summon Shade, Cyan Blue',
+    'collectId' => '14819',
+  ),
+  4709 => 
+  array (
+    'id' => 4709,
+    'name' => 'Newblood Steadfast Shieldwarden',
+    'desc' => 'In any Battlegrounds mode, grant and use damage shields effectively one time. Damage shield must be 20% of max health and 50% of that value must be used before expiring.',
+    'icon' => '/esoui/art/icons/u51_achievement_battleground_shielder.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Steadfast Shieldwarden',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4710 => 
+  array (
+    'id' => 4710,
+    'name' => 'Veteran Steadfast Shieldwarden',
+    'desc' => 'In any Battlegrounds mode, grant and use damage shields effectively 50 times. Damage shield must be 20% of max health and 50% of that value must be used before expiring.',
+    'icon' => '/esoui/art/icons/u51_achievement_battleground_shielder.dds',
+    'points' => 15,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Steadfast Shieldwarden',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4711 => 
+  array (
+    'id' => 4711,
+    'name' => 'Grand Steadfast Shieldwarden',
+    'desc' => 'In any Battlegrounds mode, grant and use damage shields effectively 100 times. Damage shield must be 20% of max health and 50% of that value must be used before expiring.',
+    'icon' => '/esoui/art/icons/u51_achievement_battleground_shielder.dds',
+    'points' => 50,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Steadfast Shieldwarden',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4718 => 
+  array (
+    'id' => 4718,
+    'name' => 'Novice Resurrectionist',
+    'desc' => 'Revive a fellow player in Cyrodiil, Imperial City, or Battlegrounds 1 time.',
+    'icon' => '/esoui/art/icons/u51_achievement_pvp_resurrection_teal.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Resurrectionist',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4719 => 
+  array (
+    'id' => 4719,
+    'name' => 'Adept Resurrectionist',
+    'desc' => 'Revive a fellow player in Cyrodiil, Imperial City, or Battlegrounds 50 times.',
+    'icon' => '/esoui/art/icons/u51_achievement_pvp_resurrection_teal.dds',
+    'points' => 15,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Resurrectionist',
+        'value' => 50,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4720 => 
+  array (
+    'id' => 4720,
+    'name' => 'Expert Resurrectionist',
+    'desc' => 'Revive a fellow player in Cyrodiil, Imperial City, or Battlegrounds 100 times.',
+    'icon' => '/esoui/art/icons/u51_achievement_pvp_resurrection_teal.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Resurrectionist',
+        'value' => 100,
+        'index' => 1,
+      ),
+    ),
+    'dyeName' => 'Resurrection Mint',
+    'dyeColor' => '67c3b6',
+  ),
   4602 => 
   array (
     'id' => 4602,
     'name' => 'Reacquisition Specialist',
-    'desc' => 'Complete each unique daily job from the Tip Board for the Thieves Guild.',
+    'desc' => 'Complete each unique daily job from the Reacquisition Board in Glenumbra for the Thieves Guild.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_011.dds',
     'points' => 15,
     'index' => 1,
@@ -3299,7 +4519,7 @@ $ESO_ACHIEVEMENT_DATA = array (
   array (
     'id' => 4589,
     'name' => 'Triple Accomplice',
-    'desc' => 'Complete the " Three Thieves in Daggerfall" quest in Glenumbra.',
+    'desc' => 'Complete the "Three Thieves in Daggerfall" quest in Glenumbra.',
     'icon' => '/esoui/art/icons/achievement_u50_main_story_2.dds',
     'points' => 10,
     'index' => 3,
@@ -3686,200 +4906,734 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
     ),
     'collectIcon' => '/esoui/art/icons/housing_uni_exc_housingfreerunnerposter005.dds',
-    'collectName' => 'Handbill:  Battlereeve Urcelmo',
+    'collectName' => 'Handbill: Battlereeve Urcelmo',
     'collectId' => '14687',
   ),
-  4621 => 
+  4583 => 
   array (
-    'id' => 4621,
-    'name' => 'Farm Aflame',
-    'desc' => 'Complete the Dynamic encounter at Flowervine Farm in Auridon.',
-    'icon' => '/esoui/art/icons/achievement_u50_dwe_farm.dds',
+    'id' => 4583,
+    'name' => 'A Flurry of Whispers',
+    'desc' => 'Complete the ten whisper-ranked Rumors released during Season One.',
+    'icon' => '/esoui/art/icons/achievement_u49_puzzle_green.dds',
     'points' => 5,
     'index' => 1,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Farm Aflame',
+        'name' => 'The Beriel Heirloom',
         'value' => 1,
         'index' => 1,
       ),
+      2 => 
+      array (
+        'name' => 'Looking for Love',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'House Tirethi in Danger',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Secret Chili Ingredients!',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Azrashul’s Legacy',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Somber News',
+        'value' => 1,
+        'index' => 6,
+      ),
+      7 => 
+      array (
+        'name' => 'Letter-Crossed Lovers',
+        'value' => 1,
+        'index' => 7,
+      ),
+      8 => 
+      array (
+        'name' => 'True Heir',
+        'value' => 1,
+        'index' => 8,
+      ),
+      9 => 
+      array (
+        'name' => 'Mysterious Dreamer',
+        'value' => 1,
+        'index' => 9,
+      ),
+      10 => 
+      array (
+        'name' => 'Bumps in the Night',
+        'value' => 1,
+        'index' => 10,
+      ),
     ),
   ),
-  4623 => 
+  4586 => 
   array (
-    'id' => 4623,
-    'name' => 'Kindness Where It Counts',
-    'desc' => 'Complete 1 Dynamic Encounter.',
-    'icon' => '/esoui/art/icons/achievement_u50_dwe_incursions_1.dds',
+    'id' => 4586,
+    'name' => 'I Heard A Rumor',
+    'desc' => 'Complete the Rumor achievements listed below.',
+    'icon' => '/esoui/art/icons/achievement_u49_puzzle_gold.dds',
+    'points' => 50,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Quite the Conspiracy',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Pile of Plots',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'A Flurry of Whispers',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+    'title' => 'Rumormonger',
+  ),
+  4584 => 
+  array (
+    'id' => 4584,
+    'name' => 'Pile of Plots',
+    'desc' => 'Complete the four plot-ranked Rumors released during Season One.',
+    'icon' => '/esoui/art/icons/achievement_u49_puzzle_blue.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Figures of Note',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Fellowship of Honest Toil',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Maormer Business',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Runaway Property',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4585 => 
+  array (
+    'id' => 4585,
+    'name' => 'Quite the Conspiracy',
+    'desc' => 'Complete at least one of the following conspiracy-ranked Rumors released during Season One.',
+    'icon' => '/esoui/art/icons/achievement_u49_puzzle_purple.dds',
+    'points' => 15,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'May The Gold Leaf Guide You',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'A Cage that Shines',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'A Cage that Sparkles',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'A Cage that Shimmers',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4693 => 
+  array (
+    'id' => 4693,
+    'name' => 'Moon Hunter Keep Solitarian',
+    'desc' => 'Defeat Jailer Melitus, the Hedge Maze Guardian, Mylenne Moon-Caller, Archivist Ermarde, and Vykosa the Ascendant in the Solo Dungeon Moon Hunter Keep.',
+    'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophymylenne001.dds',
+    'points' => 10,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat Jailer Melitus in Solo Dungeon',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat the Hedge Maze Guardian in Solo Dungeon',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Mylenne Moon-Caller in Solo Dungeon',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Archivist Ernarde in Solo Dungeon',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Vykosa the Ascendant in Solo Dungeon',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  4697 => 
+  array (
+    'id' => 4697,
+    'name' => 'Undergrowth Maneuvers',
+    'desc' => 'Defeat the Hedge Maze Guardian while being hit by the lurcher\'s Root Stomp attack no more than one time in the Solo Dungeon Moon Hunter Keep.',
+    'icon' => '/esoui/art/icons/mh_hedgeguardian_strang.dds',
     'points' => 5,
     'index' => 2,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Dynamic Encounter Completed',
+        'name' => 'Undergrowth Maneuvers',
         'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  4624 => 
+  4698 => 
   array (
-    'id' => 4624,
-    'name' => 'Aiding Those in Need',
-    'desc' => 'Complete 10 Dynamic Encounters.',
-    'icon' => '/esoui/art/icons/achievement_u50_dwe_incursions_2.dds',
-    'points' => 10,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Dynamic Encounters Completed',
-        'value' => 10,
-        'index' => 1,
-      ),
-    ),
-  ),
-  4625 => 
-  array (
-    'id' => 4625,
-    'name' => 'Folk Hero',
-    'desc' => 'Complete 30 Dynamic Encounters.',
-    'icon' => '/esoui/art/icons/achievement_u50_dwe_incursions_3.dds',
-    'points' => 15,
-    'index' => 2,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Dynamic Encounters Completed',
-        'value' => 30,
-        'index' => 1,
-      ),
-    ),
-  ),
-  4622 => 
-  array (
-    'id' => 4622,
-    'name' => 'Safely Delivered',
-    'desc' => 'Complete the Bilsa\'s Delivery Dynamic Encounter in Stonefalls.',
-    'icon' => '/esoui/art/icons/achievement_u50_dwe_riddlethar.dds',
+    'id' => 4698,
+    'name' => 'Caging the Beast',
+    'desc' => 'Gather the ingredients to cure Adonatus Varian in the Solo Dungeon Moon Hunter Keep.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodun_moonhunter_flavor_2.dds',
     'points' => 5,
     'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Safely Delivered',
+        'name' => 'Caging the Beast',
         'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  4620 => 
+  4699 => 
   array (
-    'id' => 4620,
-    'name' => 'Stendarr\'s Knight',
-    'desc' => 'Complete the Vampire Hunt Dynamic Encounter in Glenumbra.',
-    'icon' => '/esoui/art/icons/achievement_u50_dwe_vampire.dds',
+    'id' => 4699,
+    'name' => 'Clean Slate',
+    'desc' => 'Defeat Jailer Melitus without being damaged by Bloody Geysers in the Solo Dungeon Moon Hunter Keep.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodun_moonhunter_flavor_3.dds',
     'points' => 5,
     'index' => 4,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Stendarr\'s Knight',
+        'name' => 'Clean Slate',
         'value' => 1,
         'index' => 1,
       ),
     ),
   ),
-  4651 => 
+  4694 => 
   array (
-    'id' => 4651,
-    'name' => 'Skill Stylist: Blood Scion',
-    'desc' => 'Acquire and use 10 Shards of Parched Stone to unlock the Blood Scion, Coldharbour Skill Style. Shards can be collected from the Vampire Hunt Dynamic Encounter.',
-    'icon' => '/esoui/art/icons/u50_ability_coldharboursvampirescion.dds',
-    'points' => 15,
+    'id' => 4694,
+    'name' => 'Moon Hunter Keep Madness',
+    'desc' => 'Complete the Solo Dungeon Moon Hunter Keep after experiencing each Meted Misfortune individually or in combination.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodun_moonhunter_1_debuff.dds',
+    'points' => 10,
     'index' => 5,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Shards of Parched Stone',
-        'value' => 10,
-        'index' => 1,
-      ),
-    ),
-    'collectIcon' => '/esoui/art/icons/u50_ability_coldharboursvampirescion.dds',
-    'collectName' => 'Blood Scion, Coldharbour',
-    'collectId' => '14400',
-  ),
-  4652 => 
-  array (
-    'id' => 4652,
-    'name' => 'Skill Stylist: Werewolf Form',
-    'desc' => 'Acquire and use a Bitten Chew Bone collected from the Bilsa\'s Delivery Dynamic Encounter to unlock the Werewolf Form, Black Skill Style.',
-    'icon' => '/esoui/art/icons/ability_werewolf_001_red.dds',
-    'points' => 5,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
-      array (
-        'name' => 'Bitten Chew Bone',
+        'name' => 'Warm Welcome',
         'value' => 1,
         'index' => 1,
       ),
-    ),
-    'collectIcon' => '/esoui/art/icons/ability_werewolf_001_black.dds',
-    'collectName' => 'Werewolf Form, Black',
-    'collectId' => '14773',
-  ),
-  4654 => 
-  array (
-    'id' => 4654,
-    'name' => 'Skill Stylist II: Werewolf Form',
-    'desc' => 'Acquire and use 5 Bitten Chew Bones collected from the Bilsa\'s Delivery Dynamic Encounter to unlock the Werewolf Form, Ashen Skill Style.',
-    'icon' => '/esoui/art/icons/ability_werewolf_001_red.dds',
-    'points' => 10,
-    'index' => 6,
-    'criteria' => 
-    array (
-      1 => 
+      2 => 
       array (
-        'name' => 'Bitten Chew Bone',
-        'value' => 5,
-        'index' => 1,
+        'name' => 'Revoke of Respite',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Alleviating Assault',
+        'value' => 1,
+        'index' => 3,
       ),
     ),
-    'collectIcon' => '/esoui/art/icons/ability_werewolf_001_ashen.dds',
-    'collectName' => 'Werewolf Form, Ashen',
-    'collectId' => '14774',
   ),
-  4655 => 
+  4695 => 
   array (
-    'id' => 4655,
-    'name' => 'Skill Stylist III: Werewolf Form',
-    'desc' => 'Acquire and use 10 Bitten Chew Bones collected from the Bilsa\'s Delivery Dynamic Encounter to unlock the Werewolf Form, White Skill Style.',
-    'icon' => '/esoui/art/icons/ability_werewolf_001_red.dds',
+    'id' => 4695,
+    'name' => 'Moon Hunter Keep Savage',
+    'desc' => 'Complete the Solo Dungeon Moon Hunter Keep with at least two active Meted Misfortunes.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodun_moonhunter_2_debuff.dds',
     'points' => 15,
     'index' => 6,
     'criteria' => 
     array (
       1 => 
       array (
-        'name' => 'Bitten Chew Bone',
-        'value' => 10,
+        'name' => 'Two Meted Misfortunes Active',
+        'value' => 1,
         'index' => 1,
       ),
     ),
-    'collectIcon' => '/esoui/art/icons/ability_werewolf_001_white.dds',
-    'collectName' => 'Werewolf Form, White',
-    'collectId' => '14775',
+  ),
+  4696 => 
+  array (
+    'id' => 4696,
+    'name' => 'Moon Hunter Meted Masochist',
+    'desc' => 'Complete the Solo Dungeon Moon Hunter Keep with every Meted Misfortune.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodun_moonhunter_3_debuff.dds',
+    'points' => 50,
+    'index' => 7,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Moon Hunter Keep Masochist',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Lone Wolf',
+  ),
+  4700 => 
+  array (
+    'id' => 4700,
+    'name' => 'Moon Hunter Keep Lord',
+    'desc' => 'Complete all associated achievements in the Solo Dungeon Moon Hunter Keep.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodungeon_moonhunter_meta.dds',
+    'points' => 50,
+    'index' => 8,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Moon Hunter Keep Solitarian',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Moon Hunter Keep Madness',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Moon Hunter Keep Savage',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Undergrowth Maneuvers',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Caging the Beast',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Clean Slate',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  4701 => 
+  array (
+    'id' => 4701,
+    'name' => 'March of Sacrifices Solitarian',
+    'desc' => 'Defeat the Wyrd Sisters, Aghaedh of the Solstice, Dagrund the Bulky, Tarcyr, and Balorgh in the Solo Dungeon March of Sacrifices.',
+    'icon' => '/esoui/art/icons/housing_uni_inc_mountedtrophytarcyr001.dds',
+    'points' => 10,
+    'index' => 9,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Defeat the Wyrd Sisters in Solo Dungeon',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Defeat Aghaedh of the Solstice in Solo Dungeon',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Defeat Dagrund the Bulky in Solo Dungeon',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Defeat Tarcyr in Solo Dungeon',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Defeat Balorgh in Solo Dungeon',
+        'value' => 1,
+        'index' => 5,
+      ),
+    ),
+  ),
+  4705 => 
+  array (
+    'id' => 4705,
+    'name' => 'Shroud Hunter',
+    'desc' => 'Defeat Tarcyr the Indrik without its Shrouding Mist ability teleporting you more than once in the Solo Dungeon March of Sacrifices.',
+    'icon' => '/esoui/art/icons/mos_tarcyr_shrouding_mis.dds',
+    'points' => 5,
+    'index' => 10,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Shroud Hunter',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4707 => 
+  array (
+    'id' => 4707,
+    'name' => 'Bulky Beating',
+    'desc' => 'Defeat Dagrund the Bulky while getting hit no more than once by his Upheaval ability in the Solo Dungeon March of Sacrifices.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodun_marchofsacrifices_flavor3.dds',
+    'points' => 5,
+    'index' => 11,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Bulky Beating',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4706 => 
+  array (
+    'id' => 4706,
+    'name' => 'Golden Indrik Tracker',
+    'desc' => 'Complete all three Golden Indrik Hunts and gain their boons within the Solo Dungeon March of Sacrifices.',
+    'icon' => '/esoui/art/icons/mos_indrik_hunt.dds',
+    'points' => 5,
+    'index' => 12,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Boon of Ferocity Obtained',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Boon of Prowling Obtained',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Boon of Hardiness Obtained',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  4702 => 
+  array (
+    'id' => 4702,
+    'name' => 'March of Sacrifices Madness',
+    'desc' => 'Complete the Solo Dungeon March of Sacrifices after experiencing each Meted Misfortune individually or in combination.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodun_marchofsacrifices_1_debuff.dds',
+    'points' => 10,
+    'index' => 13,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Warm Welcome',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Weary Warrior\'s Submission',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Pulled Punches',
+        'value' => 1,
+        'index' => 3,
+      ),
+    ),
+  ),
+  4703 => 
+  array (
+    'id' => 4703,
+    'name' => 'March of Sacrifices Savage',
+    'desc' => 'Complete the Solo Dungeon March of Sacrifices with at least two active Meted Misfortunes.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodun_marchofsacrifices_2_debuff.dds',
+    'points' => 15,
+    'index' => 14,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Two Meted Misfortunes Active',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4704 => 
+  array (
+    'id' => 4704,
+    'name' => 'Marcher Meted Masochist',
+    'desc' => 'Complete the Solo Dungeon March of Sacrifices with every Meted Misfortune.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodun_marchofsacrifices_3_debuff.dds',
+    'points' => 50,
+    'index' => 15,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'March of Sacrifices Masochist',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+    'title' => 'Apex Hunter',
+  ),
+  4708 => 
+  array (
+    'id' => 4708,
+    'name' => 'March of Sacrifices Victor',
+    'desc' => 'Complete all associated achievements in the Solo Dungeon March of Sacrifices.',
+    'icon' => '/esoui/art/icons/u51_achievement_solodungeon_marchofsacrifices_meta.dds',
+    'points' => 50,
+    'index' => 16,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'March of Sacrifices Solitarian',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'March of Sacrifices Madness',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'March of Sacrifices Savage',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Shroud Hunter',
+        'value' => 1,
+        'index' => 4,
+      ),
+      5 => 
+      array (
+        'name' => 'Golden Indrik Tracker',
+        'value' => 1,
+        'index' => 5,
+      ),
+      6 => 
+      array (
+        'name' => 'Bulky Beating',
+        'value' => 1,
+        'index' => 6,
+      ),
+    ),
+  ),
+  4748 => 
+  array (
+    'id' => 4748,
+    'name' => 'Skill Stylist IV: Werewolf Form',
+    'desc' => 'Acquire and use 10 Wolf Totem Shards and 10 Hunter Totem Shards collected from the March of Sacrifices and Moon Hunter Keep solo dungeons to unlock the Werewolf Form, Red skill style.',
+    'icon' => '/esoui/art/icons/ability_werewolf_001_red.dds',
+    'points' => 15,
+    'index' => 17,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Wolf Totem Shard',
+        'value' => 10,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Hunter Totem Shard',
+        'value' => 10,
+        'index' => 2,
+      ),
+    ),
+    'collectIcon' => '/esoui/art/icons/ability_werewolf_001_red.dds',
+    'collectName' => 'Werewolf Form, Red',
+    'collectId' => '14659',
+  ),
+  4636 => 
+  array (
+    'id' => 4636,
+    'name' => 'Dog of War',
+    'desc' => 'Earn your first Veterancy rank.',
+    'icon' => '/esoui/art/icons/achievement_vengeance_1.dds',
+    'points' => 5,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rank 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4637 => 
+  array (
+    'id' => 4637,
+    'name' => 'Seasoned Veteran',
+    'desc' => 'Reach Veterancy rank 25.',
+    'icon' => '/esoui/art/icons/achievement_vengeance_25.dds',
+    'points' => 10,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rank 25',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4638 => 
+  array (
+    'id' => 4638,
+    'name' => 'Vengeance Is Yours!',
+    'desc' => 'Reach Veterancy rank 50.',
+    'icon' => '/esoui/art/icons/achievement_vengeance_50.dds',
+    'points' => 10,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rank 50',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4639 => 
+  array (
+    'id' => 4639,
+    'name' => 'Experienced Campaigner',
+    'desc' => 'Reach Veterancy rank 75.',
+    'icon' => '/esoui/art/icons/achievement_vengeance_75.dds',
+    'points' => 15,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rank 75',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4640 => 
+  array (
+    'id' => 4640,
+    'name' => 'Best Served Cold',
+    'desc' => 'Reach Veterancy rank 100.',
+    'icon' => '/esoui/art/icons/achievement_vengeance_100.dds',
+    'points' => 50,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Rank 100',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
   ),
   4491 => 
   array (
@@ -3981,7 +5735,7 @@ $ESO_ACHIEVEMENT_DATA = array (
   array (
     'id' => 4659,
     'name' => 'Thieves Guild Armory Station',
-    'desc' => 'Find all the fragments from Thieves Troves and Heists to assemble the Thieves Guild Armory Station antiquity.',
+    'desc' => 'Find all the fragments from thieves troves and Heists to assemble the Thieves Guild Armory Station antiquity.',
     'icon' => '/esoui/art/icons/housing_gen_crf_housingarmorystation001.dds',
     'points' => 15,
     'index' => 2,
@@ -3995,6 +5749,150 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
     ),
   ),
+  4678 => 
+  array (
+    'id' => 4678,
+    'name' => 'Cultivated Cryptpods',
+    'desc' => 'Learn all the traits for the Cultivated Cryptpods Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_alchemy_spore_pod.dds',
+    'points' => 5,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4679 => 
+  array (
+    'id' => 4679,
+    'name' => 'Daedra-Blood Maggots',
+    'desc' => 'Learn all the traits for the Daedra-Blood Maggots Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_plump_maggot.dds',
+    'points' => 5,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4680 => 
+  array (
+    'id' => 4680,
+    'name' => 'Fossilized Verminous Bones',
+    'desc' => 'Learn all the traits for the Fossilized Verminous Bones Alchemy reagent.',
+    'icon' => '/esoui/art/icons/justice_stolen_unique_ashpit_bone.dds',
+    'points' => 5,
+    'index' => 5,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
+  4681 => 
+  array (
+    'id' => 4681,
+    'name' => 'Winter\'s Grave Tongue',
+    'desc' => 'Learn all the traits for the Winter\'s Grave Tongue Alchemy reagent.',
+    'icon' => '/esoui/art/icons/crafting_alchemy_stoneflower_petal.dds',
+    'points' => 5,
+    'index' => 6,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Reveal Trait 1',
+        'value' => 1,
+        'index' => 1,
+      ),
+      2 => 
+      array (
+        'name' => 'Reveal Trait 2',
+        'value' => 1,
+        'index' => 2,
+      ),
+      3 => 
+      array (
+        'name' => 'Reveal Trait 3',
+        'value' => 1,
+        'index' => 3,
+      ),
+      4 => 
+      array (
+        'name' => 'Reveal Trait 4',
+        'value' => 1,
+        'index' => 4,
+      ),
+    ),
+  ),
   4581 => 
   array (
     'id' => 4581,
@@ -4002,7 +5900,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Unlock the full potential of the Prowler\'s Talisman, created long ago by an order of mage-thieves dedicated to Phynaster! Obtain the mythical relic on your adventures. Then speak to Mylen Dechery in the Daggerfall Thieves Den to help you socket the Prowler\'s Gems and activate the ancient power within. You can find the gems by completing the activities listed below.',
     'icon' => '/esoui/art/icons/achievement_u50_mythic_necklace.dds',
     'points' => 50,
-    'index' => 3,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -4044,7 +5942,7 @@ $ESO_ACHIEVEMENT_DATA = array (
     'desc' => 'Gather all the clues below to discover a safe location where you can lie low.',
     'icon' => '/esoui/art/icons/achievement_housing_002.dds',
     'points' => 15,
-    'index' => 4,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -11479,7 +13377,7 @@ $ESO_ACHIEVEMENT_DATA = array (
   array (
     'id' => 3995,
     'name' => 'A Signature with Class',
-    'desc' => 'Acquire and use 50 Class Script Scraps to unlock the Signature Script: Class Mastery. This Signature Script can be purchased from Chronicler Firandil in the Scholarium. Class Script Scraps can be found in rewards granted by completing Trials, Dungeons, Infinite Archive, Arenas, PvP, and Master Writs.',
+    'desc' => 'Acquire and use 50 Class Script Scraps to unlock the Signature Script: Class Flourish. This Signature Script can be purchased from Chronicler Firandil in the Scholarium. Class Script Scraps can be found in rewards granted by completing Trials, Dungeons, Infinite Archive, Arenas, PvP, and Master Writs.',
     'icon' => '/esoui/art/icons/achievement_u42_scribing_scripts_class.dds',
     'points' => 15,
     'index' => 27,
@@ -11898,6 +13796,24 @@ $ESO_ACHIEVEMENT_DATA = array (
         'name' => 'Affix Script: Uncertainty',
         'value' => 1,
         'index' => 20,
+      ),
+    ),
+  ),
+  4749 => 
+  array (
+    'id' => 4749,
+    'name' => 'Shattered Paths Signet',
+    'desc' => 'Acquire the Mythic Item, Shattered Paths Signet, in Night Market and beyond.',
+    'icon' => '/esoui/art/icons/u49_antiquity_shatteredpathssignetring.dds',
+    'points' => 15,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Shattered Path\'s Signet',
+        'value' => 1,
+        'index' => 1,
       ),
     ),
   ),
@@ -13252,7 +15168,7 @@ $ESO_ACHIEVEMENT_DATA = array (
       ),
       22 => 
       array (
-        'name' => 'Solstice Master Angler',
+        'name' => 'Western Solstice Master Angler',
         'value' => 1,
         'index' => 22,
       ),
@@ -17466,7 +19382,7 @@ Long may you reign!',
       ),
     ),
     'dyeName' => 'Mora\'s Mauve',
-    'dyeColor' => '5bc80c',
+    'dyeColor' => '5c496a',
   ),
   4239 => 
   array (
@@ -29926,7 +31842,7 @@ Long may you reign!',
   array (
     'id' => 2881,
     'name' => 'Amphibians Arrested',
-    'desc' => 'Defeat Kinras Ironeye before any Blazing Salamanders can cast Fiery Favor onto him in Black Drake VIlla.',
+    'desc' => 'Defeat Kinras Ironeye before any Blazing Salamanders can cast Fiery Favor onto him in Veteran Black Drake Villa.',
     'icon' => '/esoui/art/icons/achievement_u29_dun1_flavorg.dds',
     'points' => 10,
     'index' => 7,
@@ -33461,7 +35377,7 @@ Long may you reign!',
   array (
     'id' => 3042,
     'name' => 'Settling Scores',
-    'desc' => 'Have Scorions get struck 10 times by the Magma Incarnate\'s Unstable Blitz after placing the challenge banner in Veteran Dread Cellar.',
+    'desc' => 'Have Scorions get struck 10 times by the Magma Incarnate\'s Unstable Blitz after raising the challenge banner in Veteran Dread Cellar.',
     'icon' => '/esoui/art/icons/u31-dun2_flavor_d.dds',
     'points' => 10,
     'index' => 12,
@@ -33563,7 +35479,7 @@ Long may you reign!',
   array (
     'id' => 3088,
     'name' => 'Glutton for Punishment',
-    'desc' => 'Defeat the Scorion Broodlord after placing the challenge banner in Veteran Dread Cellar.',
+    'desc' => 'Defeat the Scorion Broodlord after raising the challenge banner in Veteran Dread Cellar.',
     'icon' => '/esoui/art/icons/achievement_u31_dun2_hard_mode_boss.dds',
     'points' => 50,
     'index' => 16,
@@ -33571,7 +35487,7 @@ Long may you reign!',
     array (
       1 => 
       array (
-        'name' => 'Defeat the Scorion Broodlord after placing the challenge banner',
+        'name' => 'Defeat the Scorion Broodlord after raising the challenge banner',
         'value' => 1,
         'index' => 1,
       ),
@@ -33599,7 +35515,7 @@ Long may you reign!',
   array (
     'id' => 3028,
     'name' => 'Unshaken',
-    'desc' => 'Defeat the Magma Incarnate after placing the challenge banner in Veteran Dread Cellar.',
+    'desc' => 'Defeat the Magma Incarnate after raising the challenge banner in Veteran Dread Cellar.',
     'icon' => '/esoui/art/icons/achievement_u31_dun2_hard_mode_final.dds',
     'points' => 50,
     'index' => 18,
@@ -33672,7 +35588,7 @@ Long may you reign!',
   array (
     'id' => 3032,
     'name' => 'Battlespire\'s Best',
-    'desc' => 'Defeat all encounters in addition to the Scorion Broodlord, Cyronin Artellian, and the Magma Incarnate after placing the Challenge Banners in Veteran Dread Cellar within 25 minutes without suffering a group member death. Your timer starts upon engaging the first group of enemies.',
+    'desc' => 'Defeat all encounters in addition to the Scorion Broodlord, Cyronin Artellian, and the Magma Incarnate after raising the Challenge Banners in Veteran Dread Cellar within 25 minutes without suffering a group member death. Your timer starts upon engaging the first group of enemies.',
     'icon' => '/esoui/art/icons/achievement_u31_dun2_perfectnonmeta.dds',
     'points' => 50,
     'index' => 21,
@@ -37514,8 +39430,8 @@ Long may you reign!',
   1131 => 
   array (
     'id' => 1131,
-    'name' => 'Mindshriven Slayer',
-    'desc' => 'Defeat 300 Mindshriven in Veteran Imperial City Prison.',
+    'name' => 'Mind-Shriven Slayer',
+    'desc' => 'Defeat 300 Mind-Shriven in Veteran Imperial City Prison.',
     'icon' => '/esoui/art/icons/achievement_024.dds',
     'points' => 10,
     'index' => 9,
@@ -37523,7 +39439,7 @@ Long may you reign!',
     array (
       1 => 
       array (
-        'name' => 'Mindshriven Slayer',
+        'name' => 'Mind-Shriven Slayer',
         'value' => 300,
         'index' => 1,
       ),
@@ -38447,7 +40363,7 @@ Long may you reign!',
   array (
     'id' => 4143,
     'name' => 'Slowed Not Stopped',
-    'desc' => 'Defeat Orpheon the Tactician after being afflicted by Slow Descent and having your resources reduced to 25% or less in Veteran Lep Seclusa.',
+    'desc' => 'Defeat Orpheon the Tactician after being afflicted by Slow Descent and having your resources reduced to 30% or less in Veteran Lep Seclusa.',
     'icon' => '/esoui/art/icons/ability_u45_dun2_b3_slowdescent.dds',
     'points' => 10,
     'index' => 17,
@@ -39015,7 +40931,7 @@ Long may you reign!',
   array (
     'id' => 2305,
     'name' => 'Mist Walker',
-    'desc' => 'Defeat Tarcyr without the indrik teleporting any group members during its Shrouding Mist ability in Veteran March of Sacrifices.',
+    'desc' => 'Defeat Tarcyr without any group members being teleported during its Shrouding Mist ability in Veteran March of Sacrifices.',
     'icon' => '/esoui/art/icons/mos_tarcyr_shrouding_mis.dds',
     'points' => 5,
     'index' => 10,
@@ -41609,7 +43525,7 @@ Long may you reign!',
   array (
     'id' => 3035,
     'name' => 'Sly Terror',
-    'desc' => 'Have a member of your group acquire 25 stacks of Buck Wild while fighting Rogerain the Sly in Veteran Red Petal Baston.',
+    'desc' => 'Have a member of your group acquire 25 stacks of Buck Wild while fighting Rogerain the Sly in Veteran Red Petal Bastion.',
     'icon' => '/esoui/art/icons/u31-dun1_flavor_a.dds',
     'points' => 10,
     'index' => 9,
@@ -41681,7 +43597,7 @@ Long may you reign!',
   array (
     'id' => 3086,
     'name' => 'Rogerain Restrainer',
-    'desc' => 'Defeat Rogerain the Sly after placing the challenge banner in Veteran Red Petal Bastion.',
+    'desc' => 'Defeat Rogerain the Sly after raising the challenge banner in Veteran Red Petal Bastion.',
     'icon' => '/esoui/art/icons/achievement_u31_dun1_hard_mode_boss1.dds',
     'points' => 50,
     'index' => 13,
@@ -41689,7 +43605,7 @@ Long may you reign!',
     array (
       1 => 
       array (
-        'name' => 'Defeat Rogerain the Sly After Placing Challenge Banner',
+        'name' => 'Defeat Rogerain the Sly After Raising Challenge Banner',
         'value' => 1,
         'index' => 1,
       ),
@@ -41699,7 +43615,7 @@ Long may you reign!',
   array (
     'id' => 3087,
     'name' => 'Petal, Stem, and Thorn',
-    'desc' => 'Defeat Eliam Merick, Ihudir, and Liramindrel after placing the challenge banner in Veteran Red Petal Bastion.',
+    'desc' => 'Defeat Eliam Merick, Ihudir, and Liramindrel after raising the challenge banner in Veteran Red Petal Bastion.',
     'icon' => '/esoui/art/icons/achievement_u31_dun1_hard_mode_boss2.dds',
     'points' => 50,
     'index' => 14,
@@ -41707,7 +43623,7 @@ Long may you reign!',
     array (
       1 => 
       array (
-        'name' => 'Defeat the Artifact Bearers after placing the challenge banner',
+        'name' => 'Defeat the Artifact Bearers after raising the challenge banner',
         'value' => 1,
         'index' => 1,
       ),
@@ -41717,7 +43633,7 @@ Long may you reign!',
   array (
     'id' => 3018,
     'name' => 'Prior Offenses',
-    'desc' => 'Defeat Prior Thierric Sarazen after placing the challenge banner in Veteran Red Petal Bastion.',
+    'desc' => 'Defeat Prior Thierric Sarazen after raising the challenge banner in Veteran Red Petal Bastion.',
     'icon' => '/esoui/art/icons/achievement_u31_dun1_hard_mode_final.dds',
     'points' => 50,
     'index' => 15,
@@ -41790,7 +43706,7 @@ Long may you reign!',
   array (
     'id' => 3023,
     'name' => 'Bastion Breaker',
-    'desc' => 'Defeat all encounters in addition to Rogerain the Sly, the Artifact Bearers, and Prior Thierric Sarazen after placing the Challenge Banners in Veteran Red Petal Bastion within 25 minutes without suffering a group member death. Your timer starts upon engaging the first group of enemies.',
+    'desc' => 'Defeat all encounters in addition to Rogerain the Sly, the Artifact Bearers, and Prior Thierric Sarazen after raising the Challenge Banners in Veteran Red Petal Bastion within 25 minutes without suffering a group member death. Your timer starts upon engaging the first group of enemies.',
     'icon' => '/esoui/art/icons/achievement_u31_dun1_perfectnonmeta.dds',
     'points' => 50,
     'index' => 18,
@@ -44157,7 +46073,7 @@ Long may you reign!',
   array (
     'id' => 2755,
     'name' => 'Triple Checked',
-    'desc' => 'Defeat Exarch Kraglen, the Stone Behemoth, and Arkasis the Mad Alchemist in Veteran Stone Garden after placing the challenge banner for each of them.',
+    'desc' => 'Defeat Exarch Kraglen, the Stone Behemoth, and Arkasis the Mad Alchemist in Veteran Stone Garden after raising the challenge banner for each of them.',
     'icon' => '/esoui/art/icons/achievement_u27_dun1_allhardmode_version_2.dds',
     'points' => 50,
     'index' => 16,
@@ -50915,7 +52831,7 @@ Long may you reign!',
     array (
       1 => 
       array (
-        'name' => 'Rockgrove Completed',
+        'name' => 'Rockgrove Vanquisher',
         'value' => 1,
         'index' => 1,
       ),
@@ -50927,7 +52843,7 @@ Long may you reign!',
       ),
       3 => 
       array (
-        'name' => 'Rockgrove Vanquisher',
+        'name' => 'Xanmeer\'s Protector',
         'value' => 1,
         'index' => 3,
       ),
@@ -50951,7 +52867,7 @@ Long may you reign!',
       ),
       7 => 
       array (
-        'name' => 'Havocrel Slayer',
+        'name' => 'Havocrel Harvester',
         'value' => 1,
         'index' => 7,
       ),
@@ -72267,6 +74183,78 @@ Note: Repeatable quests only count towards this achievement the first time they 
     'collectName' => 'Shattered Mirror Maze Body Marks',
     'collectId' => '11412',
   ),
+  4753 => 
+  array (
+    'id' => 4753,
+    'name' => 'Apocryphal Clothier Station',
+    'desc' => 'Acquire the Apocryphal Clothier Station antiquity. Leads can be found in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/housing_apc_inc_fateweaverloom001.dds',
+    'points' => 15,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Apocryphal Clothier Station',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4757 => 
+  array (
+    'id' => 4757,
+    'name' => 'Apocryphal Jewelry Station',
+    'desc' => 'Acquire the Apocryphal Jewelry Station antiquity. Leads can be found in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/housing_gen_crf_jewelryapocryphacraftingstationtable001.dds',
+    'points' => 15,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Apocrypha Jewelry Crafting Station',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4755 => 
+  array (
+    'id' => 4755,
+    'name' => 'Infinite Tome',
+    'desc' => 'Acquire the Infinite Tome antiquity. Leads can be found in muniment chests in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/housing_uni_inc_hermaeusmorabook001.dds',
+    'points' => 15,
+    'index' => 3,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Infinite Tome',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4754 => 
+  array (
+    'id' => 4754,
+    'name' => 'Vision of Mora',
+    'desc' => 'Acquire the Vision of Mora antiquity. Leads can be found in muniment chests in the Infinite Archive.',
+    'icon' => '/esoui/art/icons/housing_apc_inc_hermaeusmoraswitch001.dds',
+    'points' => 15,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Vision of Mora',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   3946 => 
   array (
     'id' => 3946,
@@ -77878,6 +79866,24 @@ Replicanum',
       ),
     ),
   ),
+  4750 => 
+  array (
+    'id' => 4750,
+    'name' => 'Cult Blacksmithing Station',
+    'desc' => 'Acquire the Cult Blacksmithing Station antiquity. Leads for the station can be found by killing World Bosses, defeating Public Dungeon bosses, and slaying Delve bosses across Solstice.',
+    'icon' => '/esoui/art/icons/housing_gen_crf_wrmmobileblacksmithingstation001.dds',
+    'points' => 15,
+    'index' => 1,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Cult Blacksmithing Station',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   4427 => 
   array (
     'id' => 4427,
@@ -77885,7 +79891,7 @@ Replicanum',
     'desc' => 'Acquire the Mythic items discovered by the Antiquarian Circle during your adventures in the Western region of Solstice.',
     'icon' => '/esoui/art/icons/u46_mythic_collected_meta.dds',
     'points' => 50,
-    'index' => 1,
+    'index' => 2,
     'criteria' => 
     array (
       1 => 
@@ -77915,7 +79921,7 @@ Replicanum',
     'desc' => 'Acquire the Mythic item, Mad God\'s Dancing Shoes, on Solstice.',
     'icon' => '/esoui/art/icons/u46_mythic_collected_perniciouspoulaines.dds',
     'points' => 15,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -77933,7 +79939,7 @@ Replicanum',
     'desc' => 'Acquire the Mythic item Rakkhat\'s Voidmantle on Solstice.',
     'icon' => '/esoui/art/icons/u46_mythic_collected_rakkat_shoulder.dds',
     'points' => 15,
-    'index' => 3,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -77951,7 +79957,7 @@ Replicanum',
     'desc' => 'Acquire the Mythic item, Monomyth Reforged, on Solstice.',
     'icon' => '/esoui/art/icons/u46_mythic_collected_mythicring.dds',
     'points' => 15,
-    'index' => 4,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -77969,7 +79975,7 @@ Replicanum',
     'desc' => 'Acquire the Mythic item, Huntsman\'s Warmask, on Solstice. Antiquarian leads for the Warmask can be found all across Tamriel.',
     'icon' => '/esoui/art/icons/u48_mythic_collect_1.dds',
     'points' => 15,
-    'index' => 5,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -77987,7 +79993,7 @@ Replicanum',
     'desc' => 'Find all the fragments of The Hermit Crab Dance music box antiquity on Solstice, and assemble the furnishing.',
     'icon' => '/esoui/art/icons/u46_achievement_housing_bismuthcrabmusicbox001.dds',
     'points' => 15,
-    'index' => 6,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -81330,6 +83336,24 @@ Replicanum',
     'collectName' => 'Snipe, Scarlet Red',
     'collectId' => '12527',
   ),
+  4756 => 
+  array (
+    'id' => 4756,
+    'name' => 'Lament for the Path Not Taken',
+    'desc' => 'Acquire the Music Box, Lament for the Path Not Taken antiquity. Leads can be found by stopping Mirrormoor incursions, slaying Delves bosses, and killing Public Dungeon bosses across West Weald.',
+    'icon' => '/esoui/art/icons/housing_uni_inc_musicboxmirrormoor001.dds',
+    'points' => 15,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Music Box, Lament for the Path Not Taken',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   4082 => 
   array (
     'id' => 4082,
@@ -81337,7 +83361,7 @@ Replicanum',
     'desc' => 'Acquire the Mythic Item, Rourken Steamguards, in West Weald.',
     'icon' => '/esoui/art/icons/u42_mythic_collected_1.dds',
     'points' => 15,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
@@ -81355,7 +83379,7 @@ Replicanum',
     'desc' => 'Acquire the Mythic Item, The Shadow Queen\'s Cowl, in West Weald.',
     'icon' => '/esoui/art/icons/u42_mythic_collected_2.dds',
     'points' => 15,
-    'index' => 3,
+    'index' => 4,
     'criteria' => 
     array (
       1 => 
@@ -81373,7 +83397,7 @@ Replicanum',
     'desc' => 'Acquire the Mythic Item, The Saint and the Seducer, in West Weald.',
     'icon' => '/esoui/art/icons/u42_mythic_collected_3.dds',
     'points' => 15,
-    'index' => 4,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -81391,7 +83415,7 @@ Replicanum',
     'desc' => 'Acquire the Ayleid Blacksmithing Station discovered by the Antiquarian Circle during your adventures in West Weald.',
     'icon' => '/esoui/art/icons/u42_blacksmithingstation.dds',
     'points' => 15,
-    'index' => 5,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -83134,6 +85158,24 @@ Replicanum',
       ),
     ),
   ),
+  4752 => 
+  array (
+    'id' => 4752,
+    'name' => 'Apocryphal Well',
+    'desc' => 'Acquire the Apocryphal Well antiquity. Leads for the well can be found by digging up chests marked by treasure maps across the Telvanni Penninsula and in the realm of Apocrypha.',
+    'icon' => '/esoui/art/icons/housing_uni_inc_inkywell001.dds',
+    'points' => 15,
+    'index' => 2,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Apocryphal Well',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
   3713 => 
   array (
     'id' => 3713,
@@ -83141,12 +85183,30 @@ Replicanum',
     'desc' => 'Acquire the Cryptcanon Vestments, an ancient Dark Elf item long thought lost to history.',
     'icon' => '/esoui/art/icons/u38_mythic_collected_1.dds',
     'points' => 15,
-    'index' => 2,
+    'index' => 3,
     'criteria' => 
     array (
       1 => 
       array (
         'name' => 'Acquire Cryptcanon Vestments',
+        'value' => 1,
+        'index' => 1,
+      ),
+    ),
+  ),
+  4751 => 
+  array (
+    'id' => 4751,
+    'name' => 'Trifold Mirror of Alternatives',
+    'desc' => 'Acquire the Trifold Mirror of Alternatives antiquity. Leads for the mirror can be found by killing World Bosses and slaying Delve bosses across the Telvanni Penninsula',
+    'icon' => '/esoui/art/icons/housing_apc_fur_trifoldmirror001.dds',
+    'points' => 15,
+    'index' => 4,
+    'criteria' => 
+    array (
+      1 => 
+      array (
+        'name' => 'Trifold Mirror of Alternatives',
         'value' => 1,
         'index' => 1,
       ),
@@ -83159,7 +85219,7 @@ Replicanum',
     'desc' => 'Acquire the Esoteric Environment Greaves, an ancient Dwarven item long thought lost to history.',
     'icon' => '/esoui/art/icons/u38_mythic_collected_2.dds',
     'points' => 15,
-    'index' => 3,
+    'index' => 5,
     'criteria' => 
     array (
       1 => 
@@ -83177,7 +85237,7 @@ Replicanum',
     'desc' => 'Acquire Velothi Ur-Mage\'s Amulet, an ancient Chimer item long thought lost to history.',
     'icon' => '/esoui/art/icons/u38_mythic_collected_3.dds',
     'points' => 15,
-    'index' => 4,
+    'index' => 6,
     'criteria' => 
     array (
       1 => 
@@ -83195,7 +85255,7 @@ Replicanum',
     'desc' => 'Acquire the Mythic Item, Torc of the Last Ayleid King, in Apocrypha.',
     'icon' => '/esoui/art/icons/u41_tribute_acquiretorcofthelastayleidking.dds',
     'points' => 15,
-    'index' => 5,
+    'index' => 7,
     'criteria' => 
     array (
       1 => 
@@ -83213,7 +85273,7 @@ Replicanum',
     'desc' => 'Find all the fragments in the Telvanni Peninsula and assemble the Spore Savant Face Marks antiquity.',
     'icon' => '/esoui/art/icons/mrf_sporecrafter.dds',
     'points' => 15,
-    'index' => 6,
+    'index' => 8,
     'criteria' => 
     array (
       1 => 
@@ -83231,7 +85291,7 @@ Replicanum',
     'desc' => 'Find all the fragments in the Telvanni Peninsula and assemble the Spore Savant Body Marks antiquity.',
     'icon' => '/esoui/art/icons/mrk_sporecrafter.dds',
     'points' => 15,
-    'index' => 7,
+    'index' => 9,
     'criteria' => 
     array (
       1 => 
@@ -83249,7 +85309,7 @@ Replicanum',
     'desc' => 'Find all the fragments in the Telvanni Peninsula and assemble the Glyphic Secrets Music Box antiquity.',
     'icon' => '/esoui/art/icons/housing_uni_inc_glyphicmusicbox001.dds',
     'points' => 15,
-    'index' => 8,
+    'index' => 10,
     'criteria' => 
     array (
       1 => 
@@ -83267,7 +85327,7 @@ Replicanum',
     'desc' => 'Find all the fragments in the Telvanni Peninsula and assemble the Telvanni Alchemy Station antiquity.',
     'icon' => '/esoui/art/icons/housing_uni_fur_tlvalchemystation001.dds',
     'points' => 15,
-    'index' => 9,
+    'index' => 11,
     'criteria' => 
     array (
       1 => 
@@ -111461,7 +113521,7 @@ Replicanum',
   array (
     'id' => 1395,
     'name' => 'Finders Keepers',
-    'desc' => 'Discover and loot 1 Thieves Trove.',
+    'desc' => 'Discover and loot 1 thieves trove.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_008.dds',
     'points' => 5,
     'index' => 18,
@@ -111479,7 +113539,7 @@ Replicanum',
   array (
     'id' => 1396,
     'name' => 'An Eye For Details',
-    'desc' => 'Discover and loot 5 Thieves Troves.',
+    'desc' => 'Discover and loot 5 thieves troves.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_009.dds',
     'points' => 10,
     'index' => 18,
@@ -111497,7 +113557,7 @@ Replicanum',
   array (
     'id' => 1397,
     'name' => 'Leave No Stash Behind',
-    'desc' => 'Discover and loot 15 Thieves Troves.',
+    'desc' => 'Discover and loot 15 thieves troves.',
     'icon' => '/esoui/art/icons/achievement_thievesguild_010.dds',
     'points' => 15,
     'index' => 18,
@@ -115406,9 +117466,25 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       3 => 
       array (
-        0 => 4581,
+        0 => 4678,
       ),
       4 => 
+      array (
+        0 => 4679,
+      ),
+      5 => 
+      array (
+        0 => 4680,
+      ),
+      6 => 
+      array (
+        0 => 4681,
+      ),
+      7 => 
+      array (
+        0 => 4581,
+      ),
+      8 => 
       array (
         0 => 4582,
       ),
@@ -115467,27 +117543,170 @@ $ESO_ACHIEVEMENT_TREE = array (
         1 => 4610,
       ),
     ),
-    'Veterancy' => 
+    'Dynamic Encounters' => 
     array (
       1 => 
       array (
-        0 => 4636,
+        0 => 4621,
       ),
       2 => 
       array (
-        0 => 4637,
+        0 => 4623,
+        1 => 4624,
+        2 => 4625,
       ),
       3 => 
       array (
-        0 => 4638,
+        0 => 4622,
       ),
       4 => 
       array (
-        0 => 4639,
+        0 => 4620,
       ),
       5 => 
       array (
-        0 => 4640,
+        0 => 4651,
+      ),
+      6 => 
+      array (
+        0 => 4652,
+        1 => 4654,
+        2 => 4655,
+      ),
+    ),
+    'High Seas' => 
+    array (
+      1 => 
+      array (
+        0 => 4682,
+      ),
+      2 => 
+      array (
+        0 => 4685,
+      ),
+      3 => 
+      array (
+        0 => 4684,
+      ),
+      4 => 
+      array (
+        0 => 4683,
+      ),
+      5 => 
+      array (
+        0 => 4688,
+      ),
+      6 => 
+      array (
+        0 => 4691,
+      ),
+      7 => 
+      array (
+        0 => 4686,
+      ),
+      8 => 
+      array (
+        0 => 4687,
+      ),
+      9 => 
+      array (
+        0 => 4690,
+      ),
+      10 => 
+      array (
+        0 => 4692,
+      ),
+      11 => 
+      array (
+        0 => 4689,
+      ),
+    ),
+    'Nowhere Vault' => 
+    array (
+      1 => 
+      array (
+        0 => 4721,
+      ),
+      2 => 
+      array (
+        0 => 4722,
+        1 => 4723,
+        2 => 4724,
+      ),
+      3 => 
+      array (
+        0 => 4657,
+      ),
+      4 => 
+      array (
+        0 => 4747,
+        1 => 4746,
+        2 => 4745,
+      ),
+      5 => 
+      array (
+        0 => 4733,
+      ),
+      6 => 
+      array (
+        0 => 4731,
+      ),
+      7 => 
+      array (
+        0 => 4729,
+      ),
+      8 => 
+      array (
+        0 => 4734,
+      ),
+      9 => 
+      array (
+        0 => 4732,
+      ),
+      10 => 
+      array (
+        0 => 4730,
+      ),
+      11 => 
+      array (
+        0 => 4735,
+      ),
+      12 => 
+      array (
+        0 => 4738,
+        1 => 4739,
+        2 => 4740,
+      ),
+      13 => 
+      array (
+        0 => 4741,
+      ),
+      14 => 
+      array (
+        0 => 4742,
+      ),
+      15 => 
+      array (
+        0 => 4744,
+      ),
+      16 => 
+      array (
+        0 => 4743,
+      ),
+    ),
+    'Player vs Player' => 
+    array (
+      1 => 
+      array (
+        0 => 4709,
+        1 => 4710,
+        2 => 4711,
+      ),
+      2 => 
+      array (
+        0 => 4718,
+        1 => 4719,
+        2 => 4720,
       ),
     ),
     'Quests' => 
@@ -115575,35 +117794,117 @@ $ESO_ACHIEVEMENT_TREE = array (
         0 => 4629,
       ),
     ),
-    'Dynamic Encounters' => 
+    'Rumors' => 
     array (
       1 => 
       array (
-        0 => 4621,
+        0 => 4583,
       ),
       2 => 
       array (
-        0 => 4623,
-        1 => 4624,
-        2 => 4625,
+        0 => 4586,
       ),
       3 => 
       array (
-        0 => 4622,
+        0 => 4584,
       ),
       4 => 
       array (
-        0 => 4620,
+        0 => 4585,
+      ),
+    ),
+    'Solo Dungeons' => 
+    array (
+      1 => 
+      array (
+        0 => 4693,
+      ),
+      2 => 
+      array (
+        0 => 4697,
+      ),
+      3 => 
+      array (
+        0 => 4698,
+      ),
+      4 => 
+      array (
+        0 => 4699,
       ),
       5 => 
       array (
-        0 => 4651,
+        0 => 4694,
       ),
       6 => 
       array (
-        0 => 4652,
-        1 => 4654,
-        2 => 4655,
+        0 => 4695,
+      ),
+      7 => 
+      array (
+        0 => 4696,
+      ),
+      8 => 
+      array (
+        0 => 4700,
+      ),
+      9 => 
+      array (
+        0 => 4701,
+      ),
+      10 => 
+      array (
+        0 => 4705,
+      ),
+      11 => 
+      array (
+        0 => 4707,
+      ),
+      12 => 
+      array (
+        0 => 4706,
+      ),
+      13 => 
+      array (
+        0 => 4702,
+      ),
+      14 => 
+      array (
+        0 => 4703,
+      ),
+      15 => 
+      array (
+        0 => 4704,
+      ),
+      16 => 
+      array (
+        0 => 4708,
+      ),
+      17 => 
+      array (
+        0 => 4748,
+      ),
+    ),
+    'Veterancy' => 
+    array (
+      1 => 
+      array (
+        0 => 4636,
+      ),
+      2 => 
+      array (
+        0 => 4637,
+      ),
+      3 => 
+      array (
+        0 => 4638,
+      ),
+      4 => 
+      array (
+        0 => 4639,
+      ),
+      5 => 
+      array (
+        0 => 4640,
       ),
     ),
   ),
@@ -116526,6 +118827,13 @@ $ESO_ACHIEVEMENT_TREE = array (
       31 => 
       array (
         0 => 3998,
+      ),
+    ),
+    'Antiquities' => 
+    array (
+      1 => 
+      array (
+        0 => 4749,
       ),
     ),
     'Anniversary' => 
@@ -124977,6 +127285,25 @@ $ESO_ACHIEVEMENT_TREE = array (
         0 => 3929,
       ),
     ),
+    'Antiquities' => 
+    array (
+      1 => 
+      array (
+        0 => 4753,
+      ),
+      2 => 
+      array (
+        0 => 4757,
+      ),
+      3 => 
+      array (
+        0 => 4755,
+      ),
+      4 => 
+      array (
+        0 => 4754,
+      ),
+    ),
     'Tales of Tribute' => 
     array (
       1 => 
@@ -125702,25 +128029,29 @@ $ESO_ACHIEVEMENT_TREE = array (
     array (
       1 => 
       array (
-        0 => 4427,
+        0 => 4750,
       ),
       2 => 
       array (
-        0 => 4428,
+        0 => 4427,
       ),
       3 => 
       array (
-        0 => 4429,
+        0 => 4428,
       ),
       4 => 
       array (
-        0 => 4430,
+        0 => 4429,
       ),
       5 => 
       array (
-        0 => 4463,
+        0 => 4430,
       ),
       6 => 
+      array (
+        0 => 4463,
+      ),
+      7 => 
       array (
         0 => 4431,
       ),
@@ -126038,17 +128369,21 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       2 => 
       array (
-        0 => 4082,
+        0 => 4756,
       ),
       3 => 
       array (
-        0 => 4083,
+        0 => 4082,
       ),
       4 => 
       array (
-        0 => 4084,
+        0 => 4083,
       ),
       5 => 
+      array (
+        0 => 4084,
+      ),
+      6 => 
       array (
         0 => 4085,
       ),
@@ -126347,33 +128682,41 @@ $ESO_ACHIEVEMENT_TREE = array (
       ),
       2 => 
       array (
-        0 => 3713,
+        0 => 4752,
       ),
       3 => 
       array (
-        0 => 3714,
+        0 => 3713,
       ),
       4 => 
       array (
-        0 => 3715,
+        0 => 4751,
       ),
       5 => 
       array (
-        0 => 3716,
+        0 => 3714,
       ),
       6 => 
       array (
-        0 => 3745,
+        0 => 3715,
       ),
       7 => 
       array (
-        0 => 3746,
+        0 => 3716,
       ),
       8 => 
       array (
-        0 => 3747,
+        0 => 3745,
       ),
       9 => 
+      array (
+        0 => 3746,
+      ),
+      10 => 
+      array (
+        0 => 3747,
+      ),
+      11 => 
       array (
         0 => 3748,
       ),
