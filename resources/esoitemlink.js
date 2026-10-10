@@ -617,8 +617,11 @@ function AddEsoItemLinkCopyButton(id)
 	
 	var html = element.html();
 	var buttonHtml = "";
-	
-	buttonHtml = "<button class='esoil_copy_button' onclick='OnEsoItemLinkCopyClicked(this);'>Copy</button>";
+
+	// Add copy button if it does not already exist
+	if (element.find(".esoil_copy_button").length === 0) {
+		buttonHtml = "<button class='esoil_copy_button' onclick='OnEsoItemLinkCopyClicked(this);'>Copy</button>";
+	}
 	
 	element.html(html + buttonHtml);
 }
