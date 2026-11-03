@@ -7,7 +7,7 @@ require("/home/uesp/secrets/esolog.secrets");
 $db = new mysqli($uespEsoLogReadDBHost, $uespEsoLogReadUser, $uespEsoLogReadPW, $uespEsoLogDatabase);
 if ($db->connect_error) exit("Could not connect to mysql database!");
 
-$TABLEPREFIX = "51";
+$TABLEPREFIX = "";
 $VERSION = "51";
 $FIRSTID = 3;
 $INCLUDEENDFUNC = true;
