@@ -2321,7 +2321,6 @@ $ESO_SET_INDEXES = array(
 );
 
 
-
 $ESO_ITEMEQUIPTYPE_TEXTS = array(
 		-1 => "",
 		0 => "",

@@ -1,7 +1,7 @@
 <?php 
 if (php_sapi_name() != "cli") die("Can only be run from command line!");
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "52pts";
 
 $REPLACE_PAIRS = array(
 		// Transform item names into the matching collectible name. For most collectibles the name matches the item

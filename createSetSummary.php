@@ -1,6 +1,6 @@
 <?php
 
-$TABLE_SUFFIX = "";
+$TABLE_SUFFIX = "52pts";
 $LANG_SUFFIX = "";		//Use empty string for english
 $SOURCEITEMTABLE = "Summary";
 $KEEPONLYNEWSETS = false;
@@ -1077,6 +1077,8 @@ $query = "SELECT * FROM $table WHERE setName!='' ORDER BY itemId DESC;";
 $rowResult = $db->query($query);
 if (!$rowResult) exit("ERROR: Database query error loading set items from table '$table'!\n" . $db->error);
 $rowResult->data_seek(0);
+
+print("Loading from $table...\n");
 
 $itemCount = 0;
 $updateCount = 0;

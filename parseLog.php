@@ -42,7 +42,8 @@ class EsoLogParser
 {
 	const MINEITEM_TABLESUFFIX = "52pts";
 	const SKILLS_TABLESUFFIX   = "52pts";
-	const MINEITEM_SAVESUMMARY = false;
+	
+	const MINEITEM_SAVESUMMARY = true;
 	
 	const DEFAULT_LOG_PATH = "/home/uesp/esolog/";		// Used if none specified on command line
 	
